@@ -1,0 +1,143 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt,
+dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot,
+thead, tr, th, td {
+  border: 0pt none;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0pt;
+  outline-color: invert;
+  outline-style: none;
+  outline-width: 0pt;
+  padding: 0pt;
+  vertical-align: baseline;
+}
+
+#papertitle
+{
+	color: #1772d0;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	border-collapse: collapse;
+}
+
+body {
+  position: relative;
+  margin: 3em auto 2em auto;
+  width: 1000px;
+  font-size: 16px;
+	line-height:20px;
+}
+
+a
+{
+color:#1772d0;
+text-decoration:none;
+}
+
+a:hover
+{
+	color: #f09228;
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 30pt;
+}
+
+h2 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15pt;
+  font-weight: 700;
+}
+
+h4 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+ul {
+  list-style: circle;
+}
+
+img {
+  border: none;
+}
+
+li {
+  padding-bottom: 0.5em;
+  margin-left: 1.4em;
+}
+
+strong, b {
+	font-weight:bold;
+}
+
+em, i {
+	font-style:italic;
+}
+
+div.section {
+  clear: both;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+div.spanner {
+  clear: both;
+}
+
+div.paper {
+  clear: both;
+  background: #fff;
+  padding: 1em 1em 0em 1em;
+}
+
+div.papermeta {
+  clear: both;
+	margin-left: 210px;
+	background: #fff;
+  padding: 0.2em 1em 1em 1em;
+}
+
+
+div.paper div.wide {
+  padding-right: 0px;
+}
+
+img.paper {
+	margin-right: 2em;
+  margin-bottom: 0.5em;
+  float: left;
+  width: 200px;
+}
+
+span.blurb {
+  font-style:italic;
+  display:block;
+  margin-top:0.75em;
+  margin-bottom:0.5em;
+}
+
+pre, code {
+  font-family: 'Lucida Console', 'Andale Mono', 'Courier', monospaced;
+	font-size: 11px;
+	line-height: 14px;
+}
+
+div.papermeta pre {
+	font-family: 'Lucida Console', 'Andale Mono', 'Courier', monospaced;
+	font-size: 11px;
+	line-height: 14px;
+}
