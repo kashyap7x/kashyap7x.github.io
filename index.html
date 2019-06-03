@@ -20,7 +20,7 @@
   I am a Deep Learning Intern at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>. I recently graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. I am interested in understanding the strengths and weaknesses of machine learning algorithms through uncertainty estimates, so as to adaptively build better datasets for their training.
   <p><br></p>
   <p>
-    <a href="javascript:toggleblock('email')">email</a> | <a href="https://github.com/kashyap7x">github</a>  | <a href="https://www.linkedin.com/in/kchitta/">linkedin</a> | <a href="https://scholar.google.com/citations?user=vX5i2CcAAAAJ&hl=en">google scholar</a>
+    <a href="javascript:toggleblock('email')">email</a> | <a href="https://github.com/kashyap7x">github</a>  | <a href="https://www.linkedin.com/in/kchitta/">linkedin</a> | <a href="https://twitter.com/kashyap7x">twitter</a> | <a href="https://scholar.google.com/citations?user=vX5i2CcAAAAJ&hl=en">google scholar</a>
   </p>
   <pre xml:space="preserve" id="email" style="font-size: 12px">
 
@@ -39,9 +39,37 @@ firstname DOT lastname AT gmail DOT com
 <div class="section">
 <h2> Publications </h2>
 <!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2019less">
+<img class="paper" title="Less is More: An Exploration of Data Redundancy with Active Dataset Subsampling" src="figures/chitta2019less.png" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle">Less is More: An Exploration of Data Redundancy with Active Dataset Subsampling</b> <br/>
+<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Elmar Haussmann, Clement Farabet <br/>
+ArXiv e-prints, 2019 <br/>
+<a href="https://arxiv.org/pdf/1905.12737.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2019lessAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2019lessBib')">bibtex </a> </p>
+<div class="papermeta" id="chitta2019lessMeta">
+<em id="chitta2019lessAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's performance. If there is a large number of such samples, subsampling the training dataset in a way that removes them could provide an effective solution to both improve performance and reduce training time. In this paper, we propose an approach called Active Dataset Subsampling (ADS), to identify favorable subsets within a dataset for training using ensemble based uncertainty estimation. When applied to three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet) we find that there are low uncertainty subsets, which can be as large as 50% of the full dataset, that negatively impact performance. These subsets are identified and removed with ADS. We demonstrate that datasets obtained using ADS with a lightweight ResNet-18 ensemble remain effective when used to train deeper models like ResNet-101. Our results provide strong empirical evidence that using all the available data for training can hurt performance on large scale vision tasks. </em>
+<pre xml:space="preserve" id="chitta2019lessBib">
+
+@inProceedings{chitta2019less,
+  title={Less is More: An Exploration of Data Redundancy with Active Dataset Subsampling},
+  author = {Kashyap Chitta
+  and Jose M. Alvarez
+  and Elmar Haussmann
+  and Clement Farabet},
+  booktitle={ArXiv e-prints},
+  year={2019}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('chitta2019lessAbs');
+hideblock('chitta2019lessBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2018largescale">
 <img class="paper" title="Large-Scale Visual Active Learning with Deep Probabilistic Ensembles" src="figures/chitta2018largescale.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle">Large-Scale Visual Active Learning with Deep Probabilistic Ensembles</b> <br/>
+<p> <b id="papertitle">Large-Scale Visual Active Learning with Deep Probabilistic Ensembles</b> <br/>
 <strong>Kashyap Chitta</strong>, Jose M. Alvarez, Adam Lesnikowski <br/>
 ArXiv e-prints, 2018 <br/>
 <a href="https://arxiv.org/pdf/1811.03575.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018largescaleAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018largescaleBib')">bibtex </a> </p>
@@ -68,7 +96,7 @@ hideblock('chitta2018largescaleBib');
 <!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2018adaptive">
 <img class="paper" title="Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels" src="figures/chitta2018adaptive.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle">Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels</b> <br/>
+<p> <b id="papertitle">Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels</b> <br/>
 <strong>Kashyap Chitta</strong>, Jianwei Feng, Martial Hebert <br/>
 ArXiv e-prints, 2018 <br/>
 <a href="https://arxiv.org/pdf/1811.03542.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018adaptiveAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018adaptiveBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/Domain-Adapatation">code </a> </p>
@@ -148,7 +176,7 @@ hideblock('chitta2018targetedBib');
 <div class="paper" id="patel2018learning">
 <img class="paper" title="Learning Sampling Policies for Domain Adaptation" src="figures/patel2018learning.png" />
 <p><b id="papertitle">Learning Sampling Policies for Domain Adaptation</b> <br/>
-Yash Patel*, <strong>Kashyap Chitta</strong>*, Bhavan Jasani <br/>
+Yash Patel*, <strong>Kashyap Chitta</strong>*, Bhavan Jasani* <br/>
 ArXiv e-prints, 2018 <br/>
 <a href="https://arxiv.org/pdf/1805.07641.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('patel2018learningAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('patel2018learningBib')">bibtex </a>  &nbsp <a href="https://github.com/yash0307/LearningSamplingPolicies">code </a> </p>
 <div class="papermeta" id="patel2018learningMeta">
