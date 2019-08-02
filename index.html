@@ -17,14 +17,14 @@
 <div class="section">
 <table>
   <tr valign="top"> <td style="width: 700px; vertical-align: top;">
-  I am a Deep Learning Intern at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>. I recently graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. I am interested in understanding the strengths and weaknesses of machine learning algorithms through uncertainty estimates, so as to adaptively build better datasets for their training.
+  I am a PhD student at the Max Planck Institute for Intelligent Systems in T&uumlbingen, Germany, where I am part of the <a href = "https://avg.is.tuebingen.mpg.de">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. I am interested in understanding the strengths and weaknesses of machine learning algorithms through uncertainty estimates, so as to adaptively build better datasets for their training. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
   <p><br></p>
   <p>
     <a href="javascript:toggleblock('email')">email</a> | <a href="https://github.com/kashyap7x">github</a>  | <a href="https://www.linkedin.com/in/kchitta/">linkedin</a> | <a href="https://twitter.com/kashyap7x">twitter</a> | <a href="https://scholar.google.com/citations?user=vX5i2CcAAAAJ&hl=en">google scholar</a>
   </p>
   <pre xml:space="preserve" id="email" style="font-size: 12px">
 
-firstname DOT lastname AT gmail DOT com
+firstname DOT lastname AT tue DOT mpg DOT de
   </pre>
   <script xml:space="preserve" language="JavaScript">
   hideblock('email');
@@ -38,6 +38,33 @@ firstname DOT lastname AT gmail DOT com
 
 <div class="section">
 <h2> Publications </h2>
+<!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2019quadtree">
+<img class="paper" title="Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions" src="figures/chitta2019quadtree.png" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle">Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions</b> <br/>
+<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Martial Hebert <br/>
+ArXiv e-prints, 2019 <br/>
+<a href="https://arxiv.org/pdf/1907.11821.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2019quadtreeAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2019quadtreeBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/QGN">code </a> </p>
+<div class="papermeta" id="chitta2019quadtreeMeta">
+<em id="chitta2019quadtreeAbs">Semantic segmentation with Convolutional Neural Networks is a memory-intensive task due to the high spatial resolution of feature maps and output predictions. In this paper, we present Quadtree Generating Networks (QGNs), a novel approach able to drastically reduce the memory footprint of modern semantic segmentation networks. The key idea is to use quadtrees to represent the predictions and target segmentation masks instead of dense pixel grids. Our quadtree representation enables hierarchical processing of an input image, with the most computationally demanding layers only being used at regions in the image containing boundaries between classes. In addition, given a trained model, our representation enables flexible inference schemes to trade-off accuracy and computational cost, allowing the network to adapt in constrained situations such as embedded devices. We demonstrate the benefits of our approach on the Cityscapes, SUN-RGBD and ADE20k datasets. On Cityscapes, we obtain an relative 3% mIoU improvement compared to a dilated network with similar memory consumption; and only receive a 3% relative mIoU drop compared to a large dilated network, while reducing memory consumption by over 4&times. </em>
+<pre xml:space="preserve" id="chitta2019quadtreeBib">
+
+@inProceedings{chitta2019quadtree,
+  title={Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions},
+  author = {Kashyap Chitta
+  and Jose M. Alvarez
+  and Martial Hebert},
+  booktitle={ArXiv e-prints},
+  year={2019}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('chitta2019quadtreeAbs');
+hideblock('chitta2019quadtreeBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
 <!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2019less">
 <img class="paper" title="Less is More: An Exploration of Data Redundancy with Active Dataset Subsampling" src="figures/chitta2019less.png" />
