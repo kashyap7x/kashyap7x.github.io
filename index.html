@@ -17,7 +17,7 @@
 <div class="section">
 <table>
   <tr valign="top"> <td style="width: 700px; vertical-align: top;">
-  I am a PhD student at the Max Planck Institute for Intelligent Systems in T&uumlbingen, Germany, where I am part of the <a href = "https://avg.is.tuebingen.mpg.de">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. My research is in machine learning and computer vision. I am interested in uncertainty estimation, with a focus on explaining errors and improving data efficiency for machine learning algorithms. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
+  I am a PhD student at the Max Planck Institute for Intelligent Systems in T&uumlbingen, Germany, where I am part of the <a href = "https://avg.is.tuebingen.mpg.de">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. My research is at the intersection of robotics, machine learning and computer vision. I am currently interested in scene representations for improving the robustness and generalization of learned vision-based control policies. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
   <p><br></p>
   <p>
     <a href="javascript:toggleblock('email')">email</a> | <a href="https://github.com/kashyap7x">github</a>  | <a href="https://www.linkedin.com/in/kchitta/">linkedin</a> | <a href="https://twitter.com/kashyap7x">twitter</a> | <a href="https://scholar.google.com/citations?user=vX5i2CcAAAAJ&hl=en">google scholar</a>
@@ -38,29 +38,94 @@ firstname DOT lastname AT tue DOT mpg DOT de
 
 <div class="section">
 <h2> Publications </h2>
-<!--------------------------------------------------------------------------->
-<div class="paper" id="chitta2019training">
-<img class="paper" title="Less is More: An Exploration of Data Redundancy with Active Dataset Subsampling" src="figures/chitta2019training.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle">Training Data Distribution Search with Ensemble Active Learning</b> <br/>
-<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Elmar Haussmann, Clement Farabet <br/>
-ArXiv e-prints, 2019 <br/>
-<a href="https://arxiv.org/pdf/1905.12737.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingBib')">bibtex </a> </p>
-<div class="papermeta" id="chitta2019trainingMeta">
-<em id="chitta2019trainingAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's optimization. Modifying the training distribution in a way that excludes such samples could provide an effective solution to both improve performance and reduce training time. In this paper, we propose to scale up ensemble Active Learning methods to perform acquisition at a large scale (10k to 500k samples at a time). We do this with ensembles of hundreds of models, obtained at a minimal computational cost by reusing intermediate training checkpoints. This allows us to automatically and efficiently perform a training data distribution search for large labeled datasets. We observe that our approach obtains favorable subsets of training data, which can be used to train more accurate DNNs than training with the entire dataset. We perform an extensive experimental study of this phenomenon on three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet), analyzing the impact of initialization schemes, acquisition functions and ensemble configurations. We demonstrate that data subsets identified with a lightweight ResNet-18 ensemble remain effective when used to train deep models like ResNet-101 and DenseNet-121. Our results provide strong empirical evidence that optimizing the training data distribution can provide significant benefits on large scale vision tasks. </em>
-<pre xml:space="preserve" id="chitta2019trainingBib">
 
-@inProceedings{chitta2019training,
-  title={Training Data Distribution Search with Ensemble Active Learning},
-  author = {Kashyap Chitta
-  and Jose M. Alvarez
-  and Elmar Haussmann
-  and Clement Farabet},
-  booktitle={ArXiv e-prints},
-  year={2019}
+<!--------------------------------------------------------------------------->
+<div class="paper" id="haussmann2020scalable">
+<img class="paper" title="Scalable Active Learning for Object Detection" src="figures/haussmann2020scalable.png" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2004.04699">Scalable Active Learning for Object Detection</a></b> <br/>
+Elmar Haussmann, Michele Fenzi, <strong>Kashyap Chitta</strong>, Jan Ivanecky, Hanson Xu, Donna Roy, Akshita Mittel, Nicolas Koumchatzky, Clement Farabet, Jose M. Alvarez <br/>
+IEEE Intelligent Vehicles Symposium (IV), 2020 <br/>
+<a href="https://arxiv.org/pdf/2004.04699.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('haussmann2020scalableAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('haussmann2020scalableBib')">bibtex </a> </p>
+<div class="papermeta" id="haussmann2020scalableMeta">
+<em id="haussmann2020scalableAbs">Deep Neural Networks trained in a fully supervised fashion are the dominant technology in perception-based autonomous driving systems. While collecting large amounts of unlabeled data is already a major undertaking, only a subset of it can be labeled by humans due to the effort needed for high-quality annotation. Therefore, finding the right data to label has become a key challenge. Active learning is a powerful technique to improve data efficiency for supervised learning methods, as it aims at selecting the smallest possible training set to reach a required performance. We have built a scalable production system for active learning in the domain of autonomous driving. In this paper, we describe the resulting high-level design, sketch some of the challenges and their solutions, present our current results at scale, and briefly describe the open problems and future directions. </em>
+<pre xml:space="preserve" id="haussmann2020scalableBib">
+
+@inProceedings{haussmann2020scalable,
+  title={Scalable Active Learning for Object Detection},
+  author = {Elmar Haussmann
+    and Michele Fenzi
+    and Kashyap Chitta
+    and Jan Ivanecky
+    and Hanson Xu
+    and Donna Roy
+    and Akshita Mittel
+    and Nicolas Koumchatzky
+    and Clement Farabet
+    and Jose M. Alvarez},
+  booktitle={IEEE Intelligent Vehicles Symposium (IV)},
+  year={2020}
 }</pre></td>
 <script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('chitta2019trainingAbs');
-hideblock('chitta2019trainingBib');
+hideblock('haussmann2020scalableAbs');
+hideblock('haussmann2020scalableBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="ohn-bar2020learning">
+<img class="paper" title="Learning Situational Driving" src="figures/ohn-bar2020learning.jpg" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Ohn-Bar_Learning_Situational_Driving_CVPR_2020_paper.html">Learning Situational Driving</a></b> <br/>
+Eshed Ohn-Bar, Aditya Prakash, Aseem Behl, <strong>Kashyap Chitta</strong>, Andreas Geiger <br/>
+Conference on Computer Vision and Pattern Recognition (CVPR), 2020 <br/>
+<a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Ohn-Bar_Learning_Situational_Driving_CVPR_2020_paper.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('ohn-bar2020learningAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('ohn-bar2020learningBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/lsd">code </a> </p>
+<div class="papermeta" id="ohn-bar2020learningMeta">
+<em id="ohn-bar2020learningAbs">Human drivers have a remarkable ability to drive in diverse visual conditions and situations, e.g., from maneuvering in rainy, limited visibility conditions with no lane markings to turning in a busy intersection while yielding to pedestrians. In contrast, we find that state-of-the-art sensorimotor driving models struggle when encountering diverse settings with varying relationships between observation and action. To generalize when making decisions across diverse conditions, humans leverage multiple types of situation-specific reasoning and learning strategies. Motivated by this observation, we develop a framework for learning a situational driving policy that effectively captures reasoning under varying types of scenarios. Our key idea is to learn a mixture model with a set of policies that can capture multiple driving modes. We first optimize the mixture model through behavior cloning, and show it to result in significant gains in terms of driving performance in diverse conditions. We then refine the model by directly optimizing for the driving task itself, i.e., supervised with the navigation task reward. Our method is more scalable than methods assuming access to privileged information, e.g., perception labels, as it only assumes demonstration and reward-based supervision. We achieve over 98% success rate on the CARLA driving benchmark as well as state-of-the-art performance on a newly introduced generalization benchmark. </em>
+<pre xml:space="preserve" id="ohn-bar2020learningBib">
+
+@inProceedings{ohn-bar2020learning,
+  title={Learning Situational Driving},
+  author = {Eshed Ohn-Bar
+    and Aditya Prakash
+    and Aseem Behl
+    and Kashyap Chitta
+    and Andreas Geiger},
+  booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2020}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('ohn-bar2020learningAbs');
+hideblock('ohn-bar2020learningBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="prakash2020exploring">
+<img class="paper" title="Exploring Data Aggregation in Policy Learning for Vision-Based Urban Autonomous Driving" src="figures/prakash2020exploring.jpg" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Prakash_Exploring_Data_Aggregation_in_Policy_Learning_for_Vision-Based_Urban_Autonomous_CVPR_2020_paper.html">Exploring Data Aggregation in Policy Learning for Vision-Based Urban Autonomous Driving</a></b> <br/>
+Aditya Prakash, Aseem Behl, Eshed Ohn-Bar, <strong>Kashyap Chitta</strong>, Andreas Geiger <br/>
+Conference on Computer Vision and Pattern Recognition (CVPR), 2020 <br/>
+<a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Prakash_Exploring_Data_Aggregation_in_Policy_Learning_for_Vision-Based_Urban_Autonomous_CVPR_2020_paper.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('prakash2020exploringAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('prakash2020exploringBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/data_aggregation">code </a> </p>
+<div class="papermeta" id="prakash2020exploringMeta">
+<em id="prakash2020exploringAbs">Data aggregation techniques can significantly improve vision-based policy learning within a training environment, e.g., learning to drive in a specific simulation condition. However, as on-policy data is sequentially sampled and added in an iterative manner, the policy can specialize and overfit to the training conditions. For real-world applications, it is useful for the learned policy to generalize to novel scenarios that differ from the training conditions. To improve policy learning while maintaining robustness when training end-to-end driving policies, we perform an extensive analysis of data aggregation techniques in the CARLA environment. We demonstrate how the majority of them have poor generalization performance, and develop a novel approach with empirically better generalization performance compared to existing techniques. Our two key ideas are (1) to sample critical states from the collected on-policy data based on the utility they provide to the learned policy in terms of driving behavior, and (2) to incorporate a replay buffer which progressively focuses on the high uncertainty regions of the policy's state distribution. We evaluate the proposed approach on the CARLA NoCrash benchmark, focusing on the most challenging driving scenarios with dense pedestrian and vehicle traffic. Our approach improves driving success rate by 16% over state-of-the-art, achieving 87% of the expert performance while also reducing the collision rate by an order of magnitude without the use of any additional modality, auxiliary tasks, architectural modifications or reward from the environment. </em>
+<pre xml:space="preserve" id="prakash2020exploringBib">
+
+@inProceedings{prakash2020exploring,
+  title={Exploring Data Aggregation in Policy Learning for Vision-Based Urban Autonomous Driving},
+  author = {Aditya Prakash
+    and Aseem Behl
+    and Eshed Ohn-Bar
+    and Kashyap Chitta
+    and Andreas Geiger},
+  booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2020}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('prakash2020exploringAbs');
+hideblock('prakash2020exploringBib');
 </script>
 </div>
 </div>
@@ -69,10 +134,10 @@ hideblock('chitta2019trainingBib');
 <!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2020quadtree">
 <img class="paper" title="Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions" src="figures/chitta2020quadtree.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle">Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions</b> <br/>
+<p> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_WACV_2020/html/Chitta_Quadtree_Generating_Networks_Efficient_Hierarchical_Scene_Parsing_with_Sparse_Convolutions_WACV_2020_paper.html">Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions</a></b> <br/>
 <strong>Kashyap Chitta</strong>, Jose M. Alvarez, Martial Hebert <br/>
 IEEE Winter Conference on Applications of Computer Vision (WACV), 2020 <br/>
-<a href="https://arxiv.org/pdf/1907.11821.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2020quadtreeAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2020quadtreeBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/QGN">code </a> </p>
+<a href="http://openaccess.thecvf.com/content_WACV_2020/papers/Chitta_Quadtree_Generating_Networks_Efficient_Hierarchical_Scene_Parsing_with_Sparse_Convolutions_WACV_2020_paper.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2020quadtreeAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2020quadtreeBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/QGN">code </a> </p>
 <div class="papermeta" id="chitta2020quadtreeMeta">
 <em id="chitta2020quadtreeAbs">Semantic segmentation with Convolutional Neural Networks is a memory-intensive task due to the high spatial resolution of feature maps and output predictions. In this paper, we present Quadtree Generating Networks (QGNs), a novel approach able to drastically reduce the memory footprint of modern semantic segmentation networks. The key idea is to use quadtrees to represent the predictions and target segmentation masks instead of dense pixel grids. Our quadtree representation enables hierarchical processing of an input image, with the most computationally demanding layers only being used at regions in the image containing boundaries between classes. In addition, given a trained model, our representation enables flexible inference schemes to trade-off accuracy and computational cost, allowing the network to adapt in constrained situations such as embedded devices. We demonstrate the benefits of our approach on the Cityscapes, SUN-RGBD and ADE20k datasets. On Cityscapes, we obtain an relative 3% mIoU improvement compared to a dilated network with similar memory consumption; and only receive a 3% relative mIoU drop compared to a large dilated network, while reducing memory consumption by over 4&times. </em>
 <pre xml:space="preserve" id="chitta2020quadtreeBib">
@@ -80,8 +145,8 @@ IEEE Winter Conference on Applications of Computer Vision (WACV), 2020 <br/>
 @inProceedings{chitta2020quadtree,
   title={Quadtree Generating Networks: Efficient Hierarchical Scene Parsing with Sparse Convolutions},
   author = {Kashyap Chitta
-  and Jose M. Alvarez
-  and Martial Hebert},
+    and Jose M. Alvarez
+    and Martial Hebert},
   booktitle={IEEE Winter Conference on Applications of Computer Vision (WACV)},
   year={2020}
 }</pre></td>
@@ -94,63 +159,9 @@ hideblock('chitta2020quadtreeBib');
 <!--------------------------------------------------------------------------->
 
 <!--------------------------------------------------------------------------->
-<div class="paper" id="chitta2018largescale">
-<img class="paper" title="Large-Scale Visual Active Learning with Deep Probabilistic Ensembles" src="figures/chitta2018largescale.png" />
-<p> <b id="papertitle">Large-Scale Visual Active Learning with Deep Probabilistic Ensembles</b> <br/>
-<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Adam Lesnikowski <br/>
-ArXiv e-prints, 2018 <br/>
-<a href="https://arxiv.org/pdf/1811.03575.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018largescaleAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018largescaleBib')">bibtex </a> </p>
-<div class="papermeta" id="chitta2018largescaleMeta">
-<em id="chitta2018largescaleAbs">Annotating the right data for training deep neural networks is an important challenge. Active learning using uncertainty estimates from Bayesian Neural Networks (BNNs) could provide an effective solution to this. Despite being theoretically principled, BNNs require approximations to be applied to large-scale problems, where both performance and uncertainty estimation are crucial. In this paper, we introduce Deep Probabilistic Ensembles (DPEs), a scalable technique that uses a regularized ensemble to approximate a deep BNN. We conduct a series of large-scale visual active learning experiments to evaluate DPEs on classification with the CIFAR-10, CIFAR-100 and ImageNet datasets, and semantic segmentation with the BDD100k dataset. Our models require significantly less training data to achieve competitive performances, and steadily improve upon strong active learning baselines as the annotation budget is increased. </em>
-<pre xml:space="preserve" id="chitta2018largescaleBib">
-
-@inProceedings{chitta2018largescale,
-  title={Large-Scale Visual Active Learning with Deep Probabilistic Ensembles},
-  author = {Kashyap Chitta
-  and Jose M. Alvarez
-  and Adam Lesnikowski},
-  booktitle={ArXiv e-prints},
-  year={2018}
-}</pre></td>
-<script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('chitta2018largescaleAbs');
-hideblock('chitta2018largescaleBib');
-</script>
-</div>
-</div>
-<!--------------------------------------------------------------------------->
-
-<!--------------------------------------------------------------------------->
-<div class="paper" id="chitta2018adaptive">
-<img class="paper" title="Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels" src="figures/chitta2018adaptive.png" />
-<p> <b id="papertitle">Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels</b> <br/>
-<strong>Kashyap Chitta</strong>, Jianwei Feng, Martial Hebert <br/>
-ArXiv e-prints, 2018 <br/>
-<a href="https://arxiv.org/pdf/1811.03542.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018adaptiveAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018adaptiveBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/Domain-Adapatation">code </a> </p>
-<div class="papermeta" id="chitta2018adaptiveMeta">
-<em id="chitta2018adaptiveAbs">Training deep networks for semantic segmentation requires annotation of large amounts of data, which can be time-consuming and expensive. Unfortunately, these trained networks still generalize poorly when tested in domains not consistent with the training data. In this paper, we show that by carefully presenting a mixture of labeled source domain and proxy-labeled target domain data to a network, we can achieve state-of-the-art unsupervised domain adaptation results. With our design, the network progressively learns features specific to the target domain using annotation from only the source domain. We generate proxy labels for the target domain using the network's own predictions. Our architecture then allows selective mining of easy samples from this set of proxy labels, and hard samples from the annotated source domain. We conduct a series of experiments with the GTA5, Cityscapes and BDD100k datasets on synthetic-to-real domain adaptation and geographic domain adaptation, showing the advantages of our method over baselines and existing approaches.</em>
-<pre xml:space="preserve" id="chitta2018adaptiveBib">
-
-@inProceedings{chitta2018adaptive,
-  title={Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels},
-  author = {Kashyap Chitta
-  and Jianwei Feng
-  and Martial Hebert},
-  booktitle={ArXiv e-prints},
-  year={2018}
-}</pre></td>
-<script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('chitta2018adaptiveAbs');
-hideblock('chitta2018adaptiveBib');
-</script>
-</div>
-</div>
-<!--------------------------------------------------------------------------->
-
-<!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2018deep">
 <img class="paper" title="Deep Probabilistic Ensembles: Approximate Variational Inference through KL Regularization" src="figures/chitta2018deep.png" />
-<p><b id="papertitle">Deep Probabilistic Ensembles: Approximate Variational Inference through KL Regularization</b> <br/>
+<p><b id="papertitle"><a href="https://arxiv.org/abs/1811.02640">Deep Probabilistic Ensembles: Approximate Variational Inference through KL Regularization</a></b> <br/>
 <strong>Kashyap Chitta</strong>, Jose M. Alvarez, Adam Lesnikowski <br/>
 Workshop on Bayesian Deep Learning (BDL), NeurIPS, 2018 <br/>
 <a href="https://arxiv.org/pdf/1811.02640.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018deepAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018deepBib')">bibtex </a> </p>
@@ -161,8 +172,8 @@ Workshop on Bayesian Deep Learning (BDL), NeurIPS, 2018 <br/>
 @inProceedings{chitta2018deep,
   title={Deep Probabilistic Ensembles: Approximate Variational Inference through KL Regularization},
   author = {Kashyap Chitta
-  and Jose M. Alvarez
-  and Adam Lesnikowski},
+    and Jose M. Alvarez
+    and Adam Lesnikowski},
   booktitle={Workshop on Bayesian Deep Learning (BDL), Conference on Neural Information Processing Systems (NeurIPS)},
   year={2018}
 }</pre></td>
@@ -177,7 +188,7 @@ hideblock('chitta2018deepBib');
 <!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2018targeted">
 <img class="paper" title="Targeted Kernel Networks: Faster Convolutions with Attentive Regularization" src="figures/chitta2018targeted.png" />
-<p><b id="papertitle">Targeted Kernel Networks: Faster Convolutions with Attentive Regularization</b> <br/>
+<p><b id="papertitle"><a href="https://arxiv.org/abs/1806.00523">Targeted Kernel Networks: Faster Convolutions with Attentive Regularization</a></b> <br/>
 <strong>Kashyap Chitta</strong><br/>
 Workshop on Compact and Efficient Feature Representation and Learning in Computer Vision (CEFRL), ECCV, 2018 <br/>
 <a href="https://arxiv.org/pdf/1806.00523.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018targetedAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018targetedBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/Attentive-Regularization">code </a> </p>
@@ -200,39 +211,12 @@ hideblock('chitta2018targetedBib');
 <!--------------------------------------------------------------------------->
 
 <!--------------------------------------------------------------------------->
-<div class="paper" id="patel2018learning">
-<img class="paper" title="Learning Sampling Policies for Domain Adaptation" src="figures/patel2018learning.png" />
-<p><b id="papertitle">Learning Sampling Policies for Domain Adaptation</b> <br/>
-Yash Patel*, <strong>Kashyap Chitta</strong>*, Bhavan Jasani* <br/>
-ArXiv e-prints, 2018 <br/>
-<a href="https://arxiv.org/pdf/1805.07641.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('patel2018learningAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('patel2018learningBib')">bibtex </a>  &nbsp <a href="https://github.com/yash0307/LearningSamplingPolicies">code </a> </p>
-<div class="papermeta" id="patel2018learningMeta">
-<em id="patel2018learningAbs">We address the problem of semi-supervised domain adaptation of classification algorithms through deep Q-learning. The core idea is to consider the predictions of a source domain network on target domain data as noisy labels, and learn a policy to sample from this data so as to maximize classification accuracy on a small annotated reward partition of the target domain. Our experiments show that learned sampling policies construct labeled sets that improve accuracies of visual classifiers over baselines.</em>
-<pre xml:space="preserve" id="patel2018learningBib">
-
-@inProceedings{patel2018learning,
-  title={Learning Sampling Policies for Domain Adaptation},
-  author = {Yash Patel
-  and Kashyap Chitta
-  and Bhavan Jasani},
-  booktitle={ArXiv e-prints},
-  year={2018}
-}</pre></td>
-<script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('patel2018learningAbs');
-hideblock('patel2018learningBib');
-</script>
-</div>
-</div>
-<!--------------------------------------------------------------------------->
-
-<!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2016reduced">
 <img class="paper" title="A Reduced Region of Interest Based Approach for Facial Expression Recognition from Static Images" src="figures/chitta2016reduced.png" />
-<p><b id="papertitle">A Reduced Region of Interest Based Approach for Facial Expression Recognition from Static Images</b> <br/>
+<p><b id="papertitle"><a href="https://ieeexplore.ieee.org/document/7848553">A Reduced Region of Interest Based Approach for Facial Expression Recognition from Static Images</a> </b> <br/>
 <strong>Kashyap Chitta</strong>, Neeraj N. Sajjan <br/>
-IEEE TENCON, 2016 <br/>
-<a href="https://ieeexplore.ieee.org/document/7848553">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2016reducedAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2016reducedBib')">bibtex </a> </p>
+IEEE Region-10 Conference (TENCON), 2016 <br/>
+<a href="javascript:toggleblock('chitta2016reducedAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2016reducedBib')">bibtex </a> </p>
 <div class="papermeta" id="chitta2016reducedMeta">
 <em id="chitta2016reducedAbs">The general approach to facial expression recognition involves three stages: face acquisition, feature extraction and expression recognition. A series of steps are used during feature extraction, and the robustness of a recognition model depends on the ability to handle exceptions over all these steps. This paper details experiments conducted to classify images by facial expression using reduced regions of interest and discriminative salient patches on the face, while minimizing the number of steps required for their localization. The performance of various feature descriptors is analyzed and a model for expression recognition for which experiments on the JAFFE database show effectiveness is proposed.</em>
 <pre xml:space="preserve" id="chitta2016reducedBib">
@@ -240,7 +224,7 @@ IEEE TENCON, 2016 <br/>
 @inProceedings{chitta2016reduced,
   title={A Reduced Region of Interest Based Approach for Facial Expression Recognition from Static Images},
   author = {Kashyap Chitta
-  and Neeraj N. Sajjan},
+    and Neeraj N. Sajjan},
   booktitle={IEEE Region-10 Conference (TENCON)},
   year={2016}
 }</pre></td>
@@ -252,28 +236,176 @@ hideblock('chitta2016reducedBib');
 </div>
 <!--------------------------------------------------------------------------->
 
-<!--------------------------------------------------------------------------->
-<!--- TEMPLATE
-<div class="paper" id="paperId">
-  <img class="paper" title="X" src="images/X.png" />
-  <p><b id="papertitle">Title</b> <br/>
-  <strong>Kashyap Chitta</strong>, Author2, Author3 <br />
-  Conference, 2019<br />
-  <a href="link">pdf</a>  &nbsp <a href="page">project page</a>  &nbsp <a href="javascript:toggleblock('paperIdAbs')">abstract</a> &nbsp <a href="javascript:toggleblock('paperIdBib')">bibtex</a>  &nbsp <a href="codelink">code</a> </p>
+<div class="section">
+<h2> Preprints </h2>
 
-  <div class="papermeta" id="paperIdMeta">
-  <em id="paperIdAbs">ABSTRACT</em></p>
-  <pre xml:space="preserve" id="paperIdBib" style="font-size: 12px">
-@inProceedings{
-BIBTEX
+<!--------------------------------------------------------------------------->
+<div class="paper" id="weis2020unmasking">
+<img class="paper" title="Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences" src="figures/weis2020unmasking.png" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2006.07034">Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences</a></b> <br/>
+Marissa A. Weis, <strong>Kashyap Chitta</strong>, Yash Sharma, Wieland Brendel, Matthias Bethge, Andreas Geiger, Alexander S. Ecker <br/>
+ArXiv e-prints, 2020 <br/>
+<a href="https://arxiv.org/pdf/2006.07034.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('weis2020unmaskingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('weis2020unmaskingBib')">bibtex </a> </p>
+<div class="papermeta" id="weis2020unmaskingMeta">
+<em id="weis2020unmaskingAbs">Perceiving the world in terms of objects is a crucial prerequisite for reasoning and scene understanding. Recently, several methods have been proposed for unsupervised learning of object-centric representations. However, since these models have been evaluated with respect to different downstream tasks, it remains unclear how they compare in terms of basic perceptual abilities such as detection, figure-ground segmentation and tracking of individual objects. In this paper, we argue that the established evaluation protocol of multi-object tracking tests precisely these perceptual qualities and we propose a new benchmark dataset based on procedurally generated video sequences. Using this benchmark, we compare the perceptual abilities of three state-of-the-art unsupervised object-centric learning approaches. Towards this goal, we propose a video-extension of MONet, a seminal object-centric model for static scenes, and compare it to two recent video models: OP3, which exploits clustering via spatial mixture models, and TBA, which uses an explicit factorization via spatial transformers. Our results indicate that architectures which employ unconstrained latent representations based on per-object variational autoencoders and full-image object masks are able to learn more powerful representations in terms of object detection, segmentation and tracking than the explicitly parameterized spatial transformer based architecture. We also observe that none of the methods are able to gracefully handle the most challenging tracking scenarios, suggesting that our synthetic video benchmark may provide fruitful guidance towards learning more robust object-centric video representations. </em>
+<pre xml:space="preserve" id="weis2020unmaskingBib">
+
+@inProceedings{weis2020unmasking,
+  title={Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences},
+  author = {Marissa A. Weis
+    and Kashyap Chitta
+    and Yash Sharma
+    and Wieland Brendel
+    and Matthias Bethge
+    and Andreas Geiger
+    and Alexander S. Ecker},
+  booktitle={ArXiv e-prints},
+  year={2020}
 }</pre></td>
-  <script language="javascript" type="text/javascript" xml:space="preserve">
-     hideblock('paperIdAbs');
-     hideblock('paperIdBib');
-  </script>
-  </div>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('weis2020unmaskingAbs');
+hideblock('weis2020unmaskingBib');
+</script>
 </div>
--->
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="behl2020label">
+<img class="paper" title="Label Efficient Visual Abstractions for Autonomous Driving" src="figures/behl2020label.png" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2005.10091">Label Efficient Visual Abstractions for Autonomous Driving</a></b> <br/>
+Aseem Behl*, <strong>Kashyap Chitta*</strong>, Aditya Prakash, Eshed Ohn-Bar, Andreas Geiger <br/>
+ArXiv e-prints, 2020 <br/>
+<a href="https://arxiv.org/pdf/2005.10091.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('behl2020labelAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('behl2020labelBib')">bibtex </a> </p>
+<div class="papermeta" id="behl2020labelMeta">
+<em id="behl2020labelAbs">It is well known that semantic segmentation can be used as an effective intermediate representation for learning driving policies. However, the task of street scene semantic segmentation requires expensive annotations. Furthermore, segmentation algorithms are often trained irrespective of the actual driving task, using auxiliary image-space loss functions which are not guaranteed to maximize driving metrics such as safety or distance traveled per intervention. In this work, we seek to quantify the impact of reducing segmentation annotation costs on learned behavior cloning agents. We analyze several segmentation-based intermediate representations. We use these visual abstractions to systematically study the trade-off between annotation efficiency and driving performance, i.e., the types of classes labeled, the number of image samples used to learn the visual abstraction model, and their granularity (e.g., object masks vs. 2D bounding boxes). Our analysis uncovers several practical insights into how segmentation-based visual abstractions can be exploited in a more label efficient manner. Surprisingly, we find that state-of-the-art driving performance can be achieved with orders of magnitude reduction in annotation cost. Beyond label efficiency, we find several additional training benefits when leveraging visual abstractions, such as a significant reduction in the variance of the learned policy when compared to state-of-the-art end-to-end driving models. </em>
+<pre xml:space="preserve" id="behl2020labelBib">
+
+@inProceedings{behl2020label,
+  title={Label Efficient Visual Abstractions for Autonomous Driving},
+  author = {Aseem Behl
+    and Kashyap Chitta
+    and Aditya Prakash
+    and Eshed Ohn-Bar
+    and Andreas Geiger},
+  booktitle={ArXiv e-prints},
+  year={2020}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('behl2020labelAbs');
+hideblock('behl2020labelBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2019training">
+<img class="paper" title="Training Data Distribution Search with Ensemble Active Learning" src="figures/chitta2019training.png" />
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/1905.12737">Training Data Distribution Search with Ensemble Active Learning</a></b> <br/>
+<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Elmar Haussmann, Clement Farabet <br/>
+ArXiv e-prints, 2019 <br/>
+<a href="https://arxiv.org/pdf/1905.12737.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingBib')">bibtex </a> </p>
+<div class="papermeta" id="chitta2019trainingMeta">
+<em id="chitta2019trainingAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's optimization. Modifying the training distribution in a way that excludes such samples could provide an effective solution to both improve performance and reduce training time. In this paper, we propose to scale up ensemble Active Learning methods to perform acquisition at a large scale (10k to 500k samples at a time). We do this with ensembles of hundreds of models, obtained at a minimal computational cost by reusing intermediate training checkpoints. This allows us to automatically and efficiently perform a training data distribution search for large labeled datasets. We observe that our approach obtains favorable subsets of training data, which can be used to train more accurate DNNs than training with the entire dataset. We perform an extensive experimental study of this phenomenon on three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet), analyzing the impact of initialization schemes, acquisition functions and ensemble configurations. We demonstrate that data subsets identified with a lightweight ResNet-18 ensemble remain effective when used to train deep models like ResNet-101 and DenseNet-121. Our results provide strong empirical evidence that optimizing the training data distribution can provide significant benefits on large scale vision tasks. </em>
+<pre xml:space="preserve" id="chitta2019trainingBib">
+
+@inProceedings{chitta2019training,
+  title={Training Data Distribution Search with Ensemble Active Learning},
+  author = {Kashyap Chitta
+    and Jose M. Alvarez
+    and Elmar Haussmann
+    and Clement Farabet},
+  booktitle={ArXiv e-prints},
+  year={2019}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('chitta2019trainingAbs');
+hideblock('chitta2019trainingBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2018largescale">
+<img class="paper" title="Large-Scale Visual Active Learning with Deep Probabilistic Ensembles" src="figures/chitta2018largescale.png" />
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/1811.03575">Large-Scale Visual Active Learning with Deep Probabilistic Ensembles</a></b> <br/>
+<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Adam Lesnikowski <br/>
+ArXiv e-prints, 2018 <br/>
+<a href="https://arxiv.org/pdf/1811.03575.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018largescaleAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018largescaleBib')">bibtex </a> </p>
+<div class="papermeta" id="chitta2018largescaleMeta">
+<em id="chitta2018largescaleAbs">Annotating the right data for training deep neural networks is an important challenge. Active learning using uncertainty estimates from Bayesian Neural Networks (BNNs) could provide an effective solution to this. Despite being theoretically principled, BNNs require approximations to be applied to large-scale problems, where both performance and uncertainty estimation are crucial. In this paper, we introduce Deep Probabilistic Ensembles (DPEs), a scalable technique that uses a regularized ensemble to approximate a deep BNN. We conduct a series of large-scale visual active learning experiments to evaluate DPEs on classification with the CIFAR-10, CIFAR-100 and ImageNet datasets, and semantic segmentation with the BDD100k dataset. Our models require significantly less training data to achieve competitive performances, and steadily improve upon strong active learning baselines as the annotation budget is increased. </em>
+<pre xml:space="preserve" id="chitta2018largescaleBib">
+
+@inProceedings{chitta2018largescale,
+  title={Large-Scale Visual Active Learning with Deep Probabilistic Ensembles},
+  author = {Kashyap Chitta
+    and Jose M. Alvarez
+    and Adam Lesnikowski},
+  booktitle={ArXiv e-prints},
+  year={2018}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('chitta2018largescaleAbs');
+hideblock('chitta2018largescaleBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2018adaptive">
+<img class="paper" title="Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels" src="figures/chitta2018adaptive.png" />
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/1811.03542">Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels</a></b> <br/>
+<strong>Kashyap Chitta</strong>, Jianwei Feng, Martial Hebert <br/>
+ArXiv e-prints, 2018 <br/>
+<a href="https://arxiv.org/pdf/1811.03542.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2018adaptiveAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2018adaptiveBib')">bibtex </a>  &nbsp <a href="https://github.com/kashyap7x/Domain-Adapatation">code </a> </p>
+<div class="papermeta" id="chitta2018adaptiveMeta">
+<em id="chitta2018adaptiveAbs">Training deep networks for semantic segmentation requires annotation of large amounts of data, which can be time-consuming and expensive. Unfortunately, these trained networks still generalize poorly when tested in domains not consistent with the training data. In this paper, we show that by carefully presenting a mixture of labeled source domain and proxy-labeled target domain data to a network, we can achieve state-of-the-art unsupervised domain adaptation results. With our design, the network progressively learns features specific to the target domain using annotation from only the source domain. We generate proxy labels for the target domain using the network's own predictions. Our architecture then allows selective mining of easy samples from this set of proxy labels, and hard samples from the annotated source domain. We conduct a series of experiments with the GTA5, Cityscapes and BDD100k datasets on synthetic-to-real domain adaptation and geographic domain adaptation, showing the advantages of our method over baselines and existing approaches.</em>
+<pre xml:space="preserve" id="chitta2018adaptiveBib">
+
+@inProceedings{chitta2018adaptive,
+  title={Adaptive Semantic Segmentation with a Strategic Curriculum of Proxy Labels},
+  author = {Kashyap Chitta
+    and Jianwei Feng
+    and Martial Hebert},
+  booktitle={ArXiv e-prints},
+  year={2018}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('chitta2018adaptiveAbs');
+hideblock('chitta2018adaptiveBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="patel2018learning">
+<img class="paper" title="Learning Sampling Policies for Domain Adaptation" src="figures/patel2018learning.png" />
+<p><b id="papertitle"><a href="https://arxiv.org/abs/1805.07641">Learning Sampling Policies for Domain Adaptation</a></b> <br/>
+Yash Patel*, <strong>Kashyap Chitta</strong>*, Bhavan Jasani* <br/>
+ArXiv e-prints, 2018 <br/>
+<a href="https://arxiv.org/pdf/1805.07641.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('patel2018learningAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('patel2018learningBib')">bibtex </a>  &nbsp <a href="https://github.com/yash0307/LearningSamplingPolicies">code </a> </p>
+<div class="papermeta" id="patel2018learningMeta">
+<em id="patel2018learningAbs">We address the problem of semi-supervised domain adaptation of classification algorithms through deep Q-learning. The core idea is to consider the predictions of a source domain network on target domain data as noisy labels, and learn a policy to sample from this data so as to maximize classification accuracy on a small annotated reward partition of the target domain. Our experiments show that learned sampling policies construct labeled sets that improve accuracies of visual classifiers over baselines.</em>
+<pre xml:space="preserve" id="patel2018learningBib">
+
+@inProceedings{patel2018learning,
+  title={Learning Sampling Policies for Domain Adaptation},
+  author = {Yash Patel
+    and Kashyap Chitta
+    and Bhavan Jasani},
+  booktitle={ArXiv e-prints},
+  year={2018}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('patel2018learningAbs');
+hideblock('patel2018learningBib');
+</script>
+</div>
+</div>
 <!--------------------------------------------------------------------------->
 
 </body>
