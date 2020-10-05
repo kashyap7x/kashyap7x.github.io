@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kashyap Chitta | Machine Learning Researcher</title>
+<title>Kashyap Chitta | AI Researcher</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <script type="text/javascript" src="js/hidebib.js"></script>
@@ -40,12 +40,41 @@ firstname DOT lastname AT tue DOT mpg DOT de
 <h2> Publications </h2>
 
 <!--------------------------------------------------------------------------->
+<div class="paper" id="behl2020label">
+<img class="paper" title="Label Efficient Visual Abstractions for Autonomous Driving" src="figures/behl2020label.png" />
+<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2005.10091">Label Efficient Visual Abstractions for Autonomous Driving</a></b> <br/>
+Aseem Behl*, <strong>Kashyap Chitta*</strong>, Aditya Prakash, Eshed Ohn-Bar, Andreas Geiger <br/>
+International Conference on Intelligent Robots and Systems (IROS), 2020 <br/>
+<a href="https://arxiv.org/pdf/2005.10091.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('behl2020labelAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('behl2020labelBib')">bibtex </a> &nbsp <a href="https://github.com/autonomousvision/visual_abstractions">code </a> &nbsp <a href="https://autonomousvision.github.io/visual-abstractions/">blog </a> </p>
+<div class="papermeta" id="behl2020labelMeta">
+<em id="behl2020labelAbs">It is well known that semantic segmentation can be used as an effective intermediate representation for learning driving policies. However, the task of street scene semantic segmentation requires expensive annotations. Furthermore, segmentation algorithms are often trained irrespective of the actual driving task, using auxiliary image-space loss functions which are not guaranteed to maximize driving metrics such as safety or distance traveled per intervention. In this work, we seek to quantify the impact of reducing segmentation annotation costs on learned behavior cloning agents. We analyze several segmentation-based intermediate representations. We use these visual abstractions to systematically study the trade-off between annotation efficiency and driving performance, i.e., the types of classes labeled, the number of image samples used to learn the visual abstraction model, and their granularity (e.g., object masks vs. 2D bounding boxes). Our analysis uncovers several practical insights into how segmentation-based visual abstractions can be exploited in a more label efficient manner. Surprisingly, we find that state-of-the-art driving performance can be achieved with orders of magnitude reduction in annotation cost. Beyond label efficiency, we find several additional training benefits when leveraging visual abstractions, such as a significant reduction in the variance of the learned policy when compared to state-of-the-art end-to-end driving models. </em>
+<pre xml:space="preserve" id="behl2020labelBib">
+
+@inProceedings{behl2020label,
+  title={Label Efficient Visual Abstractions for Autonomous Driving},
+  author = {Aseem Behl
+    and Kashyap Chitta
+    and Aditya Prakash
+    and Eshed Ohn-Bar
+    and Andreas Geiger},
+  booktitle={International Conference on Intelligent Robots and Systems (IROS)},
+  year={2020}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('behl2020labelAbs');
+hideblock('behl2020labelBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
 <div class="paper" id="haussmann2020scalable">
 <img class="paper" title="Scalable Active Learning for Object Detection" src="figures/haussmann2020scalable.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2004.04699">Scalable Active Learning for Object Detection</a></b> <br/>
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/2004.04699">Scalable Active Learning for Object Detection</a></b> <br/>
 Elmar Haussmann, Michele Fenzi, <strong>Kashyap Chitta</strong>, Jan Ivanecky, Hanson Xu, Donna Roy, Akshita Mittel, Nicolas Koumchatzky, Clement Farabet, Jose M. Alvarez <br/>
 IEEE Intelligent Vehicles Symposium (IV), 2020 <br/>
-<a href="https://arxiv.org/pdf/2004.04699.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('haussmann2020scalableAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('haussmann2020scalableBib')">bibtex </a> </p>
+<a href="https://arxiv.org/pdf/2004.04699.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('haussmann2020scalableAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('haussmann2020scalableBib')">bibtex </a> &nbsp <a href="https://medium.com/nvidia-ai/scalable-active-learning-for-autonomous-driving-a-practical-implementation-and-a-b-test-4d315ed04b5f">blog </a> </p>
 <div class="papermeta" id="haussmann2020scalableMeta">
 <em id="haussmann2020scalableAbs">Deep Neural Networks trained in a fully supervised fashion are the dominant technology in perception-based autonomous driving systems. While collecting large amounts of unlabeled data is already a major undertaking, only a subset of it can be labeled by humans due to the effort needed for high-quality annotation. Therefore, finding the right data to label has become a key challenge. Active learning is a powerful technique to improve data efficiency for supervised learning methods, as it aims at selecting the smallest possible training set to reach a required performance. We have built a scalable production system for active learning in the domain of autonomous driving. In this paper, we describe the resulting high-level design, sketch some of the challenges and their solutions, present our current results at scale, and briefly describe the open problems and future directions. </em>
 <pre xml:space="preserve" id="haussmann2020scalableBib">
@@ -76,7 +105,7 @@ hideblock('haussmann2020scalableBib');
 <!--------------------------------------------------------------------------->
 <div class="paper" id="ohn-bar2020learning">
 <img class="paper" title="Learning Situational Driving" src="figures/ohn-bar2020learning.jpg" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Ohn-Bar_Learning_Situational_Driving_CVPR_2020_paper.html">Learning Situational Driving</a></b> <br/>
+<p> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Ohn-Bar_Learning_Situational_Driving_CVPR_2020_paper.html">Learning Situational Driving</a></b> <br/>
 Eshed Ohn-Bar, Aditya Prakash, Aseem Behl, <strong>Kashyap Chitta</strong>, Andreas Geiger <br/>
 Conference on Computer Vision and Pattern Recognition (CVPR), 2020 <br/>
 <a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Ohn-Bar_Learning_Situational_Driving_CVPR_2020_paper.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('ohn-bar2020learningAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('ohn-bar2020learningBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/lsd">code </a> </p>
@@ -105,10 +134,10 @@ hideblock('ohn-bar2020learningBib');
 <!--------------------------------------------------------------------------->
 <div class="paper" id="prakash2020exploring">
 <img class="paper" title="Exploring Data Aggregation in Policy Learning for Vision-Based Urban Autonomous Driving" src="figures/prakash2020exploring.jpg" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Prakash_Exploring_Data_Aggregation_in_Policy_Learning_for_Vision-Based_Urban_Autonomous_CVPR_2020_paper.html">Exploring Data Aggregation in Policy Learning for Vision-Based Urban Autonomous Driving</a></b> <br/>
+<p> <b id="papertitle"><a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Prakash_Exploring_Data_Aggregation_in_Policy_Learning_for_Vision-Based_Urban_Autonomous_CVPR_2020_paper.html">Exploring Data Aggregation in Policy Learning for Vision-Based Urban Autonomous Driving</a></b> <br/>
 Aditya Prakash, Aseem Behl, Eshed Ohn-Bar, <strong>Kashyap Chitta</strong>, Andreas Geiger <br/>
 Conference on Computer Vision and Pattern Recognition (CVPR), 2020 <br/>
-<a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Prakash_Exploring_Data_Aggregation_in_Policy_Learning_for_Vision-Based_Urban_Autonomous_CVPR_2020_paper.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('prakash2020exploringAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('prakash2020exploringBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/data_aggregation">code </a> </p>
+<a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Prakash_Exploring_Data_Aggregation_in_Policy_Learning_for_Vision-Based_Urban_Autonomous_CVPR_2020_paper.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('prakash2020exploringAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('prakash2020exploringBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/data_aggregation">code </a> &nbsp <a href="https://autonomousvision.github.io/dagger-urban-driving/">blog </a> </p>
 <div class="papermeta" id="prakash2020exploringMeta">
 <em id="prakash2020exploringAbs">Data aggregation techniques can significantly improve vision-based policy learning within a training environment, e.g., learning to drive in a specific simulation condition. However, as on-policy data is sequentially sampled and added in an iterative manner, the policy can specialize and overfit to the training conditions. For real-world applications, it is useful for the learned policy to generalize to novel scenarios that differ from the training conditions. To improve policy learning while maintaining robustness when training end-to-end driving policies, we perform an extensive analysis of data aggregation techniques in the CARLA environment. We demonstrate how the majority of them have poor generalization performance, and develop a novel approach with empirically better generalization performance compared to existing techniques. Our two key ideas are (1) to sample critical states from the collected on-policy data based on the utility they provide to the learned policy in terms of driving behavior, and (2) to incorporate a replay buffer which progressively focuses on the high uncertainty regions of the policy's state distribution. We evaluate the proposed approach on the CARLA NoCrash benchmark, focusing on the most challenging driving scenarios with dense pedestrian and vehicle traffic. Our approach improves driving success rate by 16% over state-of-the-art, achieving 87% of the expert performance while also reducing the collision rate by an order of magnitude without the use of any additional modality, auxiliary tasks, architectural modifications or reward from the environment. </em>
 <pre xml:space="preserve" id="prakash2020exploringBib">
@@ -265,35 +294,6 @@ ArXiv e-prints, 2020 <br/>
 <script language="javascript" type="text/javascript" xml:space="preserve">
 hideblock('weis2020unmaskingAbs');
 hideblock('weis2020unmaskingBib');
-</script>
-</div>
-</div>
-<!--------------------------------------------------------------------------->
-
-<!--------------------------------------------------------------------------->
-<div class="paper" id="behl2020label">
-<img class="paper" title="Label Efficient Visual Abstractions for Autonomous Driving" src="figures/behl2020label.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2005.10091">Label Efficient Visual Abstractions for Autonomous Driving</a></b> <br/>
-Aseem Behl*, <strong>Kashyap Chitta*</strong>, Aditya Prakash, Eshed Ohn-Bar, Andreas Geiger <br/>
-ArXiv e-prints, 2020 <br/>
-<a href="https://arxiv.org/pdf/2005.10091.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('behl2020labelAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('behl2020labelBib')">bibtex </a> </p>
-<div class="papermeta" id="behl2020labelMeta">
-<em id="behl2020labelAbs">It is well known that semantic segmentation can be used as an effective intermediate representation for learning driving policies. However, the task of street scene semantic segmentation requires expensive annotations. Furthermore, segmentation algorithms are often trained irrespective of the actual driving task, using auxiliary image-space loss functions which are not guaranteed to maximize driving metrics such as safety or distance traveled per intervention. In this work, we seek to quantify the impact of reducing segmentation annotation costs on learned behavior cloning agents. We analyze several segmentation-based intermediate representations. We use these visual abstractions to systematically study the trade-off between annotation efficiency and driving performance, i.e., the types of classes labeled, the number of image samples used to learn the visual abstraction model, and their granularity (e.g., object masks vs. 2D bounding boxes). Our analysis uncovers several practical insights into how segmentation-based visual abstractions can be exploited in a more label efficient manner. Surprisingly, we find that state-of-the-art driving performance can be achieved with orders of magnitude reduction in annotation cost. Beyond label efficiency, we find several additional training benefits when leveraging visual abstractions, such as a significant reduction in the variance of the learned policy when compared to state-of-the-art end-to-end driving models. </em>
-<pre xml:space="preserve" id="behl2020labelBib">
-
-@inProceedings{behl2020label,
-  title={Label Efficient Visual Abstractions for Autonomous Driving},
-  author = {Aseem Behl
-    and Kashyap Chitta
-    and Aditya Prakash
-    and Eshed Ohn-Bar
-    and Andreas Geiger},
-  booktitle={ArXiv e-prints},
-  year={2020}
-}</pre></td>
-<script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('behl2020labelAbs');
-hideblock('behl2020labelBib');
 </script>
 </div>
 </div>
