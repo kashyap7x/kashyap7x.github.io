@@ -17,7 +17,7 @@
 <div class="section">
 <table>
   <tr valign="top"> <td style="width: 700px; vertical-align: top;">
-  I am a PhD student at the Max Planck Institute for Intelligent Systems in T&uumlbingen, Germany, where I am part of the <a href = "https://avg.is.tuebingen.mpg.de">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. My research is at the intersection of robotics, machine learning and computer vision. I am currently interested in scene representations for improving the robustness and generalization of learned vision-based control policies. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
+  I am a PhD student at the Max Planck Institute for Intelligent Systems and the University of T&uumlbingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. My research is at the intersection of robotics, machine learning and computer vision. I am currently interested in scene representations for improving the robustness and generalization of learned vision-based control policies. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
   <p><br></p>
   <p>
     <a href="javascript:toggleblock('email')">email</a> | <a href="https://github.com/kashyap7x">github</a>  | <a href="https://www.linkedin.com/in/kchitta/">linkedin</a> | <a href="https://twitter.com/kashyap7x">twitter</a> | <a href="https://scholar.google.com/citations?user=vX5i2CcAAAAJ&hl=en">google scholar</a>
@@ -31,7 +31,7 @@ firstname DOT lastname AT tue DOT mpg DOT de
   </script>
   </td>
 
-  <td width="300"><img src="img.jpg" alt="My picture" height=240 align="right"/></td>
+  <td width="420"><img src="img.jpg" alt="My picture" height=270 align="right"/></td>
     </tr>
   </table>
 </div>
@@ -40,9 +40,36 @@ firstname DOT lastname AT tue DOT mpg DOT de
 <h2> Publications </h2>
 
 <!--------------------------------------------------------------------------->
+<div class="paper" id="prakash2021multimodal">
+  <img class="paper" title="Multi-Modal Fusion Transformer for End-to-End Autonomous Driving" src="figures/prakash2021multimodal.png" />
+  <p> <b id="papertitle"><a href="https://arxiv.org/abs/2104.09224">Multi-Modal Fusion Transformer for End-to-End Autonomous Driving</a></b> <br/>
+  Aditya Prakash*, <strong>Kashyap Chitta*</strong>, Andreas Geiger <br/>
+  Conference on Computer Vision and Pattern Recognition (CVPR), 2021 <br/>
+  <a href="https://arxiv.org/pdf/2104.09224.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('prakash2021multimodalAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('prakash2021multimodalBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/transfuser">code </a> &nbsp <a href="https://autonomousvision.github.io/transfuser/">blog </a> </p>
+  <div class="papermeta" id="prakash2021multimodalMeta">
+  <em id="prakash2021multimodalAbs">How should representations from complementary sensors be integrated for autonomous driving? Geometry-based sensor fusion has shown great promise for perception tasks such as object detection and motion forecasting. However, for the actual driving task, the global context of the 3D scene is key, e.g. a change in traffic light state can affect the behavior of a vehicle geometrically distant from that traffic light. Geometry alone may therefore be insufficient for effectively fusing representations in end-to-end driving models. In this work, we demonstrate that imitation learning policies based on existing sensor fusion methods under-perform in the presence of a high density of dynamic agents and complex scenarios, which require global contextual reasoning, such as handling traffic oncoming from multiple directions at uncontrolled intersections. Therefore, we propose TransFuser, a novel Multi-Modal Fusion Transformer, to integrate image and LiDAR representations using attention. We experimentally validate the efficacy of our approach in urban settings involving complex scenarios using the CARLA urban driving simulator. Our approach achieves state-of-the-art driving performance while reducing collisions by 76% compared to geometry-based fusion. </em>
+  <pre xml:space="preserve" id="prakash2021multimodalBib">
+  
+  @inProceedings{prakash2021multimodal,
+    title={Multi-Modal Fusion Transformer for End-to-End Autonomous Driving},
+    author = {Aditya Prakash
+      and Kashyap Chitta
+      and Andreas Geiger},
+    booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
+    year={2021}
+  }</pre></td>
+  <script language="javascript" type="text/javascript" xml:space="preserve">
+  hideblock('prakash2021multimodalAbs');
+  hideblock('prakash2021multimodalBib');
+  </script>
+  </div>
+  </div>
+  <!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
 <div class="paper" id="behl2020label">
 <img class="paper" title="Label Efficient Visual Abstractions for Autonomous Driving" src="figures/behl2020label.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2005.10091">Label Efficient Visual Abstractions for Autonomous Driving</a></b> <br/>
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/2005.10091">Label Efficient Visual Abstractions for Autonomous Driving</a></b> <br/>
 Aseem Behl*, <strong>Kashyap Chitta*</strong>, Aditya Prakash, Eshed Ohn-Bar, Andreas Geiger <br/>
 International Conference on Intelligent Robots and Systems (IROS), 2020 <br/>
 <a href="https://arxiv.org/pdf/2005.10091.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('behl2020labelAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('behl2020labelBib')">bibtex </a> &nbsp <a href="https://github.com/autonomousvision/visual_abstractions">code </a> &nbsp <a href="https://autonomousvision.github.io/visual-abstractions/">blog </a> </p>
@@ -271,7 +298,7 @@ hideblock('chitta2016reducedBib');
 <!--------------------------------------------------------------------------->
 <div class="paper" id="weis2020unmasking">
 <img class="paper" title="Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences" src="figures/weis2020unmasking.png" />
-<p> <strong style="color:red">[New]</strong> <b id="papertitle"><a href="https://arxiv.org/abs/2006.07034">Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences</a></b> <br/>
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/2006.07034">Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences</a></b> <br/>
 Marissa A. Weis, <strong>Kashyap Chitta</strong>, Yash Sharma, Wieland Brendel, Matthias Bethge, Andreas Geiger, Alexander S. Ecker <br/>
 ArXiv e-prints, 2020 <br/>
 <a href="https://arxiv.org/pdf/2006.07034.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('weis2020unmaskingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('weis2020unmaskingBib')">bibtex </a> </p>
@@ -301,13 +328,13 @@ hideblock('weis2020unmaskingBib');
 
 <!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2019training">
-<img class="paper" title="Training Data Distribution Search with Ensemble Active Learning" src="figures/chitta2019training.png" />
-<p> <b id="papertitle"><a href="https://arxiv.org/abs/1905.12737">Training Data Distribution Search with Ensemble Active Learning</a></b> <br/>
+<img class="paper" title="Training Data Subset Search with Ensemble Active Learning" src="figures/chitta2019training.png" />
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/1905.12737">Training Data Subset Search with Ensemble Active Learning</a></b> <br/>
 <strong>Kashyap Chitta</strong>, Jose M. Alvarez, Elmar Haussmann, Clement Farabet <br/>
 ArXiv e-prints, 2019 <br/>
 <a href="https://arxiv.org/pdf/1905.12737.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingBib')">bibtex </a> </p>
 <div class="papermeta" id="chitta2019trainingMeta">
-<em id="chitta2019trainingAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's optimization. Modifying the training distribution in a way that excludes such samples could provide an effective solution to both improve performance and reduce training time. In this paper, we propose to scale up ensemble Active Learning methods to perform acquisition at a large scale (10k to 500k samples at a time). We do this with ensembles of hundreds of models, obtained at a minimal computational cost by reusing intermediate training checkpoints. This allows us to automatically and efficiently perform a training data distribution search for large labeled datasets. We observe that our approach obtains favorable subsets of training data, which can be used to train more accurate DNNs than training with the entire dataset. We perform an extensive experimental study of this phenomenon on three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet), analyzing the impact of initialization schemes, acquisition functions and ensemble configurations. We demonstrate that data subsets identified with a lightweight ResNet-18 ensemble remain effective when used to train deep models like ResNet-101 and DenseNet-121. Our results provide strong empirical evidence that optimizing the training data distribution can provide significant benefits on large scale vision tasks. </em>
+<em id="chitta2019trainingAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's optimization. Modifying the training distribution in a way that excludes such samples could provide an effective solution to both improve performance and reduce training time. In this paper, we propose to scale up ensemble Active Learning (AL) methods to perform acquisition at a large scale (10k to 500k samples at a time). We do this with ensembles of hundreds of models, obtained at a minimal computational cost by reusing intermediate training checkpoints. This allows us to automatically and efficiently perform a training data subset search for large labeled datasets. We observe that our approach obtains favorable subsets of training data, which can be used to train more accurate DNNs than training with the entire dataset. We perform an extensive experimental study of this phenomenon on three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet), as well as an internal object detection benchmark for prototyping perception models for autonomous driving. Unlike existing studies, our experiments on object detection are at the scale required for production-ready autonomous driving systems. We provide insights on the impact of different initialization schemes, acquisition functions and ensemble configurations at this scale. Our results provide strong empirical evidence that optimizing the training data distribution can provide significant benefits on large scale vision tasks. </em>
 <pre xml:space="preserve" id="chitta2019trainingBib">
 
 @inProceedings{chitta2019training,
