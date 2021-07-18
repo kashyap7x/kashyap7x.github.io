@@ -17,7 +17,7 @@
 <div class="section">
 <table>
   <tr valign="top"> <td style="width: 700px; vertical-align: top;">
-  I am a PhD student at the Max Planck Institute for Intelligent Systems and the University of T&uumlbingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. My research is at the intersection of robotics, machine learning and computer vision. I am currently interested in scene representations for improving the robustness and generalization of learned vision-based control policies. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at <a href = "https://www.nvidia.com/en-us/deep-learning-ai/">NVIDIA</a>, Santa Clara working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
+  I am a PhD student at the Max Planck Institute for Intelligent Systems and the University of T&uumlbingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net">Prof. Andreas Geiger</a>. My research is at the intersection of robotics, machine learning and computer vision. I am currently interested in scene representations for improving the robustness and generalization of learned vision-based control policies. Previously, I graduated with a Master's degree in Computer Vision from CMU, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/">Prof. Martial Hebert</a>. During this time, I was also a Deep Learning Intern on two occasions at NVIDIA working with <a href = "http://www.josemalvarez.net/">Dr. Jose M. Alvarez</a>.
   <p><br></p>
   <p>
     <a href="javascript:toggleblock('email')">email</a> | <a href="https://github.com/kashyap7x">github</a>  | <a href="https://www.linkedin.com/in/kchitta/">linkedin</a> | <a href="https://twitter.com/kashyap7x">twitter</a> | <a href="https://scholar.google.com/citations?user=vX5i2CcAAAAJ&hl=en">google scholar</a>
@@ -38,6 +38,37 @@ firstname DOT lastname AT tue DOT mpg DOT de
 
 <div class="section">
 <h2> Publications </h2>
+
+<!--------------------------------------------------------------------------->
+<div class="paper" id="weis2021benchmarking">
+  <img class="paper" title="Benchmarking Unsupervised Object Representations for Video Sequences" src="figures/weis2021benchmarking.png" />
+  <p> <b id="papertitle"><a href="https://arxiv.org/abs/2006.07034">Benchmarking Unsupervised Object Representations for Video Sequences</a></b> <br/>
+  Marissa A. Weis, <strong>Kashyap Chitta</strong>, Yash Sharma, Wieland Brendel, Matthias Bethge, Andreas Geiger, Alexander S. Ecker <br/>
+  Journal of Machine Learning Research (JMLR), 2021 <br/>
+  <a href="https://arxiv.org/pdf/2006.07034.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('weis2021benchmarkingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('weis2021benchmarkingBib')">bibtex </a> &nbsp <a href="https://github.com/ecker-lab/object-centric-representation-benchmark">code </a> </p>
+  <div class="papermeta" id="weis2021benchmarkingMeta">
+  <em id="weis2021benchmarkingAbs">Perceiving the world in terms of objects and tracking them through time is a crucial prerequisite for reasoning and scene understanding. Recently, several methods have been proposed for unsupervised learning of object-centric representations. However, since these models were evaluated on different downstream tasks, it remains unclear how they compare in terms of basic perceptual abilities such as detection, figure-ground segmentation and tracking of objects. To close this gap, we design a benchmark with four data sets of varying complexity and seven additional test sets featuring challenging tracking scenarios relevant for natural videos. Using this benchmark, we compare the perceptual abilities of four object-centric approaches: ViMON, a video-extension of MONet, based on recurrent spatial attention, OP3, which exploits clustering via spatial mixture models, as well as TBA and SCALOR, which use explicit factorization via spatial transformers. Our results suggest that the architectures with unconstrained latent representations learn more powerful representations in terms of object detection, segmentation and tracking than the spatial transformer based architectures. We also observe that none of the methods are able to gracefully handle the most challenging tracking scenarios despite their synthetic nature, suggesting that our benchmark may provide fruitful guidance towards learning more robust object-centric video representations. </em>
+  <pre xml:space="preserve" id="weis2021benchmarkingBib">
+  
+  @inProceedings{weis2021benchmarking,
+    title={Benchmarking Unsupervised Object Representations for Video Sequences},
+    author = {Marissa A. Weis
+      and Kashyap Chitta
+      and Yash Sharma
+      and Wieland Brendel
+      and Matthias Bethge
+      and Andreas Geiger
+      and Alexander S. Ecker},
+    booktitle={Journal of Machine Learning Research (JMLR)},
+    year={2021}
+  }</pre></td>
+  <script language="javascript" type="text/javascript" xml:space="preserve">
+  hideblock('weis2021benchmarkingAbs');
+  hideblock('weis2021benchmarkingBib');
+  </script>
+  </div>
+  </div>
+  <!--------------------------------------------------------------------------->
 
 <!--------------------------------------------------------------------------->
 <div class="paper" id="prakash2021multimodal">
@@ -294,37 +325,6 @@ hideblock('chitta2016reducedBib');
 
 <div class="section">
 <h2> Preprints </h2>
-
-<!--------------------------------------------------------------------------->
-<div class="paper" id="weis2020unmasking">
-<img class="paper" title="Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences" src="figures/weis2020unmasking.png" />
-<p> <b id="papertitle"><a href="https://arxiv.org/abs/2006.07034">Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences</a></b> <br/>
-Marissa A. Weis, <strong>Kashyap Chitta</strong>, Yash Sharma, Wieland Brendel, Matthias Bethge, Andreas Geiger, Alexander S. Ecker <br/>
-ArXiv e-prints, 2020 <br/>
-<a href="https://arxiv.org/pdf/2006.07034.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('weis2020unmaskingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('weis2020unmaskingBib')">bibtex </a> </p>
-<div class="papermeta" id="weis2020unmaskingMeta">
-<em id="weis2020unmaskingAbs">Perceiving the world in terms of objects is a crucial prerequisite for reasoning and scene understanding. Recently, several methods have been proposed for unsupervised learning of object-centric representations. However, since these models have been evaluated with respect to different downstream tasks, it remains unclear how they compare in terms of basic perceptual abilities such as detection, figure-ground segmentation and tracking of individual objects. In this paper, we argue that the established evaluation protocol of multi-object tracking tests precisely these perceptual qualities and we propose a new benchmark dataset based on procedurally generated video sequences. Using this benchmark, we compare the perceptual abilities of three state-of-the-art unsupervised object-centric learning approaches. Towards this goal, we propose a video-extension of MONet, a seminal object-centric model for static scenes, and compare it to two recent video models: OP3, which exploits clustering via spatial mixture models, and TBA, which uses an explicit factorization via spatial transformers. Our results indicate that architectures which employ unconstrained latent representations based on per-object variational autoencoders and full-image object masks are able to learn more powerful representations in terms of object detection, segmentation and tracking than the explicitly parameterized spatial transformer based architecture. We also observe that none of the methods are able to gracefully handle the most challenging tracking scenarios, suggesting that our synthetic video benchmark may provide fruitful guidance towards learning more robust object-centric video representations. </em>
-<pre xml:space="preserve" id="weis2020unmaskingBib">
-
-@inProceedings{weis2020unmasking,
-  title={Unmasking the Inductive Biases of Unsupervised Object Representations for Video Sequences},
-  author = {Marissa A. Weis
-    and Kashyap Chitta
-    and Yash Sharma
-    and Wieland Brendel
-    and Matthias Bethge
-    and Andreas Geiger
-    and Alexander S. Ecker},
-  booktitle={ArXiv e-prints},
-  year={2020}
-}</pre></td>
-<script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('weis2020unmaskingAbs');
-hideblock('weis2020unmaskingBib');
-</script>
-</div>
-</div>
-<!--------------------------------------------------------------------------->
 
 <!--------------------------------------------------------------------------->
 <div class="paper" id="chitta2019training">
