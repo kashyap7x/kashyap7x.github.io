@@ -40,6 +40,33 @@ firstname DOT lastname AT tue DOT mpg DOT de
 <h2> Publications </h2>
 
 <!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2021neat">
+<img class="paper" title="NEAT: Neural Attention Fields for End-to-End Autonomous Driving" src="figures/chitta2021neat.png" />
+<p> <b id="papertitle"><a href="http://www.cvlibs.net/publications/Chitta2021ICCV.pdf">NEAT: Neural Attention Fields for End-to-End Autonomous Driving</a></b> <br/>
+<strong>Kashyap Chitta*</strong>, Aditya Prakash*, Andreas Geiger <br/>
+International Conference on Computer Vision (ICCV), 2021 <br/>
+<a href="http://www.cvlibs.net/publications/Chitta2021ICCV.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2021neatAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2021neatBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/neat">code </a> &nbsp <a href="https://autonomousvision.github.io/neat/">blog </a> </p>
+<div class="papermeta" id="chitta2021neatMeta">
+<em id="chitta2021neatAbs">Efficient reasoning about the semantic, spatial, and temporal structure of a scene is a crucial prerequisite for autonomous driving. We present NEural ATtention fields (NEAT), a novel representation that enables such reasoning for end-to-end imitation learning models. NEAT is a continuous function which maps locations in Bird's Eye View (BEV) scene coordinates to waypoints and semantics, using intermediate attention maps to iteratively compress high-dimensional 2D image features into a compact representation. This allows our model to selectively attend to relevant regions in the input while ignoring information irrelevant to the driving task, effectively associating the images with the BEV representation. In a new evaluation setting involving adverse environmental conditions and challenging scenarios, NEAT outperforms several strong baselines and achieves driving scores on par with the privileged CARLA expert used to generate its training data. Furthermore, visualizing the attention maps for models with NEAT intermediate representations provides improved interpretability.</em>
+<pre xml:space="preserve" id="chitta2021neatBib">
+
+@inProceedings{chitta2021neat,
+  title={NEAT: Neural Attention Fields for End-to-End Autonomous Driving},
+  author = {Kashyap Chitta
+    and Aditya Prakash
+    and Andreas Geiger},
+  booktitle={International Conference on Computer Vision (ICCV)},
+  year={2021}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('chitta2021neatAbs');
+hideblock('chitta2021neatBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
 <div class="paper" id="weis2021benchmarking">
   <img class="paper" title="Benchmarking Unsupervised Object Representations for Video Sequences" src="figures/weis2021benchmarking.png" />
   <p> <b id="papertitle"><a href="https://arxiv.org/abs/2006.07034">Benchmarking Unsupervised Object Representations for Video Sequences</a></b> <br/>
@@ -72,30 +99,30 @@ firstname DOT lastname AT tue DOT mpg DOT de
 
 <!--------------------------------------------------------------------------->
 <div class="paper" id="prakash2021multimodal">
-  <img class="paper" title="Multi-Modal Fusion Transformer for End-to-End Autonomous Driving" src="figures/prakash2021multimodal.png" />
-  <p> <b id="papertitle"><a href="https://arxiv.org/abs/2104.09224">Multi-Modal Fusion Transformer for End-to-End Autonomous Driving</a></b> <br/>
-  Aditya Prakash*, <strong>Kashyap Chitta*</strong>, Andreas Geiger <br/>
-  Conference on Computer Vision and Pattern Recognition (CVPR), 2021 <br/>
-  <a href="https://arxiv.org/pdf/2104.09224.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('prakash2021multimodalAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('prakash2021multimodalBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/transfuser">code </a> &nbsp <a href="https://autonomousvision.github.io/transfuser/">blog </a> </p>
-  <div class="papermeta" id="prakash2021multimodalMeta">
-  <em id="prakash2021multimodalAbs">How should representations from complementary sensors be integrated for autonomous driving? Geometry-based sensor fusion has shown great promise for perception tasks such as object detection and motion forecasting. However, for the actual driving task, the global context of the 3D scene is key, e.g. a change in traffic light state can affect the behavior of a vehicle geometrically distant from that traffic light. Geometry alone may therefore be insufficient for effectively fusing representations in end-to-end driving models. In this work, we demonstrate that imitation learning policies based on existing sensor fusion methods under-perform in the presence of a high density of dynamic agents and complex scenarios, which require global contextual reasoning, such as handling traffic oncoming from multiple directions at uncontrolled intersections. Therefore, we propose TransFuser, a novel Multi-Modal Fusion Transformer, to integrate image and LiDAR representations using attention. We experimentally validate the efficacy of our approach in urban settings involving complex scenarios using the CARLA urban driving simulator. Our approach achieves state-of-the-art driving performance while reducing collisions by 76% compared to geometry-based fusion. </em>
-  <pre xml:space="preserve" id="prakash2021multimodalBib">
-  
-  @inProceedings{prakash2021multimodal,
-    title={Multi-Modal Fusion Transformer for End-to-End Autonomous Driving},
-    author = {Aditya Prakash
-      and Kashyap Chitta
-      and Andreas Geiger},
-    booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
-    year={2021}
-  }</pre></td>
-  <script language="javascript" type="text/javascript" xml:space="preserve">
-  hideblock('prakash2021multimodalAbs');
-  hideblock('prakash2021multimodalBib');
-  </script>
-  </div>
-  </div>
-  <!--------------------------------------------------------------------------->
+<img class="paper" title="Multi-Modal Fusion Transformer for End-to-End Autonomous Driving" src="figures/prakash2021multimodal.png" />
+<p> <b id="papertitle"><a href="https://arxiv.org/abs/2104.09224">Multi-Modal Fusion Transformer for End-to-End Autonomous Driving</a></b> <br/>
+Aditya Prakash*, <strong>Kashyap Chitta*</strong>, Andreas Geiger <br/>
+Conference on Computer Vision and Pattern Recognition (CVPR), 2021 <br/>
+<a href="https://arxiv.org/pdf/2104.09224.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('prakash2021multimodalAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('prakash2021multimodalBib')">bibtex </a>  &nbsp <a href="https://github.com/autonomousvision/transfuser">code </a> &nbsp <a href="https://autonomousvision.github.io/transfuser/">blog </a> </p>
+<div class="papermeta" id="prakash2021multimodalMeta">
+<em id="prakash2021multimodalAbs">How should representations from complementary sensors be integrated for autonomous driving? Geometry-based sensor fusion has shown great promise for perception tasks such as object detection and motion forecasting. However, for the actual driving task, the global context of the 3D scene is key, e.g. a change in traffic light state can affect the behavior of a vehicle geometrically distant from that traffic light. Geometry alone may therefore be insufficient for effectively fusing representations in end-to-end driving models. In this work, we demonstrate that imitation learning policies based on existing sensor fusion methods under-perform in the presence of a high density of dynamic agents and complex scenarios, which require global contextual reasoning, such as handling traffic oncoming from multiple directions at uncontrolled intersections. Therefore, we propose TransFuser, a novel Multi-Modal Fusion Transformer, to integrate image and LiDAR representations using attention. We experimentally validate the efficacy of our approach in urban settings involving complex scenarios using the CARLA urban driving simulator. Our approach achieves state-of-the-art driving performance while reducing collisions by 76% compared to geometry-based fusion. </em>
+<pre xml:space="preserve" id="prakash2021multimodalBib">
+
+@inProceedings{prakash2021multimodal,
+  title={Multi-Modal Fusion Transformer for End-to-End Autonomous Driving},
+  author = {Aditya Prakash
+    and Kashyap Chitta
+    and Andreas Geiger},
+  booktitle={Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2021}
+}</pre></td>
+<script language="javascript" type="text/javascript" xml:space="preserve">
+hideblock('prakash2021multimodalAbs');
+hideblock('prakash2021multimodalBib');
+</script>
+</div>
+</div>
+<!--------------------------------------------------------------------------->
 
 <!--------------------------------------------------------------------------->
 <div class="paper" id="behl2020label">
