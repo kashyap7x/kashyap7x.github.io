@@ -40,6 +40,34 @@ firstname DOT lastname AT tue DOT mpg DOT de
 <h2> Publications </h2>
 
 <!--------------------------------------------------------------------------->
+<div class="paper" id="chitta2022training">
+  <img class="paper" title="Training Data Subset Search with Ensemble Active Learning" src="figures/chitta2022training.png" />
+  <p> <b id="papertitle"><a href="https://arxiv.org/abs/1905.12737">Training Data Subset Search with Ensemble Active Learning</a></b> <br/>
+  <strong>Kashyap Chitta</strong>, Jose M. Alvarez, Elmar Haussmann, Clement Farabet <br/>
+  IEEE Transactions on Intelligent Transportation Systems (T-ITS), 2022 <br/>
+  <a href="https://arxiv.org/pdf/1905.12737.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2022trainingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2022trainingBib')">bibtex </a> </p>
+  <div class="papermeta" id="chitta2022trainingMeta">
+  <em id="chitta2022trainingAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's optimization. Modifying the training distribution in a way that excludes such samples could provide an effective solution to both improve performance and reduce training time. In this paper, we propose to scale up ensemble Active Learning (AL) methods to perform acquisition at a large scale (10k to 500k samples at a time). We do this with ensembles of hundreds of models, obtained at a minimal computational cost by reusing intermediate training checkpoints. This allows us to automatically and efficiently perform a training data subset search for large labeled datasets. We observe that our approach obtains favorable subsets of training data, which can be used to train more accurate DNNs than training with the entire dataset. We perform an extensive experimental study of this phenomenon on three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet), as well as an internal object detection benchmark for prototyping perception models for autonomous driving. Unlike existing studies, our experiments on object detection are at the scale required for production-ready autonomous driving systems. We provide insights on the impact of different initialization schemes, acquisition functions and ensemble configurations at this scale. Our results provide strong empirical evidence that optimizing the training data distribution can provide significant benefits on large scale vision tasks. </em>
+  <pre xml:space="preserve" id="chitta2022trainingBib">
+  
+  @Article{chitta2022training,
+    title={Training Data Subset Search with Ensemble Active Learning},
+    author = {Kashyap Chitta
+      and Jose M. Alvarez
+      and Elmar Haussmann
+      and Clement Farabet},
+    journal={IEEE Transactions on Intelligent Transportation Systems (T-ITS)},
+    year={2022}
+  }</pre></td>
+  <script language="javascript" type="text/javascript" xml:space="preserve">
+  hideblock('chitta2022trainingAbs');
+  hideblock('chitta2022trainingBib');
+  </script>
+  </div>
+  </div>
+<!--------------------------------------------------------------------------->
+
+<!--------------------------------------------------------------------------->
 <div class="paper" id="sauer2021projected">
   <img class="paper" title="Projected GANs Converge Faster" src="figures/sauer2021projected.png" />
   <p> <b id="papertitle"><a href="https://sites.google.com/view/projected-gan">Projected GANs Converge Faster</a></b> <br/>
@@ -105,7 +133,7 @@ hideblock('chitta2021neatBib');
   <em id="weis2021benchmarkingAbs">Perceiving the world in terms of objects and tracking them through time is a crucial prerequisite for reasoning and scene understanding. Recently, several methods have been proposed for unsupervised learning of object-centric representations. However, since these models were evaluated on different downstream tasks, it remains unclear how they compare in terms of basic perceptual abilities such as detection, figure-ground segmentation and tracking of objects. To close this gap, we design a benchmark with four data sets of varying complexity and seven additional test sets featuring challenging tracking scenarios relevant for natural videos. Using this benchmark, we compare the perceptual abilities of four object-centric approaches: ViMON, a video-extension of MONet, based on recurrent spatial attention, OP3, which exploits clustering via spatial mixture models, as well as TBA and SCALOR, which use explicit factorization via spatial transformers. Our results suggest that the architectures with unconstrained latent representations learn more powerful representations in terms of object detection, segmentation and tracking than the spatial transformer based architectures. We also observe that none of the methods are able to gracefully handle the most challenging tracking scenarios despite their synthetic nature, suggesting that our benchmark may provide fruitful guidance towards learning more robust object-centric video representations. </em>
   <pre xml:space="preserve" id="weis2021benchmarkingBib">
   
-  @inProceedings{weis2021benchmarking,
+  @Article{weis2021benchmarking,
     title={Benchmarking Unsupervised Object Representations for Video Sequences},
     author = {Marissa A. Weis
       and Kashyap Chitta
@@ -114,7 +142,7 @@ hideblock('chitta2021neatBib');
       and Matthias Bethge
       and Andreas Geiger
       and Alexander S. Ecker},
-    booktitle={Journal of Machine Learning Research (JMLR)},
+    journal={Journal of Machine Learning Research (JMLR)},
     year={2021}
   }</pre></td>
   <script language="javascript" type="text/javascript" xml:space="preserve">
@@ -380,32 +408,6 @@ hideblock('chitta2016reducedBib');
 <!-- 
 <div class="section">
 <h2> Preprints </h2>
-
-<div class="paper" id="chitta2019training">
-<img class="paper" title="Training Data Subset Search with Ensemble Active Learning" src="figures/chitta2019training.png" />
-<p> <b id="papertitle"><a href="https://arxiv.org/abs/1905.12737">Training Data Subset Search with Ensemble Active Learning</a></b> <br/>
-<strong>Kashyap Chitta</strong>, Jose M. Alvarez, Elmar Haussmann, Clement Farabet <br/>
-ArXiv e-prints, 2019 <br/>
-<a href="https://arxiv.org/pdf/1905.12737.pdf">pdf </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingAbs')">abstract </a>  &nbsp <a href="javascript:toggleblock('chitta2019trainingBib')">bibtex </a> </p>
-<div class="papermeta" id="chitta2019trainingMeta">
-<em id="chitta2019trainingAbs">Deep Neural Networks (DNNs) often rely on very large datasets for training. Given the large size of such datasets, it is conceivable that they contain certain samples that either do not contribute or negatively impact the DNN's optimization. Modifying the training distribution in a way that excludes such samples could provide an effective solution to both improve performance and reduce training time. In this paper, we propose to scale up ensemble Active Learning (AL) methods to perform acquisition at a large scale (10k to 500k samples at a time). We do this with ensembles of hundreds of models, obtained at a minimal computational cost by reusing intermediate training checkpoints. This allows us to automatically and efficiently perform a training data subset search for large labeled datasets. We observe that our approach obtains favorable subsets of training data, which can be used to train more accurate DNNs than training with the entire dataset. We perform an extensive experimental study of this phenomenon on three image classification benchmarks (CIFAR-10, CIFAR-100 and ImageNet), as well as an internal object detection benchmark for prototyping perception models for autonomous driving. Unlike existing studies, our experiments on object detection are at the scale required for production-ready autonomous driving systems. We provide insights on the impact of different initialization schemes, acquisition functions and ensemble configurations at this scale. Our results provide strong empirical evidence that optimizing the training data distribution can provide significant benefits on large scale vision tasks. </em>
-<pre xml:space="preserve" id="chitta2019trainingBib">
-
-@inProceedings{chitta2019training,
-  title={Training Data Distribution Search with Ensemble Active Learning},
-  author = {Kashyap Chitta
-    and Jose M. Alvarez
-    and Elmar Haussmann
-    and Clement Farabet},
-  booktitle={ArXiv e-prints},
-  year={2019}
-}</pre></td>
-<script language="javascript" type="text/javascript" xml:space="preserve">
-hideblock('chitta2019trainingAbs');
-hideblock('chitta2019trainingBib');
-</script>
-</div>
-</div>
 
 <div class="paper" id="chitta2018largescale">
 <img class="paper" title="Large-Scale Visual Active Learning with Deep Probabilistic Ensembles" src="figures/chitta2018largescale.png" />
