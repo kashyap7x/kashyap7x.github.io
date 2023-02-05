@@ -2,32 +2,37 @@ from pybtex.database.input import bibtex
 
 def get_personal_data():
     name = ["Kashyap", "Chitta"]
-    email = "kashyap.chitta@tue.mpg.de"
-    mastodon = "sigmoid.social/@kashyap7x"
-    twitter = "kashyap7x"
+    email = "kashyap.chitta@uni-tuebingen.de"
     scholar = "vX5i2CcAAAAJ"
-    github = "kashyap7x"
+    twitter = "kashyap7x"
     linkedin = "kchitta"
+    mastodon = "sigmoid.social/@kashyap7x"
+    github = "kashyap7x"
+    
     bio_text = f"""
                 <p>
-                    I am a PhD student at the Max Planck Institute for Intelligent Systems and the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>. <span style="color: red;">I plan to finish my PhD by the end of 2023 and I am looking for postdoc positions!</span>
+                    I am a PhD student at the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>. <span style="color: red; font-weight: bold;">I plan to finish my PhD by the end of 2023 and I am looking for postdoc positions!</span>
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
-                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in how autonomous agents can use attention-based deep neural networks to create abstract representations suitable for safe navigation. Further, I am big fan of simulation, and am interested in building simulators tailored towards improving the robustness and generalization of learned policies. 
+                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in how autonomous agents can use attention-based deep neural networks to create abstract representations suitable for safe navigation. Further, I am big fan of simulation, and am interested in building data-driven simulators tailored towards improving the robustness and generalization of learned policies. 
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
                     Kashyap did a bachelor's degree in electronics at the <a href="https://www.rvce.edu.in/" target="_blank">RV College of Engineering</a>, India. He then moved to the US in 2018 to obtain his Master's degree in computer vision from <a href="https://www.ri.cmu.edu/" target="_blank">Carnegie Mellon University</a>, where he was advised by <a href = "http://www.cs.cmu.edu/~hebert/" target="_blank">Prof. Martial Hebert</a>. During this time, he was also an intern at NVIDIA working with <a href = "https://alvarezlopezjosem.github.io/" target="_blank">Dr. Jose M. Alvarez</a>. He is currently a PhD student in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> of the University of Tübingen, Germany, supervised by <a href="http://cvlibs.net/" target="_blank">Prof. Andreas Geiger</a>.
                 </p>
                 <p>
+                    <span style="font-weight: bold;">Workshops:</span>
+                    I am co organizing the <a href = "http://opendrivelab.com/sr4ad/iclr23" target="_blank">ICLR 2023 Workshop on Scene Representations for Autonomous Driving</a> and <a href = "http://opendrivelab.com/e2ead/cvpr23" target="_blank">CVPR 2023 Workshop on End-to-End Autonomous Driving</a>. We have exciting speaker lineups, brand new challenges, and contributions in several non-traditional formats. Check out the workshop websites if you are interested!
+                </p>
+                <p>
                     <a href="https://kashyap7x.github.io/assets/pdf/kchitta_cv.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
                     <a href="mailto:{email}" style="margin-right: 15px"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
-                    <a rel="me" href="https://{mastodon}" target="_blank" style="margin-right: 15px"><i class="fab fa-mastodon fa-lg"></i> Mastodon</a>
-                    <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
                     <a href="https://scholar.google.com/citations?user={scholar}&hl=en" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
-                    <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
+                    <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
                     <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
+                    <a rel="me" href="https://{mastodon}" target="_blank" style="margin-right: 15px"><i class="fab fa-mastodon fa-lg"></i> Mastodon</a>
+                    <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
                 </p>
     """
     footer = """
