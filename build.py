@@ -6,24 +6,26 @@ def get_personal_data():
     scholar = "vX5i2CcAAAAJ"
     twitter = "kashyap7x"
     linkedin = "kchitta"
+    facebook = "kashyap7x"
     mastodon = "sigmoid.social/@kashyap7x"
     github = "kashyap7x"
-    
+    youtube = "UC_rpEkxE-pUAV8v0wjdtg5w"
+
     bio_text = f"""
                 <p>
                     I am a PhD student at the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>. <span style="color: red; font-weight: bold;">I plan to finish my PhD by the end of 2023 and I am looking for postdoc positions!</span>
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
-                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in how autonomous agents can use attention-based deep neural networks to create abstract representations suitable for safe navigation. Further, I am big fan of simulation, and am interested in building data-driven simulators tailored towards improving the robustness and generalization of learned policies. 
-                </p>
-                <p>
-                    <span style="font-weight: bold;">Bio:</span>
-                    Kashyap did a bachelor's degree in electronics at the <a href="https://www.rvce.edu.in/" target="_blank">RV College of Engineering</a>, India. He then moved to the US in 2018 to obtain his Master's degree in computer vision from <a href="https://www.ri.cmu.edu/" target="_blank">Carnegie Mellon University</a>, where he was advised by <a href = "http://www.cs.cmu.edu/~hebert/" target="_blank">Prof. Martial Hebert</a>. During this time, he was also an intern at NVIDIA working with <a href = "https://alvarezlopezjosem.github.io/" target="_blank">Dr. Jose M. Alvarez</a>. He is currently a PhD student in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> of the University of Tübingen, Germany, supervised by <a href="http://cvlibs.net/" target="_blank">Prof. Andreas Geiger</a>.
+                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in how autonomous agents can use attention-based deep neural networks to create abstract representations suitable for safe navigation. Further, I am big fan of simulation, and am interested in building data-driven simulators tailored towards improving the robustness and generalization of learned policies. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Workshops:</span>
                     I am co organizing the <a href = "http://opendrivelab.com/sr4ad/iclr23" target="_blank">ICLR 2023 Workshop on Scene Representations for Autonomous Driving</a> and <a href = "http://opendrivelab.com/e2ead/cvpr23" target="_blank">CVPR 2023 Workshop on End-to-End Autonomous Driving</a>. We have exciting speaker lineups, brand new challenges, and contributions in several non-traditional formats. Check out the workshop websites if you are interested!
+                </p>
+                <p>
+                    <span style="font-weight: bold;">Bio:</span>
+                    Kashyap did a bachelor's degree in electronics at the <a href="https://www.rvce.edu.in/" target="_blank">RV College of Engineering</a>, India. He then moved to the US in 2017 to obtain his Master's degree in computer vision from <a href="https://www.ri.cmu.edu/" target="_blank">Carnegie Mellon University</a>, where he was advised by <a href = "http://www.cs.cmu.edu/~hebert/" target="_blank">Prof. Martial Hebert</a>. During this time, he was also an intern at NVIDIA working with <a href = "https://alvarezlopezjosem.github.io/" target="_blank">Dr. Jose M. Alvarez</a>. He is currently a PhD student in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> of the University of Tübingen, Germany, supervised by <a href="http://cvlibs.net/" target="_blank">Prof. Andreas Geiger</a>.
                 </p>
                 <p>
                     <a href="https://kashyap7x.github.io/assets/pdf/kchitta_cv.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
@@ -31,8 +33,10 @@ def get_personal_data():
                     <a href="https://scholar.google.com/citations?user={scholar}&hl=en" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
                     <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
                     <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
+                    <a href="https://www.facebook.com/{facebook}" target="_blank" style="margin-right: 15px"><i class="fab fa-facebook fa-lg"></i> Facebook</a>
                     <a rel="me" href="https://{mastodon}" target="_blank" style="margin-right: 15px"><i class="fab fa-mastodon fa-lg"></i> Mastodon</a>
                     <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
+                    <a href="https://www.youtube.com/channel/{youtube}" target="_blank" style="margin-right: 15px"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
                 </p>
     """
     footer = """
@@ -97,9 +101,15 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
     return s
 
 def get_paper_entry(entry_key, entry):
-    s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
+    if 'highlight' in entry.fields.keys():
+        s = """<div style="background-color: #ffffd0; margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
+    else:
+        s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
+
     s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
     s += """</div><div class="col-sm-9">"""
+
+    
 
     if 'award' in entry.fields.keys():
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
