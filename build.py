@@ -7,21 +7,20 @@ def get_personal_data():
     twitter = "kashyap7x"
     linkedin = "kchitta"
     facebook = "kashyap7x"
-    mastodon = "sigmoid.social/@kashyap7x"
     github = "kashyap7x"
     youtube = "UC_rpEkxE-pUAV8v0wjdtg5w"
 
     bio_text = f"""
                 <p>
-                    I am a PhD student at the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>. <span style="color: red; font-weight: bold;">I plan to finish my PhD by the end of 2023 and I am looking for postdoc positions!</span>
+                    I am a PhD student at the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>. <span style="color: red; font-weight: bold;">I plan to finish my PhD in early 2024 and I am looking for postdoc positions!</span>
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I was recently selected as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a> for 2023, and nominated as an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA autonomous driving challenge</a> (map track) and <a href="https://eval.ai/web/challenges/challenge-page/1856/leaderboard/4360" target="_blank">2023 nuPlan planning challenge</a>!
+                    I was recently selected as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a> for 2023, and nominated as an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA autonomous driving challenge</a> (map track) and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan planning challenge</a>!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
-                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in how autonomous agents can use attention-based deep neural networks to create abstract representations suitable for safe navigation. Further, I am big fan of simulation, and am interested in building data-driven simulators tailored towards improving the robustness and generalization of learned policies. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in vehicle motion planning from either sensor inputs (e.g., CARLA) or abstract state inputs (e.g., nuPlan). Further, I am big fan of simulation, and am interested in building data-driven simulators tailored towards improving the robustness and generalization of learned policies. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -34,7 +33,6 @@ def get_personal_data():
                     <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
                     <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
                     <a href="https://www.facebook.com/{facebook}" target="_blank" style="margin-right: 15px"><i class="fab fa-facebook fa-lg"></i> Facebook</a>
-                    <a rel="me" href="https://{mastodon}" target="_blank" style="margin-right: 15px"><i class="fab fa-mastodon fa-lg"></i> Mastodon</a>
                     <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
                     <a href="https://www.youtube.com/channel/{youtube}" target="_blank" style="margin-right: 15px"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
                 </p>
@@ -50,6 +48,8 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Daniel Dauner': 'https://danieldauner.github.io/',
+        'Marcel Hallgarten': 'https://mh0797.github.io/',
         'Otniel-Bogdan Mercea': 'https://merceaotniel.github.io/',
         'Sophia Koepke': 'https://www.eml-unitue.de/people/almut-sophia-koepke',
         'Zeynep Akata': 'https://www.eml-unitue.de/people/zeynep-akata',
