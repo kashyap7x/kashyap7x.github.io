@@ -16,7 +16,7 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I was recently selected as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a> for 2023, and nominated as an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA autonomous driving challenge</a> (map track) and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan planning challenge</a>!
+                    I was recently selected as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a> for 2023, and nominated as an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA autonomous driving challenge</a> map track and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan planning challenge</a>!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
