@@ -16,7 +16,7 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I was recently selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA challenge</a> map track and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan challenge</a>!
+                    I was recently selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023 and ICCV 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA challenge</a> map track and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan challenge</a>!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
@@ -33,7 +33,7 @@ def get_personal_data():
                     <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> X</a>
                     <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> Linkedin</a>
                     <a href="https://www.facebook.com/{facebook}" target="_blank" style="margin-right: 15px"><i class="fab fa-facebook fa-lg"></i> Facebook</a>
-                    <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> Github</a>
+                    <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> GitHub</a>
                     <a href="https://www.youtube.com/channel/{youtube}" target="_blank" style="margin-right: 15px"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
                 </p>
     """
