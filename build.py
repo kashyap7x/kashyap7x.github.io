@@ -12,11 +12,11 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am a PhD student at the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>. <span style="color: red; font-weight: bold;">I plan to finish my PhD in early 2024 and I am looking for postdoc positions!</span>
+                    I am a PhD student at the University of Tübingen, Germany, where I am part of the <a href = "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> led by <a href = "http://www.cvlibs.net" target="_blank">Prof. Andreas Geiger</a>.
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I was recently selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023 and ICCV 2023. Our team also won the two most recent closed-loop driving challenges: the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA challenge</a> map track and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan challenge</a>!
+                    I was recently selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and an <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">outstanding reviewer</a> for CVPR 2023 and ICCV 2023. Our team also won the <a href="https://ml4ad.github.io/#challenge" target="_blank">2022 CARLA challenge</a> map track and <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan challenge</a>!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
@@ -110,8 +110,6 @@ def get_paper_entry(entry_key, entry):
     s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
     s += """</div><div class="col-sm-9">"""
 
-    
-
     if 'award' in entry.fields.keys():
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
     else:
@@ -130,8 +128,8 @@ def get_paper_entry(entry_key, entry):
             i += 1
         else:
             print(f'[{entry_key}] Warning: Field {k} missing!')
-
-    cite = "<pre><code>@InProceedings{" + f"{entry_key}, \n"
+    
+    cite = "<pre><code>@" + entry.type + "{" + f"{entry_key}, \n"
     cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
     for entr in ['title', 'booktitle', 'year']:
         cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "}, \n"
