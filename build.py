@@ -20,11 +20,11 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">Workshops:</span>
-                    I am co organizing the <a href = "https://opendrivelab.com/cvpr2024/workshop/" target="_blank">CVPR 2024 Workshop on Foundation Models for Autonomous Systems</a> and <a href = "https://sites.google.com/view/rsspioneers2024/" target="_blank">RSS 2024 Pioneers Workshop</a>. We have exciting speaker lineups and panel discussions planned for both. The CVPR workshop will host the 2024 edition of the <a href = "https://opendrivelab.com/challenge2024/" target="_blank">Autonomous Grand Challenge</a> with several new tracks. Stay tuned for more details!
+                    I am co organizing the <a href = "https://opendrivelab.com/cvpr2024/workshop/" target="_blank">CVPR 2024 Workshop on Foundation Models for Autonomous Systems</a> and <a href = "https://sites.google.com/view/rsspioneers2024/" target="_blank">RSS 2024 Pioneers Workshop</a>. We have exciting speaker lineups and panel discussions planned for both. The CVPR workshop will host the 2024 edition of the <a href = "https://opendrivelab.com/challenge2024/" target="_blank">Autonomous Grand Challenge</a> with several new tracks!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
-                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in vehicle motion planning from either sensor inputs (e.g., CARLA) or abstract state inputs (e.g., nuPlan). Further, I am big fan of simulation, and am interested in building data-driven simulators tailored towards improving the robustness and generalization of learned policies. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in vehicle motion planning. Further, I am big fan of simulation, and am interested in building data-driven simulators for autonomous driving and robotics. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -87,10 +87,15 @@ def get_author_dict():
         'Adam Lesnikowski': 'https://scholar.google.com/citations?user=jPbTs2QAAAAJ&hl=en',
         }
 
-def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Kashyap Chitta', add_links=True):
+def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Kashyap Chitta', 
+                         add_links=True, equal_contribution=None):
     links = get_author_dict() if add_links else {}
     s = ""
-    for p in persons:
+
+    equal_contributors = -1
+    if equal_contribution is not None:
+        equal_contributors = equal_contribution
+    for idx, p in enumerate(persons):
         string_part_i = ""
         for name_part_i in p.get_part('first') + p.get_part('last'): 
             if string_part_i != "":
@@ -100,6 +105,8 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
             string_part_i = f'<a href="{links[string_part_i]}" target="_blank">{string_part_i}</a>'
         if make_bold and string_part_i == make_bold_name:
             string_part_i = f'<span style="font-weight: bold";>{make_bold_name}</span>'
+        if idx < equal_contributors:
+            string_part_i += "*"
         if p != persons[-1]:
             string_part_i += connection
         s += string_part_i
@@ -119,7 +126,11 @@ def get_paper_entry(entry_key, entry):
     else:
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <br>"""
 
-    s += f"""{generate_person_html(entry.persons['author'])} <br>"""
+    if 'equal_contribution' in entry.fields.keys():
+        s += f"""{generate_person_html(entry.persons['author'], equal_contribution=int(entry.fields['equal_contribution']))} <br>"""
+    else: 
+        s += f"""{generate_person_html(entry.persons['author'])} <br>"""
+    
     s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
 
     artefacts = {'html': 'Abs', 'pdf': 'Paper', 'supp': 'Supplementary', 'video': 'Video', 'poster': 'Poster', 'code': 'Code'}
