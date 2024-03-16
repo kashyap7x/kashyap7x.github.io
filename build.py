@@ -16,7 +16,7 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I was selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and a top reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a> 2023. Our team also won the <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">2023 nuPlan challenge</a>!
+                    I was selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and a top reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a> 2023. Our team also won the <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">nuPlan challenge</a>!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Workshops:</span>
@@ -52,6 +52,18 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Jiazhi Yang': 'https://www.linkedin.com/in/jiazhi-yang-a07805208/',
+        'Shenyuan Gao': 'https://github.com/Little-Podi',
+        'Yihang Qiu': 'https://github.com/gihharwtw',
+        'Li Chen': 'https://www.linkedin.com/in/li-chen-30b256167/',
+        'Tianyu Li': 'https://www.linkedin.com/in/sephy-li/',
+        'Bo Dai': 'https://www.linkedin.com/in/bo-dai-33673672/',
+        'Penghao Wu': 'https://penghao-wu.github.io/',
+        'Jia Zeng': 'https://scholar.google.com/citations?user=kYrUfMoAAAAJ',
+        'Ping Luo': 'http://luoping.me/',
+        'Jun Zhang': 'https://eejzhang.people.ust.hk/',
+        'Yu Qiao': 'https://scholar.google.com/citations?user=gFtI-8QAAAAJ',
+        'Hongyang Li': 'https://lihongyang.info/',
         'Tim Schreier': 'https://www.linkedin.com/in/tim-schreier-5b54bb198/',
         'Daniel Dauner': 'https://danieldauner.github.io/',
         'Marcel Hallgarten': 'https://mh0797.github.io/',
