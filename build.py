@@ -16,15 +16,15 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I was selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and a top reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a> 2023. Our team also won the <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">nuPlan challenge</a>!
+                    Our team won the map track of the <a href="https://opendrivelab.com/challenge2024/#carla" target="_blank">CARLA challenge</a> as well as the previous <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">nuPlan challenge</a>! I was also selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV, as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and a top reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a>. 
                 </p>
                 <p>
                     <span style="font-weight: bold;">Workshops:</span>
-                    I am co organizing the <a href = "https://opendrivelab.com/cvpr2024/workshop/" target="_blank">CVPR 2024 Workshop on Foundation Models for Autonomous Systems</a> and <a href = "https://sites.google.com/view/rsspioneers2024/" target="_blank">RSS 2024 Pioneers Workshop</a>. We have exciting speaker lineups and panel discussions planned for both. The CVPR workshop will host the 2024 edition of the <a href = "https://opendrivelab.com/challenge2024/" target="_blank">Autonomous Grand Challenge</a> with several new tracks!
+                    I am co organizing the <a href = "https://mllmav.github.io/" target="_blank">ECCV 2024 Workshop "Autonomous Vehicles meet Multimodal Foundation Models"</a> and <a href = "https://sites.google.com/view/rsspioneers2024/" target="_blank">RSS 2024 Pioneers Workshop</a>. We have exciting speaker lineups and panel discussions planned for both.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
-                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in vehicle motion planning. Further, I am big fan of simulation, and am interested in building data-driven simulators for autonomous driving and robotics. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am excited about data-driven solutions to complex decision-making tasks. Currently, my research focuses on self-driving vehicles. Specifically, I am interested in making progress towards embodied AI through research on learning-based vehicle motion planning. Further, I am big fan of simulation, and am interested in building data-driven simulators for autonomous driving and robotics. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -34,7 +34,7 @@ def get_personal_data():
                     <a href="https://kashyap7x.github.io/assets/pdf/kchitta_cv.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
                     <a href="mailto:{email}" style="margin-right: 15px"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
                     <a href="https://scholar.google.com/citations?user={scholar}&hl=en" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
-                    <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-twitter fa-lg"></i> X</a>
+                    <a href="https://twitter.com/{twitter}" target="_blank" style="margin-right: 15px"><i class="fab fa-x-twitter fa-lg"></i> Twitter</a>
                     <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> Linkedin</a>
                     <a href="https://www.facebook.com/{facebook}" target="_blank" style="margin-right: 15px"><i class="fab fa-facebook fa-lg"></i> Facebook</a>
                     <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> GitHub</a>
