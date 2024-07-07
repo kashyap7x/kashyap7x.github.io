@@ -16,11 +16,7 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    Our team won the map track of the <a href="https://opendrivelab.com/challenge2024/#carla" target="_blank">CARLA challenge</a> as well as the previous <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">nuPlan challenge</a>! I was also selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV, as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and a top reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a>. 
-                </p>
-                <p>
-                    <span style="font-weight: bold;">Workshops:</span>
-                    I am co organizing the <a href = "https://mllmav.github.io/" target="_blank">ECCV 2024 Workshop "Autonomous Vehicles meet Multimodal Foundation Models"</a> and <a href = "https://sites.google.com/view/rsspioneers2024/" target="_blank">RSS 2024 Pioneers Workshop</a>. We have exciting speaker lineups and panel discussions planned for both.
+                    Our team won the map track of the <a href="https://opendrivelab.com/challenge2024/#carla" target="_blank">CARLA challenge</a> as well as the previous <a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank">nuPlan challenge</a>! I am co organizing the <a href = "https://mllmav.github.io/" target="_blank">ECCV 2024 Workshop "Autonomous Vehicles meet Multimodal Foundation Models"</a>, where we are accepting paper submissions. I was also selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV, as an <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and a top reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a>. 
                 </p>
                 <p>
                     <span style="font-weight: bold;">Research:</span>
@@ -52,6 +48,10 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Chonghao Sima': 'https://github.com/ChonghaoSima',
+        'Hanxue Zhang': 'https://github.com/jjxjiaxue',
+        'Chengen Xie': 'https://github.com/ChengenXie',
+        'Jens Beißwenger': 'https://www.linkedin.com/in/jens-beißwenger-a82430258',
         'Jiazhi Yang': 'https://www.linkedin.com/in/jiazhi-yang-a07805208/',
         'Shenyuan Gao': 'https://github.com/Little-Podi',
         'Yihang Qiu': 'https://github.com/gihharwtw',
