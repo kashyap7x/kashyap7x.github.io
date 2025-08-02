@@ -11,7 +11,7 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am a a Postdoctoral Researcher at the  <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. I also lead the Tübingen AI Autonomous Driving team, which has won multiple challenge awards <a href="https://opendrivelab.com/challenge2023/#nuplan_planning" target="_blank">[nuPlan 2023]</a> <a href="https://leaderboard.carla.org/challenge/#previous-carla-ad-challenges" target="_blank">[CARLA 2020, 2021, 2022, 2023, 2024]</a> <a href="https://waymo.com/open/challenges/" target="_blank">[Waymo 2025]</a>. My research focuses on simulation-based training and evaluation of embodied AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am a Postdoctoral Researcher at the  <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. I also lead the Tübingen AI Autonomous Driving team, which has won multiple challenge awards <a href="https://opendrivelab.com/challenge2023/#nuplan_planning" target="_blank">[nuPlan 2023]</a> <a href="https://leaderboard.carla.org/challenge/#previous-carla-ad-challenges" target="_blank">[CARLA 2020, 2021, 2022, 2023, 2024]</a> <a href="https://waymo.com/open/challenges/" target="_blank">[Waymo 2025]</a>. My research focuses on simulation-based training and evaluation of embodied AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -38,6 +38,12 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Wei Cao': 'https://vveicao.github.io/',
+        'Xunjiang Gu': 'https://alfredgu001324.github.io/',
+        'Caojun Wang': 'https://scholar.google.com/citations?user=35xHlDUAAAAJ',
+        'Yakov Miron': 'https://www.linkedin.com/in/yakov-miron-0826121b/',
+        'Marco Aiello': 'http://aiellom.it/',
+        'Simon Gerstenecker': 'https://www.linkedin.com/in/simon-gerstenecker/',
         'Xinshuo Weng': 'https://research.nvidia.com/person/xinshuo-weng',
         'Zhiyu Huang': 'https://mczhi.github.io/',
         'Zetong Yang': 'https://scholar.google.com/citations?user=oPiZSVYAAAAJ&hl=zh-CN',
