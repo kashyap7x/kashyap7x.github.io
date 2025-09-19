@@ -38,6 +38,10 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Long Chen': 'https://long.ooo/',
+        'Yuqian Shao': 'https://meteorcollector.github.io/',
+        'Xiaosong Jia': 'https://jiaxiaosong1002.github.io/',
+        'Xiangyu Yue': 'https://xyue.io/',
         'Wei Cao': 'https://vveicao.github.io/',
         'Xunjiang Gu': 'https://alfredgu001324.github.io/',
         'Caojun Wang': 'https://scholar.google.com/citations?user=35xHlDUAAAAJ',
