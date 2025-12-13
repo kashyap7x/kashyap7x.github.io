@@ -11,7 +11,7 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am a Postdoctoral Researcher at the  <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of embodied AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am a Postdoctoral Researcher at the  <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
