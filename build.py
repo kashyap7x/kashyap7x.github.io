@@ -4,14 +4,14 @@ def get_personal_data():
     name = ["Kashyap", "Chitta"]
     email = "kchitta@nvidia.com"
     scholar = "vX5i2CcAAAAJ"
-    bluesky = "kashyap7x.bsky.social"
+    substack = "kashyap7x"
     linkedin = "kchitta"
     github = "kashyap7x"
     youtube = "UC_rpEkxE-pUAV8v0wjdtg5w"
 
     bio_text = f"""
                 <p>
-                    I am a Postdoctoral Researcher at the  <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am a Postdoctoral Researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -21,7 +21,7 @@ def get_personal_data():
                     <a href="https://kashyap7x.github.io/assets/pdf/kchitta_cv.pdf" target="_blank" style="margin-right: 15px"><i class="fa fa-address-card fa-lg"></i> CV</a>
                     <a href="mailto:{email}" style="margin-right: 15px"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
                     <a href="https://scholar.google.com/citations?user={scholar}&hl=en" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
-                    <a href="https://bsky.app/profile/{bluesky}" target="_blank" style="margin-right: 15px"><i class="fab fa-bluesky fa-lg"></i> Bluesky</a>
+                    <a href="https://{substack}.substack.com" target="_blank" style="margin-right: 15px"><i class="fa-solid fa-feather fa-lg"></i> Substack</a>
                     <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" style="margin-right: 15px"><i class="fab fa-linkedin fa-lg"></i> Linkedin</a>
                     <a href="https://github.com/{github}" target="_blank" style="margin-right: 15px"><i class="fab fa-github fa-lg"></i> GitHub</a>
                     <a href="https://www.youtube.com/channel/{youtube}" target="_blank" style="margin-right: 15px"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
