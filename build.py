@@ -38,6 +38,13 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Yixuan Pan': 'https://lzpyx.github.io/',
+        'Ruoyi Qiao': 'https://www.linkedin.com/in/ruoyi-qiao-06a132337',
+        'Liang Pan': 'https://liangpan99.github.io/',
+        'Haoguang Mai':'https://www.linkedin.com/in/haoguang-mai-5a044a301/',
+        'Qingwen Bu': 'https://scholar.google.com/citations?user=-JCRysgAAAAJ',
+        'Hao Zhao': 'https://sites.google.com/view/fromandto',
+        'Cunyuan Zheng': 'https://www.linkedin.com/in/cunyuan/',
         'Long Chen': 'https://long.ooo/',
         'Yuqian Shao': 'https://meteorcollector.github.io/',
         'Xiaosong Jia': 'https://jiaxiaosong1002.github.io/',
@@ -61,7 +68,7 @@ def get_author_dict():
         'Jiazhi Yang': 'https://www.linkedin.com/in/jiazhi-yang-a07805208/',
         'Shenyuan Gao': 'https://github.com/Little-Podi',
         'Yihang Qiu': 'https://github.com/gihharwtw',
-        'Li Chen': 'https://www.linkedin.com/in/li-chen-30b256167/',
+        'Li Chen': 'https://ilnehc.github.io/',
         'Tianyu Li': 'https://www.linkedin.com/in/sephy-li/',
         'Bo Dai': 'https://www.linkedin.com/in/bo-dai-33673672/',
         'Penghao Wu': 'https://penghao-wu.github.io/',
