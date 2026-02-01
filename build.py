@@ -15,7 +15,7 @@ def get_personal_data():
                 </p>
                 <p>
                     <span style="font-weight: bold;">News:</span>
-                    I am co-organizing the <a href="https://research.nvidia.com/labs/avg/" target="_blank">CVPR 2026 Workshop on Simulation for Autonomous Driving</a>. We are looking forward to contributions of both original work as well as papers previously submitted/published elsewhere!
+                    <span style="background-color:#ffffd0">The <a href="https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles" target="_blank">Physical AI Autonomous Vehicles Dataset</a> is now available!</span> I am also co-organizing the <a href="https://agents4ad.github.io/" target="_blank">CVPR 2026 Workshop on Simulation for Autonomous Driving</a>. We look forward to contributions of both original work as well as papers previously submitted/published elsewhere!
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
