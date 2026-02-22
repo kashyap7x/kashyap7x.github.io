@@ -42,6 +42,17 @@ def get_personal_data():
 
 def get_author_dict():
     return {
+        'Long Nguyen': 'https://ln2697.github.io/',
+        'Micha Fauth': 'https://www.linkedin.com/in/micha-fauth-b4492a22b/',
+        'Maximilian Igl': 'https://maximilianigl.com/',
+        'Shuhan Tan': 'https://ariostgx.github.io/website/',
+        'Yuxiao Chen': 'https://research.nvidia.com/person/yuxiao-chen',
+        'Ran Tian': 'https://thomasrantian.github.io/',
+        'Yurong You': 'https://www.yurongyou.com/',
+        'Yan Wang': 'https://www.cs.cornell.edu/~yanwang/',
+        'Wenjie Luo': 'https://www.cs.toronto.edu/~wenjie/',
+        'Yulong Cao': 'https://research.nvidia.com/person/yulong-cao',
+        'Philipp Krahenbuhl': 'http://www.philkr.net/',
         'Yixuan Pan': 'https://lzpyx.github.io/',
         'Ruoyi Qiao': 'https://www.linkedin.com/in/ruoyi-qiao-06a132337',
         'Liang Pan': 'https://liangpan99.github.io/',
@@ -113,7 +124,7 @@ def get_author_dict():
         'Andreas Geiger': 'https://www.cvlibs.net/',
         'Martial Hebert': 'http://www.cs.cmu.edu/~hebert/',
         'Jose Alvarez': 'https://alvarezlopezjosem.github.io/',
-        'Adam Lesnikowski': 'https://scholar.google.com/citations?user=jPbTs2QAAAAJ&hl=en',
+        'Adam Lesnikowski': 'https://scholar.google.com/citations?user=jPbTs2QAAAAJ&hl=en'
         }
 
 def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Kashyap Chitta', 
