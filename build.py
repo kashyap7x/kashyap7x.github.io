@@ -11,7 +11,7 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am a Postdoctoral Researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems. Representative papers are <span style="background-color:#ffffd0">highlighted</span> below.
+                    I am a Postdoctoral Researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems. Representative papers are <span style="background-color:#FFEFCA">highlighted</span> below.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -150,7 +150,7 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
 
 def get_paper_entry(entry_key, entry):
     if 'highlight' in entry.fields.keys():
-        s = """<div style="background-color: #ffffd0; margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
+        s = """<div style="background-color: #FFEFCA; margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
     else:
         s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
 
@@ -158,7 +158,7 @@ def get_paper_entry(entry_key, entry):
     s += """</div><div class="col-sm-9">"""
 
     if 'award' in entry.fields.keys():
-        s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: red;">({entry.fields['award']})</span><br>"""
+        s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span style="color: #E65100;">({entry.fields['award']})</span><br>"""
     else:
         s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <br>"""
 
@@ -256,6 +256,23 @@ def get_index_html():
   <style>
     body {{
       font-family: 'Inter', sans-serif;
+    }}
+    a {{
+      color: #535ABF;
+      text-decoration: none;
+    }}
+    a:hover {{
+      color: #8D91BF;
+      text-decoration: underline;
+    }}
+    a:visited {{
+      color: #535ABF;
+    }}
+    .btn-link {{
+      color: #535ABF;
+    }}
+    .btn-link:hover {{
+      color: #8D91BF;
     }}
   </style>
 </head>
