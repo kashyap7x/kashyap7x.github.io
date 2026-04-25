@@ -11,7 +11,7 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am a Postdoctoral Researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems. Representative papers are <span style="background-color:#FFEFCA">highlighted</span> below.
+                    I am a Postdoctoral Researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems.
                 </p>
                 <p>
                     <span style="font-weight: bold;">Bio:</span>
@@ -148,8 +148,8 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
         s += string_part_i
     return s
 
-def get_paper_entry(entry_key, entry):
-    if 'highlight' in entry.fields.keys():
+def get_paper_entry(entry_key, entry, show_highlight=True):
+    if show_highlight and 'highlight' in entry.fields.keys():
         s = """<div style="background-color: #FFEFCA; margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
     else:
         s = """<div style="margin-bottom: 3em;"> <div class="row"><div class="col-sm-3">"""
@@ -164,9 +164,9 @@ def get_paper_entry(entry_key, entry):
 
     if 'equal_contribution' in entry.fields.keys():
         s += f"""{generate_person_html(entry.persons['author'], equal_contribution=int(entry.fields['equal_contribution']))} <br>"""
-    else: 
+    else:
         s += f"""{generate_person_html(entry.persons['author'])} <br>"""
-    
+
     s += f"""<span style="font-style: italic;">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
 
     artefacts = {'html': 'Abs', 'pdf': 'Paper', 'supp': 'Supplementary', 'video': 'Video', 'poster': 'Poster', 'code': 'Code'}
@@ -179,7 +179,7 @@ def get_paper_entry(entry_key, entry):
             i += 1
         else:
             print(f'[{entry_key}] Warning: Field {k} missing!')
-    
+
     cite = "<pre><code>@" + entry.type + "{" + f"{entry_key}, \n"
     cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
     for entr in ['title', 'booktitle', 'year']:
@@ -209,29 +209,37 @@ def get_talk_entry(entry_key, entry):
     s += """ </div> </div> </div>"""
     return s
 
-def get_publications_html():
+def get_publications_html(highlighted_only=False, show_highlight=True):
     parser = bibtex.Parser()
     bib_data = parser.parse_file('publication_list.bib')
     keys = bib_data.entries.keys()
     s = ""
     for k in keys:
-        s+= get_paper_entry(k, bib_data.entries[k])
+        entry = bib_data.entries[k]
+        if highlighted_only:
+            if 'highlight' in entry.fields.keys():
+                s += get_paper_entry(k, entry, show_highlight=show_highlight)
+        else:
+            s += get_paper_entry(k, entry, show_highlight=show_highlight)
     return s
 
-def get_talks_html():
+def get_talks_html(highlighted_only=False):
     parser = bibtex.Parser()
     bib_data = parser.parse_file('talk_list.bib')
     keys = bib_data.entries.keys()
     s = ""
     for k in keys:
-        s+= get_talk_entry(k, bib_data.entries[k])
+        entry = bib_data.entries[k]
+        if highlighted_only:
+            if 'highlight' in entry.fields.keys():
+                s += get_talk_entry(k, entry)
+        else:
+            s += get_talk_entry(k, entry)
     return s
 
-def get_index_html():
-    pub = get_publications_html()
-    talks = get_talks_html()
-    name, bio_text, footer = get_personal_data()
-    s = f"""
+def get_html_header(title, assets_prefix=""):
+    name, _, _ = get_personal_data()
+    return f"""
     <!doctype html>
 <html lang="en">
 
@@ -250,8 +258,8 @@ def get_index_html():
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <title>{name[0] + ' ' + name[1] + ' | AI Researcher'}</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <title>{title}</title>
+  <link rel="icon" type="image/x-icon" href="{assets_prefix}assets/favicon.ico">
 
   <style>
     body {{
@@ -276,7 +284,32 @@ def get_index_html():
     }}
   </style>
 </head>
+"""
 
+def get_html_footer():
+    return """
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
+"""
+
+def get_index_html():
+    pub = get_publications_html(highlighted_only=True, show_highlight=False)
+    talks = get_talks_html(highlighted_only=True)
+    name, bio_text, footer = get_personal_data()
+    s = get_html_header(f"{name[0]} {name[1]} | AI Researcher")
+    s += f"""
 <body>
     <div class="container">
         <div class="row" style="margin-top: 3em;">
@@ -293,7 +326,8 @@ def get_index_html():
         </div>
         <div class="row" style="margin-top: 1em;">
             <div class="col-sm-12" style="">
-                <h4>Publications</h4>
+                <h4>Selected Publications</h4>
+                <p><a href="publications.html">View all publications</a></p>
                 <hr>
                 {pub}
             </div>
@@ -301,6 +335,7 @@ def get_index_html():
         <div class="row" style="margin-top: 3em;">
             <div class="col-sm-12" style="">
                 <h4>Selected Talks</h4>
+                <p><a href="talks.html">View all talks</a></p>
                 <hr>
                 {talks}
             </div>
@@ -309,30 +344,70 @@ def get_index_html():
             {footer}
         </div>
     </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
-</body>
-
-</html>
-    """
+"""
+    s += get_html_footer()
     return s
 
+def get_publications_page_html():
+    pub = get_publications_html(highlighted_only=False, show_highlight=True)
+    name, _, footer = get_personal_data()
+    s = get_html_header(f"Publications | {name[0]} {name[1]}")
+    s += f"""
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 3em;">
+            <div class="col-sm-12" style="margin-bottom: 1em;">
+            <h3 class="display-4" style="text-align: center;"><a href="index.html" style="text-decoration: none;"><span style="font-weight: bold;">{name[0]}</span> {name[1]}</a></h3>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-sm-12" style="">
+                <h4>Publications</h4>
+                <hr>
+                {pub}
+            </div>
+        </div>
+        <div class="row" style="margin-top: 3em; margin-bottom: 1em;">
+            {footer}
+        </div>
+    </div>
+"""
+    s += get_html_footer()
+    return s
 
-def write_index_html(filename='index.html'):
-    s = get_index_html()
+def get_talks_page_html():
+    talks = get_talks_html()
+    name, _, footer = get_personal_data()
+    s = get_html_header(f"Talks | {name[0]} {name[1]}")
+    s += f"""
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 3em;">
+            <div class="col-sm-12" style="margin-bottom: 1em;">
+            <h3 class="display-4" style="text-align: center;"><a href="index.html" style="text-decoration: none;"><span style="font-weight: bold;">{name[0]}</span> {name[1]}</a></h3>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-sm-12" style="">
+                <h4>Talks</h4>
+                <hr>
+                {talks}
+            </div>
+        </div>
+        <div class="row" style="margin-top: 3em; margin-bottom: 1em;">
+            {footer}
+        </div>
+    </div>
+"""
+    s += get_html_footer()
+    return s
+
+def write_html(content, filename):
     with open(filename, 'w') as f:
-        f.write(s)
-    print(f'Written index content to {filename}.')
+        f.write(content)
+    print(f'Written content to {filename}.')
 
 if __name__ == '__main__':
-    write_index_html('index.html')
+    write_html(get_index_html(), 'index.html')
+    write_html(get_publications_page_html(), 'publications.html')
+    write_html(get_talks_page_html(), 'talks.html')
