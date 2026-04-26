@@ -370,7 +370,6 @@ def parse_substack_feed(feed_xml, base_url):
     if channel is None:
         channel = root
 
-    feed_title = clean_text(child_text(channel, "title"))
     fallback_image = urljoin(base_url, channel_image_url(channel))
     items = [child for child in channel if xml_local_name(child.tag) in {"item", "entry"}]
 
@@ -395,7 +394,6 @@ def parse_substack_feed(feed_xml, base_url):
             "subtitle": subtitle,
             "url": urljoin(base_url, link),
             "image": fallback_image,
-            "publication": feed_title or "Substack",
             "date": display_date,
             "sort_date": sort_date,
         })
@@ -522,7 +520,6 @@ def get_html_header(
     site_name,
     canonical_path="",
     social_image="",
-    assets_prefix="",
     structured_data=None,
 ):
     canonical_url = absolute_url(canonical_path, site_url)
@@ -576,8 +573,8 @@ def get_html_header(
   <meta name="twitter:title" content="{escaped_title}">
   <meta name="twitter:description" content="{escaped_description}">
   <meta name="twitter:image" content="{escaped_image_url}">
-  <link rel="icon" type="image/x-icon" href="{assets_prefix}assets/favicon.ico">
-  <link rel="stylesheet" href="{assets_prefix}assets/site.css">{structured_data_script}
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="assets/site.css">{structured_data_script}
 </head>
 """
 

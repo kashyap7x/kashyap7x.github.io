@@ -50,6 +50,7 @@ def get_personal_data():
         "job_title": job_title,
         "organization": organization,
         "profiles": profiles,
+        "substack": substack,
     }
 
     bio_details = """
@@ -57,19 +58,19 @@ def get_personal_data():
     """
     bio_text = f"""
                 <p>
-                    I am a {job_title} at the <a href="{organization['url']}" target="_blank">{organization['name']}</a> working from {location}. My research focuses on {research_focus}.
+                    I am a {personal_data['job_title']} at the <a href="{personal_data['organization']['url']}" target="_blank">{personal_data['organization']['name']}</a> working from {personal_data['location']}. My research focuses on {personal_data['research_focus']}.
                 </p>
                 <div class="social-links">
                     <details class="bio-dropdown">
                         <summary><i class="fa-solid fa-user fa-lg"></i> Bio</summary>
                     </details>
-                    <a href="{cv_url}" target="_blank" class="social-link"><i class="fa fa-address-card fa-lg"></i> CV</a>
-                    <a href="mailto:{email}" class="social-link"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
-                    <a href="{profiles['scholar']}" target="_blank" class="social-link"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
-                    <a href="{profiles['substack']}" target="_blank" class="social-link"><i class="fa-solid fa-feather fa-lg"></i> Substack</a>
-                    <a href="{profiles['linkedin']}" target="_blank" class="social-link"><i class="fab fa-linkedin fa-lg"></i> Linkedin</a>
-                    <a href="{profiles['github']}" target="_blank" class="social-link"><i class="fab fa-github fa-lg"></i> GitHub</a>
-                    <a href="{profiles['youtube']}" target="_blank" class="social-link"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
+                    <a href="{personal_data['cv_url']}" target="_blank" class="social-link"><i class="fa fa-address-card fa-lg"></i> CV</a>
+                    <a href="mailto:{personal_data['email']}" class="social-link"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
+                    <a href="{personal_data['profiles']['scholar']}" target="_blank" class="social-link"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
+                    <a href="{personal_data['profiles']['substack']}" target="_blank" class="social-link"><i class="fa-solid fa-feather fa-lg"></i> Substack</a>
+                    <a href="{personal_data['profiles']['linkedin']}" target="_blank" class="social-link"><i class="fab fa-linkedin fa-lg"></i> Linkedin</a>
+                    <a href="{personal_data['profiles']['github']}" target="_blank" class="social-link"><i class="fab fa-github fa-lg"></i> GitHub</a>
+                    <a href="{personal_data['profiles']['youtube']}" target="_blank" class="social-link"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
                     <div class="bio-dropdown-content">
                         <p>{bio_details}</p>
                     </div>
@@ -84,5 +85,4 @@ def get_personal_data():
     """
     personal_data["bio_text"] = bio_text
     personal_data["footer"] = footer
-    personal_data["substack"] = substack
     return personal_data

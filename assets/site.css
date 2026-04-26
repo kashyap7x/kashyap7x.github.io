@@ -226,13 +226,6 @@ details.bibtex pre {
     margin-top: 0.75rem;
   }
 
-  .intro-row .img-thumbnail {
-    display: block;
-    margin: 0 auto;
-    max-width: 14rem;
-    width: 100%;
-  }
-
   .content-section-spacious {
     margin-top: 2rem;
   }
@@ -243,12 +236,6 @@ details.bibtex pre {
 
   .entry .col-sm-3 {
     margin-bottom: 0.75rem;
-  }
-
-  .entry .col-sm-3 .img-thumbnail {
-    display: block;
-    max-width: 16rem;
-    width: 100%;
   }
 
   .page-footer {
