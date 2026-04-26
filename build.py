@@ -13,15 +13,10 @@ import xml.etree.ElementTree as ET
 
 from pybtex.database.input import bibtex
 
+from site_config import get_personal_data
+
 AUTHOR_FILE = Path(__file__).with_name("authors.json")
 SUBSTACK_CACHE_FILE = Path(__file__).with_name("substack_posts.json")
-SITE_URL = "https://kashyap7x.github.io"
-SITE_NAME = "Kashyap Chitta"
-DEFAULT_DESCRIPTION = (
-    "Kashyap Chitta is an AI researcher working on simulation-based training "
-    "and evaluation of Physical AI systems."
-)
-DEFAULT_SOCIAL_IMAGE = "assets/img/profile.jpg"
 
 JPEG_SOF_MARKERS = {
     0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
@@ -31,13 +26,14 @@ JPEG_SOF_MARKERS = {
 def html_attr(value):
     return escape(str(value), quote=True)
 
-def absolute_url(value):
+def absolute_url(value, site_url):
+    site_url = site_url.rstrip("/")
     if not value:
-        return f"{SITE_URL}/"
+        return f"{site_url}/"
     parsed = urlparse(value)
     if parsed.scheme and parsed.netloc:
         return value
-    return urljoin(f"{SITE_URL}/", value.lstrip("/"))
+    return urljoin(f"{site_url}/", value.lstrip("/"))
 
 def secure_target_blank(html):
     return re.sub(
@@ -140,52 +136,21 @@ def image_tag(src, css_class, alt, lazy=True):
     attrs.append('decoding="async"')
     return f"<img {' '.join(attrs)}>"
 
-def get_personal_data():
-    name = ["Kashyap", "Chitta"]
-    email = "kchitta@nvidia.com"
-    scholar = "vX5i2CcAAAAJ"
-    substack = "kashyap7x"
-    linkedin = "kchitta"
-    github = "kashyap7x"
-    youtube = "UC_rpEkxE-pUAV8v0wjdtg5w"
+def get_json_ld_script(data):
+    if data is None:
+        return ""
 
-    bio_details = """
-                    Kashyap did a bachelor's degree in electronics at the <a href="https://www.rvce.edu.in/" target="_blank">RV College of Engineering</a>, India. He then moved to the US in 2017 to obtain his Master's degree in computer vision from <a href="https://www.ri.cmu.edu/" target="_blank">Carnegie Mellon University</a>, where he was advised by <a href = "http://www.cs.cmu.edu/~hebert/" target="_blank">Prof. Martial Hebert</a>. During this time, he was also an intern at the <a href = "https://research.nvidia.com/labs/av-applied-research/" target="_blank">NVIDIA Autonomous Vehicles Applied Research Group</a> working with <a href = "https://alvarezlopezjosem.github.io/" target="_blank">Dr. Jose M. Alvarez</a>. From 2019, he was a PhD student in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> at the University of Tübingen, Germany, supervised by <a href="http://cvlibs.net/" target="_blank">Prof. Andreas Geiger</a>. He was selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, as a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS pioneer</a>, and an outstanding reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, <a href="https://eccv.ecva.net/Conferences/2024/Reviewers" target="_blank">ECCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a>. He has also won multiple autonomous driving challenge awards <a href="https://opendrivelab.com/challenge2023/#nuplan_planning" target="_blank">[nuPlan 2023]</a> <a href="https://leaderboard.carla.org/challenge/#previous-carla-ad-challenges" target="_blank">[CARLA 2020, 2021, 2022, 2023, 2024]</a> <a href="https://waymo.com/open/challenges/" target="_blank">[Waymo 2025]</a> <a href="https://realadsim.github.io/2025/#challenge" target="_blank">[HUGSIM 2025]</a>.
-    """
-    bio_text = f"""
-                <p>
-                    I am a Postdoctoral Researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA Autonomous Vehicle Research Group</a> working from Tübingen, Germany. My research focuses on simulation-based training and evaluation of Physical AI systems.
-                </p>
-                <div class="social-links">
-                    <details class="bio-dropdown">
-                        <summary><i class="fa-solid fa-user fa-lg"></i> Bio</summary>
-                    </details>
-                    <a href="https://kashyap7x.github.io/assets/pdf/kchitta_cv.pdf" target="_blank" class="social-link"><i class="fa fa-address-card fa-lg"></i> CV</a>
-                    <a href="mailto:{email}" class="social-link"><i class="far fa-envelope-open fa-lg"></i> Mail</a>
-                    <a href="https://scholar.google.com/citations?user={scholar}&hl=en" target="_blank" class="social-link"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
-                    <a href="https://{substack}.substack.com" target="_blank" class="social-link"><i class="fa-solid fa-feather fa-lg"></i> Substack</a>
-                    <a href="https://www.linkedin.com/in/{linkedin}" target="_blank" class="social-link"><i class="fab fa-linkedin fa-lg"></i> Linkedin</a>
-                    <a href="https://github.com/{github}" target="_blank" class="social-link"><i class="fab fa-github fa-lg"></i> GitHub</a>
-                    <a href="https://www.youtube.com/channel/{youtube}" target="_blank" class="social-link"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
-                    <div class="bio-dropdown-content">
-                        <p>{bio_details}</p>
-                    </div>
-                </div>
-    """
-    footer = """
-            <div class="col-sm-12">
-                <p class="template-credit">
-                    This website is based on the lightweight and easy-to-use template from Michael Niemeyer. <a href="https://github.com/m-niemeyer/m-niemeyer.github.io" target="_blank">Check out his github repository for instructions on how to use it!</a>
-                </p>
-            </div>
-    """
-    return name, bio_text, footer, substack
+    json_content = json.dumps(data, indent=2, ensure_ascii=False).replace("</", "<\\/")
+    return f"""
+  <script type="application/ld+json">
+{json_content}
+  </script>"""
 
 def get_author_dict():
     with AUTHOR_FILE.open() as f:
         return json.load(f)
 
-def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name='Kashyap Chitta', 
+def generate_person_html(persons, connection=", ", make_bold=True, make_bold_name=None,
                          add_links=True, equal_contribution=None):
     links = get_author_dict() if add_links else {}
     s = ""
@@ -194,15 +159,17 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
     if equal_contribution is not None:
         equal_contributors = equal_contribution
     for idx, p in enumerate(persons):
-        string_part_i = ""
+        person_name = ""
         for name_part_i in p.get_part('first') + p.get_part('last'): 
-            if string_part_i != "":
-                string_part_i += " "
-            string_part_i += name_part_i
-        if string_part_i in links.keys():
-            string_part_i = f'<a href="{links[string_part_i]}" target="_blank">{string_part_i}</a>'
-        if make_bold and string_part_i == make_bold_name:
-            string_part_i = f'<span class="author-self">{make_bold_name}</span>'
+            if person_name != "":
+                person_name += " "
+            person_name += name_part_i
+        if make_bold and make_bold_name is not None and person_name == make_bold_name:
+            string_part_i = f'<span class="author-self">{person_name}</span>'
+        elif person_name in links.keys():
+            string_part_i = f'<a href="{links[person_name]}" target="_blank">{person_name}</a>'
+        else:
+            string_part_i = person_name
         if idx < equal_contributors:
             string_part_i += "*"
         if p != persons[-1]:
@@ -210,7 +177,7 @@ def generate_person_html(persons, connection=", ", make_bold=True, make_bold_nam
         s += string_part_i
     return s
 
-def get_paper_entry(entry_key, entry, show_highlight=True):
+def get_paper_entry(entry_key, entry, show_highlight=True, self_author_name=None):
     if show_highlight and 'highlight' in entry.fields.keys():
         s = """<div class="entry entry-highlight"> <div class="row"><div class="col-sm-3">"""
     else:
@@ -229,9 +196,9 @@ def get_paper_entry(entry_key, entry, show_highlight=True):
         s += f"""<a href="{entry.fields['html']}" target="_blank" class="entry-title">{entry.fields['title']}</a> <br>"""
 
     if 'equal_contribution' in entry.fields.keys():
-        s += f"""{generate_person_html(entry.persons['author'], equal_contribution=int(entry.fields['equal_contribution']))} <br>"""
+        s += f"""{generate_person_html(entry.persons['author'], make_bold_name=self_author_name, equal_contribution=int(entry.fields['equal_contribution']))} <br>"""
     else:
-        s += f"""{generate_person_html(entry.persons['author'])} <br>"""
+        s += f"""{generate_person_html(entry.persons['author'], make_bold_name=self_author_name)} <br>"""
 
     s += f"""<span class="venue">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
 
@@ -282,7 +249,7 @@ def get_talk_entry(entry_key, entry):
     s += """ </div> </div> </div>"""
     return s
 
-def get_publications_html(highlighted_only=False, show_highlight=True):
+def get_publications_html(highlighted_only=False, show_highlight=True, self_author_name=None):
     parser = bibtex.Parser()
     bib_data = parser.parse_file('publication_list.bib')
     keys = bib_data.entries.keys()
@@ -291,9 +258,9 @@ def get_publications_html(highlighted_only=False, show_highlight=True):
         entry = bib_data.entries[k]
         if highlighted_only:
             if 'highlight' in entry.fields.keys():
-                s += get_paper_entry(k, entry, show_highlight=show_highlight)
+                s += get_paper_entry(k, entry, show_highlight=show_highlight, self_author_name=self_author_name)
         else:
-            s += get_paper_entry(k, entry, show_highlight=show_highlight)
+            s += get_paper_entry(k, entry, show_highlight=show_highlight, self_author_name=self_author_name)
     return s
 
 def get_talks_html(highlighted_only=False):
@@ -516,18 +483,53 @@ def get_blog_posts_html(substack, limit=2):
     posts = get_substack_posts(substack, limit=limit)
     return "".join(get_blog_entry(post) for post in posts)
 
+def get_person_structured_data(personal_data):
+    name = personal_data["name"]
+    organization = personal_data["organization"]
+    profiles = personal_data["profiles"]
+    site_url = personal_data["site_url"].rstrip("/")
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": f"{site_url}/#person",
+        "name": personal_data["full_name"],
+        "givenName": name[0],
+        "familyName": name[1],
+        "url": f"{site_url}/",
+        "image": absolute_url(personal_data["profile_image"], site_url),
+        "email": f"mailto:{personal_data['email']}",
+        "jobTitle": personal_data["job_title"],
+        "description": personal_data["description"],
+        "worksFor": {
+            "@type": "Organization",
+            "name": organization["name"],
+            "url": organization["url"],
+        },
+        "sameAs": [
+            profiles["scholar"],
+            profiles["substack"],
+            profiles["linkedin"],
+            profiles["github"],
+            profiles["youtube"],
+        ],
+    }
+
 def get_html_header(
     title,
-    description=DEFAULT_DESCRIPTION,
+    description,
+    site_url,
+    site_name,
     canonical_path="",
-    social_image=DEFAULT_SOCIAL_IMAGE,
+    social_image="",
     assets_prefix="",
+    structured_data=None,
 ):
-    canonical_url = absolute_url(canonical_path)
-    image_url = absolute_url(social_image)
+    canonical_url = absolute_url(canonical_path, site_url)
+    image_url = absolute_url(social_image, site_url)
     escaped_title = html_attr(title)
     escaped_description = html_attr(description)
-    escaped_site_name = html_attr(SITE_NAME)
+    escaped_site_name = html_attr(site_name)
     escaped_canonical_url = html_attr(canonical_url)
     escaped_image_url = html_attr(image_url)
     social_image_dimensions = get_image_dimensions(social_image)
@@ -537,6 +539,7 @@ def get_html_header(
         social_image_size_tags = f"""
   <meta property="og:image:width" content="{width}">
   <meta property="og:image:height" content="{height}">"""
+    structured_data_script = get_json_ld_script(structured_data)
 
     return f"""
     <!doctype html>
@@ -574,7 +577,7 @@ def get_html_header(
   <meta name="twitter:description" content="{escaped_description}">
   <meta name="twitter:image" content="{escaped_image_url}">
   <link rel="icon" type="image/x-icon" href="{assets_prefix}assets/favicon.ico">
-  <link rel="stylesheet" href="{assets_prefix}assets/site.css">
+  <link rel="stylesheet" href="{assets_prefix}assets/site.css">{structured_data_script}
 </head>
 """
 
@@ -635,8 +638,26 @@ def get_html_footer():
 </html>
 """
 
-def get_page_html(title, body, footer, description=DEFAULT_DESCRIPTION, canonical_path=""):
-    html = get_html_header(title, description=description, canonical_path=canonical_path) + f"""
+def get_page_html(
+    title,
+    body,
+    footer,
+    description,
+    site_url,
+    site_name,
+    canonical_path="",
+    social_image="",
+    structured_data=None,
+):
+    html = get_html_header(
+        title,
+        description=description,
+        site_url=site_url,
+        site_name=site_name,
+        canonical_path=canonical_path,
+        social_image=social_image,
+        structured_data=structured_data,
+    ) + f"""
 <body>
     <div class="container">
         {body}
@@ -684,8 +705,8 @@ def get_section_row(title, content, margin_top="1em", view_all_href=None, view_a
         </div>
 """
 
-def get_index_intro_row(name, bio_text):
-    title = get_display_name_html(name, highlight_last=True)
+def get_index_intro_row(personal_data):
+    title = get_display_name_html(personal_data["name"], highlight_last=True)
     return f"""
         <div class="row intro-row">
             <div class="col-sm-12 page-title-wrap">
@@ -693,20 +714,24 @@ def get_index_intro_row(name, bio_text):
             </div>
             <br>
             <div class="col-md-8">
-                {bio_text}
+                {personal_data["bio_text"]}
             </div>
             <div class="col-md-4">
-                {image_tag("assets/img/profile.jpg", "img-thumbnail", "Portrait of Kashyap Chitta", lazy=False)}
+                {image_tag(personal_data["profile_image"], "img-thumbnail", personal_data["profile_image_alt"], lazy=False)}
             </div>
         </div>
 """
 
 def get_index_html():
-    pub = get_publications_html(highlighted_only=True, show_highlight=False)
+    personal_data = get_personal_data()
+    pub = get_publications_html(
+        highlighted_only=True,
+        show_highlight=False,
+        self_author_name=personal_data["self_author_name"],
+    )
     talks = get_talks_html(highlighted_only=True)
-    name, bio_text, footer, substack = get_personal_data()
-    blog_posts = get_blog_posts_html(substack)
-    body = get_index_intro_row(name, bio_text)
+    blog_posts = get_blog_posts_html(personal_data["substack"])
+    body = get_index_intro_row(personal_data)
     body += get_section_row("Selected Publications", pub, view_all_href="publications.html", view_all_text="View all publications")
     body += get_section_row("Selected Talks", talks, margin_top="3em", view_all_href="talks.html", view_all_text="View all talks")
     if blog_posts:
@@ -714,41 +739,55 @@ def get_index_html():
             "Recent Blog Posts",
             blog_posts,
             margin_top="3em",
-            view_all_href=get_substack_url(substack),
+            view_all_href=get_substack_url(personal_data["substack"]),
             view_all_text="View all posts",
         )
     return get_page_html(
-        f"{name[0]} {name[1]} | AI Researcher",
+        f"{personal_data['full_name']} | {personal_data['site_title_suffix']}",
         body,
-        footer,
-        description=DEFAULT_DESCRIPTION,
+        personal_data["footer"],
+        description=personal_data["description"],
+        site_url=personal_data["site_url"],
+        site_name=personal_data["full_name"],
         canonical_path="",
+        social_image=personal_data["profile_image"],
+        structured_data=get_person_structured_data(personal_data),
     )
 
 def get_publications_page_html():
-    pub = get_publications_html(highlighted_only=False, show_highlight=True)
-    name, _, footer, _ = get_personal_data()
-    body = get_name_row(name, linked=True)
+    personal_data = get_personal_data()
+    pub = get_publications_html(
+        highlighted_only=False,
+        show_highlight=True,
+        self_author_name=personal_data["self_author_name"],
+    )
+    body = get_name_row(personal_data["name"], linked=True)
     body += get_section_row("Publications", pub)
     return get_page_html(
-        f"Publications | {name[0]} {name[1]}",
+        f"Publications | {personal_data['full_name']}",
         body,
-        footer,
-        description="Complete publication list for Kashyap Chitta, including papers on autonomous driving, simulation, world models, and Physical AI.",
+        personal_data["footer"],
+        description=personal_data["publications_description"],
+        site_url=personal_data["site_url"],
+        site_name=personal_data["full_name"],
         canonical_path="publications.html",
+        social_image=personal_data["profile_image"],
     )
 
 def get_talks_page_html():
+    personal_data = get_personal_data()
     talks = get_talks_html()
-    name, _, footer, _ = get_personal_data()
-    body = get_name_row(name, linked=True)
+    body = get_name_row(personal_data["name"], linked=True)
     body += get_section_row("Talks", talks)
     return get_page_html(
-        f"Talks | {name[0]} {name[1]}",
+        f"Talks | {personal_data['full_name']}",
         body,
-        footer,
-        description="Selected invited talks, tutorials, and seminar presentations by Kashyap Chitta on autonomous driving, simulation, and robotics research.",
+        personal_data["footer"],
+        description=personal_data["talks_description"],
+        site_url=personal_data["site_url"],
+        site_name=personal_data["full_name"],
         canonical_path="talks.html",
+        social_image=personal_data["profile_image"],
     )
 
 def write_html(content, filename):

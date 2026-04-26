@@ -21,7 +21,8 @@ Generate the static pages:
 python build.py
 ```
 
-The build script reads `publication_list.bib` and `talk_list.bib`, then writes:
+The build script reads `site_config.py`, `publication_list.bib`, and
+`talk_list.bib`, then writes:
 
 - `index.html`
 - `publications.html`
@@ -32,7 +33,8 @@ Substack handle and caches their display metadata in `substack_posts.json`.
 
 ## Repository Structure
 
-- `build.py` - website generator and shared HTML template
+- `site_config.py` - user-specific profile, site metadata, bio, and links
+- `build.py` - user-independent website generator and shared HTML template
 - `requirements.txt` - Python build dependency
 - `authors.json` - linked author names and profile URLs
 - `assets/site.css` - shared site styling
@@ -65,12 +67,27 @@ To add a talk:
 4. Add `highlight = {true}` if the talk should appear on the homepage.
 5. Run `python build.py`.
 
-To update profile text, links, or footer content, edit `get_personal_data()` in
-`build.py` and run `python build.py`.
+To update profile text, links, footer content, SEO metadata, or JSON-LD
+structured data, edit the `personal_data` configuration assembled in
+`get_personal_data()` in `site_config.py` and run `python build.py`.
+
+The key personalization fields in `site_config.py` include:
+
+- `name`, `site_url`, and `site_title_suffix` - page titles and canonical URLs
+- `job_title`, `location`, `organization`, and `research_focus` - intro text
+  and JSON-LD `Person` metadata
+- `research_topics` - generated publications/talks page descriptions
+- `profile_image`, `profile_image_alt`, and `cv_url` - homepage media and CV link
+- `email`, `scholar`, `substack`, `linkedin`, `github`, and `youtube` - contact
+  and social/profile links
+- `self_author_name` - publication author name highlighted on paper entries
+
+The generated homepage includes schema.org JSON-LD `Person` metadata derived
+from this configuration.
 
 The Substack homepage section uses the `substack` handle from
-`get_personal_data()`. Running `python build.py` refreshes the latest post
-titles, subtitles, and preview images from Substack when the feed is reachable.
+`site_config.py`. Running `python build.py` refreshes the latest post titles,
+subtitles, and preview images from Substack when the feed is reachable.
 
 ## Custom Fields
 
