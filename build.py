@@ -1,6 +1,5 @@
 import json
 import re
-import struct
 from email.utils import parsedate_to_datetime
 from functools import lru_cache
 from html import escape, unescape
@@ -11,17 +10,13 @@ from urllib.parse import unquote, urljoin, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
+from PIL import Image, UnidentifiedImageError
 from pybtex.database.input import bibtex
 
 from site_config import get_personal_data
 
 AUTHOR_FILE = Path(__file__).with_name("authors.json")
 SUBSTACK_CACHE_FILE = Path(__file__).with_name("substack_posts.json")
-
-JPEG_SOF_MARKERS = {
-    0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
-    0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF,
-}
 
 def html_attr(value):
     return escape(str(value), quote=True)
@@ -56,68 +51,17 @@ def get_local_path(src):
 
     return path if path.exists() else None
 
-def read_png_dimensions(path):
-    with path.open("rb") as f:
-        header = f.read(24)
-    if header.startswith(b"\x89PNG\r\n\x1a\n") and header[12:16] == b"IHDR":
-        return struct.unpack(">II", header[16:24])
-    return None
-
-def read_jpeg_dimensions(path):
-    with path.open("rb") as f:
-        if f.read(2) != b"\xff\xd8":
-            return None
-
-        while True:
-            marker_start = f.read(1)
-            if not marker_start:
-                return None
-            if marker_start != b"\xff":
-                continue
-
-            marker_byte = f.read(1)
-            while marker_byte == b"\xff":
-                marker_byte = f.read(1)
-            if not marker_byte:
-                return None
-
-            marker = marker_byte[0]
-            if marker == 0xD9 or marker == 0xDA:
-                return None
-            if 0xD0 <= marker <= 0xD8:
-                continue
-
-            length_bytes = f.read(2)
-            if len(length_bytes) != 2:
-                return None
-            length = struct.unpack(">H", length_bytes)[0]
-            if length < 2:
-                return None
-
-            if marker in JPEG_SOF_MARKERS:
-                data = f.read(5)
-                if len(data) != 5:
-                    return None
-                height, width = struct.unpack(">HH", data[1:5])
-                return width, height
-
-            f.seek(length - 2, 1)
-
 @lru_cache(maxsize=None)
 def get_image_dimensions(src):
     path = get_local_path(src)
     if path is None:
         return None
 
-    suffix = path.suffix.lower()
     try:
-        if suffix == ".png":
-            return read_png_dimensions(path)
-        if suffix in {".jpg", ".jpeg"}:
-            return read_jpeg_dimensions(path)
-    except OSError:
+        with Image.open(path) as image:
+            return image.size
+    except (OSError, UnidentifiedImageError):
         return None
-    return None
 
 def image_tag(src, css_class, alt, lazy=True):
     attrs = [

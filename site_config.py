@@ -1,12 +1,6 @@
-def _get_full_name(name):
-    return " ".join(name)
-
-def _get_substack_url(substack):
-    return f"https://{substack}.substack.com"
-
 def get_personal_data():
     name = ["Kashyap", "Chitta"]
-    full_name = _get_full_name(name)
+    full_name = " ".join(name)
     site_url = "https://kashyap7x.github.io"
     site_title_suffix = "AI Researcher"
     job_title = "Postdoctoral Researcher"
@@ -27,7 +21,7 @@ def get_personal_data():
     }
     profiles = {
         "scholar": f"https://scholar.google.com/citations?user={scholar}&hl=en",
-        "substack": _get_substack_url(substack),
+        "substack": f"https://{substack}.substack.com",
         "linkedin": f"https://www.linkedin.com/in/{linkedin}",
         "github": f"https://github.com/{github}",
         "youtube": f"https://www.youtube.com/channel/{youtube}",
