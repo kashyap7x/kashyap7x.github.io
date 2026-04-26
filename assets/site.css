@@ -21,8 +21,21 @@ a:visited {
   font-weight: bold;
 }
 
+.name-last {
+  color: #FFBE28;
+}
+
+.social-links {
+  align-items: baseline;
+  column-gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  row-gap: 0.35rem;
+}
+
 .social-link {
-  margin-right: 15px;
+  margin-right: 0;
 }
 
 .page-title-row,
@@ -43,7 +56,8 @@ a:visited {
 }
 
 .page-title-link:hover {
-  text-decoration: none;
+  color: #8D91BF;
+  text-decoration: underline;
 }
 
 .content-section {
@@ -75,24 +89,44 @@ a:visited {
   font-style: italic;
 }
 
-details.bibtex {
+details.bibtex,
+details.bio-dropdown {
   display: inline;
 }
 
-details.bibtex summary {
+details.bibtex summary,
+details.bio-dropdown summary {
   color: #535ABF;
   cursor: pointer;
   display: inline;
   list-style: none;
 }
 
-details.bibtex summary::-webkit-details-marker {
+details.bibtex summary::-webkit-details-marker,
+details.bio-dropdown summary::-webkit-details-marker {
   display: none;
 }
 
-details.bibtex summary:hover {
+details.bibtex summary:hover,
+details.bio-dropdown summary:hover {
   color: #8D91BF;
   text-decoration: underline;
+}
+
+.bio-dropdown-content {
+  display: none;
+  flex-basis: 100%;
+  font-size: 0.75rem;
+  margin: 0.75rem 0 1rem;
+  order: 1;
+}
+
+details.bio-dropdown[open] ~ .bio-dropdown-content {
+  display: block;
+}
+
+.template-credit {
+  font-size: 0.75rem;
 }
 
 .bibtex-code {
