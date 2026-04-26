@@ -1,9 +1,17 @@
 import json
+from email.utils import parsedate_to_datetime
+from html import escape, unescape
+from html.parser import HTMLParser
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.parse import urljoin
+from urllib.request import Request, urlopen
+import xml.etree.ElementTree as ET
 
 from pybtex.database.input import bibtex
 
 AUTHOR_FILE = Path(__file__).with_name("authors.json")
+SUBSTACK_CACHE_FILE = Path(__file__).with_name("substack_posts.json")
 
 def get_personal_data():
     name = ["Kashyap", "Chitta"]
@@ -44,7 +52,7 @@ def get_personal_data():
                 </p>
             </div>
     """
-    return name, bio_text, footer
+    return name, bio_text, footer, substack
 
 def get_author_dict():
     with AUTHOR_FILE.open() as f:
@@ -85,9 +93,9 @@ def get_paper_entry(entry_key, entry, show_highlight=True):
     s += """</div><div class="col-sm-9">"""
 
     if 'award' in entry.fields.keys():
-        s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <span class="award">({entry.fields['award']})</span><br>"""
+        s += f"""<a href="{entry.fields['html']}" target="_blank" class="entry-title">{entry.fields['title']}</a> <span class="award">({entry.fields['award']})</span><br>"""
     else:
-        s += f"""<a href="{entry.fields['html']}" target="_blank">{entry.fields['title']}</a> <br>"""
+        s += f"""<a href="{entry.fields['html']}" target="_blank" class="entry-title">{entry.fields['title']}</a> <br>"""
 
     if 'equal_contribution' in entry.fields.keys():
         s += f"""{generate_person_html(entry.persons['author'], equal_contribution=int(entry.fields['equal_contribution']))} <br>"""
@@ -107,10 +115,10 @@ def get_paper_entry(entry_key, entry, show_highlight=True):
         else:
             print(f'[{entry_key}] Warning: Field {k} missing!')
 
-    cite = "<pre><code>@" + entry.type + "{" + f"{entry_key}, \n"
-    cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "}, \n"
+    cite = "<pre><code>@" + entry.type + "{" + f"{entry_key},\n"
+    cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "},\n"
     for entr in ['title', 'booktitle', 'year']:
-        cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "}, \n"
+        cite += f"\t{entr} = " + "{" + f"{entry.fields[entr]}" + "},\n"
     cite += """}</code></pre>"""
     s += f""" / <details class="bibtex"><summary>Bibtex</summary><div class="bibtex-code"><button type="button" class="copy-bibtex" aria-label="Copy BibTeX">Copy</button>{cite}</div></details>"""
     s += """ </div> </div> </div>"""
@@ -120,7 +128,10 @@ def get_talk_entry(entry_key, entry):
     s = """<div class="entry"> <div class="row"><div class="col-sm-3">"""
     s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
     s += """</div><div class="col-sm-9">"""
-    s += f"""{entry.fields['title']}<br>"""
+    if 'video' in entry.fields.keys():
+        s += f"""<a href="{entry.fields['video']}" target="_blank" class="entry-title">{entry.fields['title']}</a><br>"""
+    else:
+        s += f"""<span class="entry-title">{entry.fields['title']}</span><br>"""
     s += f"""<span class="venue">{entry.fields['booktitle']}</span>, {entry.fields['year']} <br>"""
 
     artefacts = {'slides': 'Slides', 'video': 'Recording'}
@@ -163,6 +174,211 @@ def get_talks_html(highlighted_only=False):
         else:
             s += get_talk_entry(k, entry)
     return s
+
+class MetadataParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.metadata = {}
+        self.icon = ""
+
+    def handle_starttag(self, tag, attrs):
+        attrs = {k.lower(): v for k, v in attrs}
+
+        if tag == "meta":
+            key = attrs.get("property") or attrs.get("name")
+            content = attrs.get("content")
+            if key and content:
+                self.metadata[key.lower()] = content
+        elif tag == "link":
+            rel = (attrs.get("rel") or "").lower()
+            href = attrs.get("href") or ""
+            if href and ("icon" in rel or "apple-touch-icon" in rel):
+                self.icon = href
+
+class TextExtractor(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+
+    def handle_data(self, data):
+        self.parts.append(data)
+
+def clean_text(value):
+    parser = TextExtractor()
+    parser.feed(unescape(value or ""))
+    return " ".join(" ".join(parser.parts).split())
+
+def get_substack_url(substack):
+    return f"https://{substack}.substack.com"
+
+def fetch_text(url, timeout=10):
+    request = Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; personal-site-build-script)"
+        },
+    )
+    with urlopen(request, timeout=timeout) as response:
+        charset = response.headers.get_content_charset() or "utf-8"
+        return response.read().decode(charset, errors="replace")
+
+def xml_local_name(tag):
+    return tag.rsplit("}", 1)[-1] if "}" in tag else tag
+
+def child_text(element, *names):
+    names = set(names)
+    for child in element:
+        if xml_local_name(child.tag) in names and child.text:
+            return child.text.strip()
+    return ""
+
+def channel_image_url(channel):
+    for child in channel:
+        if xml_local_name(child.tag) == "image":
+            return child_text(child, "url")
+    return ""
+
+def parse_blog_date(date_text):
+    if not date_text:
+        return "", ""
+
+    try:
+        parsed = parsedate_to_datetime(date_text)
+    except (TypeError, ValueError):
+        return clean_text(date_text), ""
+
+    return parsed.strftime("%B %Y"), parsed.isoformat()
+
+def get_post_metadata(url):
+    html = fetch_text(url)
+    parser = MetadataParser()
+    parser.feed(html)
+    metadata = parser.metadata
+    image = metadata.get("og:image") or metadata.get("twitter:image") or parser.icon
+
+    return {
+        "title": clean_text(metadata.get("og:title") or metadata.get("twitter:title")),
+        "subtitle": clean_text(metadata.get("og:description") or metadata.get("description")),
+        "image": urljoin(url, image) if image else "",
+    }
+
+def parse_substack_feed(feed_xml, base_url):
+    root = ET.fromstring(feed_xml)
+    channel = root.find("channel")
+    if channel is None:
+        channel = root
+
+    feed_title = clean_text(child_text(channel, "title"))
+    fallback_image = urljoin(base_url, channel_image_url(channel))
+    items = [child for child in channel if xml_local_name(child.tag) in {"item", "entry"}]
+
+    posts = []
+    for item in items:
+        link = child_text(item, "link")
+        if not link:
+            for child in item:
+                if xml_local_name(child.tag) == "link":
+                    link = child.attrib.get("href", "")
+                    break
+        if not link:
+            continue
+
+        title = clean_text(child_text(item, "title"))
+        subtitle = clean_text(child_text(item, "description", "summary", "content"))
+        date_text = child_text(item, "pubDate", "published", "updated")
+        display_date, sort_date = parse_blog_date(date_text)
+
+        posts.append({
+            "title": title,
+            "subtitle": subtitle,
+            "url": urljoin(base_url, link),
+            "image": fallback_image,
+            "publication": feed_title or "Substack",
+            "date": display_date,
+            "sort_date": sort_date,
+        })
+
+    posts.sort(key=lambda post: post["sort_date"], reverse=True)
+    return posts
+
+def read_substack_cache(substack):
+    if not SUBSTACK_CACHE_FILE.exists():
+        return []
+
+    try:
+        with SUBSTACK_CACHE_FILE.open() as f:
+            cached = json.load(f)
+    except json.JSONDecodeError:
+        return []
+
+    if cached.get("substack") != substack:
+        return []
+    return cached.get("posts", [])
+
+def write_substack_cache(substack, posts):
+    cache = {
+        "substack": substack,
+        "posts": posts,
+    }
+    with SUBSTACK_CACHE_FILE.open("w") as f:
+        json.dump(cache, f, indent=2)
+        f.write("\n")
+
+def get_substack_posts(substack, limit=2):
+    base_url = get_substack_url(substack)
+    try:
+        feed_xml = fetch_text(f"{base_url}/feed")
+        posts = parse_substack_feed(feed_xml, base_url)
+        enriched_posts = []
+
+        for post in posts[:limit]:
+            try:
+                metadata = get_post_metadata(post["url"])
+            except (HTTPError, URLError, TimeoutError, OSError) as exc:
+                print(f"[Substack] Warning: Could not fetch post metadata for {post['url']}: {exc}")
+                metadata = {"title": "", "subtitle": "", "image": ""}
+            enriched_posts.append({
+                **post,
+                "title": metadata["title"] or post["title"],
+                "subtitle": metadata["subtitle"] or post["subtitle"],
+                "image": metadata["image"] or post["image"],
+            })
+
+        if enriched_posts:
+            write_substack_cache(substack, enriched_posts)
+            return enriched_posts
+    except (HTTPError, URLError, TimeoutError, ET.ParseError, OSError) as exc:
+        print(f"[Substack] Warning: Could not fetch latest posts: {exc}")
+
+    cached_posts = read_substack_cache(substack)
+    if cached_posts:
+        print("[Substack] Using cached posts.")
+    return cached_posts[:limit]
+
+def get_blog_entry(post):
+    title = escape(post["title"])
+    url = escape(post["url"], quote=True)
+    subtitle = escape(post.get("subtitle", ""))
+    image = escape(post.get("image", ""), quote=True)
+    date = escape(post.get("date", ""))
+
+    s = """<div class="entry blog-entry"> <div class="row"><div class="col-sm-3">"""
+    if image:
+        s += f"""<img src="{image}" class="img-fluid img-thumbnail blog-post-image" alt="{title}">"""
+    else:
+        s += """<div class="img-thumbnail blog-post-placeholder"><i class="fa-solid fa-feather fa-lg"></i></div>"""
+    s += """</div><div class="col-sm-9">"""
+    s += f"""<a href="{url}" target="_blank" class="entry-title">{title}</a><br>"""
+    if date:
+        s += f"""{date}<br>"""
+    if subtitle:
+        s += f"""<a href="{url}" target="_blank" class="blog-post-subtitle">{subtitle}</a>"""
+    s += """ </div> </div> </div>"""
+    return s
+
+def get_blog_posts_html(substack, limit=2):
+    posts = get_substack_posts(substack, limit=limit)
+    return "".join(get_blog_entry(post) for post in posts)
 
 def get_html_header(title, assets_prefix=""):
     return f"""
@@ -280,8 +496,9 @@ def get_section_row(title, content, margin_top="1em", view_all_href=None, view_a
     section_class = "content-section-spacious" if margin_top == "3em" else "content-section"
     view_all = ""
     if view_all_href is not None:
+        target = ' target="_blank"' if view_all_href.startswith(("http://", "https://")) else ""
         view_all = f"""
-                <p><a href="{view_all_href}">{view_all_text}</a></p>"""
+                <p><a href="{view_all_href}"{target}>{view_all_text}</a></p>"""
 
     return f"""
         <div class="row {section_class}">
@@ -313,22 +530,31 @@ def get_index_intro_row(name, bio_text):
 def get_index_html():
     pub = get_publications_html(highlighted_only=True, show_highlight=False)
     talks = get_talks_html(highlighted_only=True)
-    name, bio_text, footer = get_personal_data()
+    name, bio_text, footer, substack = get_personal_data()
+    blog_posts = get_blog_posts_html(substack)
     body = get_index_intro_row(name, bio_text)
     body += get_section_row("Selected Publications", pub, view_all_href="publications.html", view_all_text="View all publications")
     body += get_section_row("Selected Talks", talks, margin_top="3em", view_all_href="talks.html", view_all_text="View all talks")
+    if blog_posts:
+        body += get_section_row(
+            "Recent Blog Posts",
+            blog_posts,
+            margin_top="3em",
+            view_all_href=get_substack_url(substack),
+            view_all_text="View all posts",
+        )
     return get_page_html(f"{name[0]} {name[1]} | AI Researcher", body, footer)
 
 def get_publications_page_html():
     pub = get_publications_html(highlighted_only=False, show_highlight=True)
-    name, _, footer = get_personal_data()
+    name, _, footer, _ = get_personal_data()
     body = get_name_row(name, linked=True)
     body += get_section_row("Publications", pub)
     return get_page_html(f"Publications | {name[0]} {name[1]}", body, footer)
 
 def get_talks_page_html():
     talks = get_talks_html()
-    name, _, footer = get_personal_data()
+    name, _, footer, _ = get_personal_data()
     body = get_name_row(name, linked=True)
     body += get_section_row("Talks", talks)
     return get_page_html(f"Talks | {name[0]} {name[1]}", body, footer)

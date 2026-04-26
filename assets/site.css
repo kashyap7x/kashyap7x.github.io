@@ -77,6 +77,42 @@ a:visited {
   margin-bottom: 3em;
 }
 
+.blog-post-image,
+.blog-post-placeholder {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  width: 100%;
+}
+
+.blog-post-placeholder {
+  align-items: center;
+  color: #535ABF;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-post-subtitle {
+  display: inline-block;
+  margin: 0.15rem 0;
+}
+
+a.blog-post-subtitle:hover {
+  text-decoration: underline;
+}
+
+.entry-title {
+  color: #1A237E;
+}
+
+a.entry-title:visited {
+  color: #1A237E;
+}
+
+a.entry-title:hover,
+a.entry-title:visited:hover {
+  color: #535ABF;
+}
+
 .entry-highlight {
   background-color: #FFEFCA;
 }

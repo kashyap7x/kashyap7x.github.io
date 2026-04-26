@@ -27,6 +27,9 @@ The build script reads `publication_list.bib` and `talk_list.bib`, then writes:
 - `publications.html`
 - `talks.html`
 
+The homepage also fetches the two latest Substack posts from the configured
+Substack handle and caches their display metadata in `substack_posts.json`.
+
 ## Repository Structure
 
 - `build.py` - website generator and shared HTML template
@@ -35,6 +38,7 @@ The build script reads `publication_list.bib` and `talk_list.bib`, then writes:
 - `assets/site.css` - shared site styling
 - `publication_list.bib` - publication data
 - `talk_list.bib` - talk data
+- `substack_posts.json` - cached Substack post metadata used if the feed is unavailable
 - `assets/img/profile.jpg` - profile photo
 - `assets/img/publications/` - publication thumbnails
 - `assets/img/talks/` - talk thumbnails
@@ -63,6 +67,10 @@ To add a talk:
 
 To update profile text, links, or footer content, edit `get_personal_data()` in
 `build.py` and run `python build.py`.
+
+The Substack homepage section uses the `substack` handle from
+`get_personal_data()`. Running `python build.py` refreshes the latest post
+titles, subtitles, and preview images from Substack when the feed is reachable.
 
 ## Custom Fields
 
