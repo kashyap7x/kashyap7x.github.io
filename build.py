@@ -1,10 +1,13 @@
 import json
+import re
+import struct
 from email.utils import parsedate_to_datetime
+from functools import lru_cache
 from html import escape, unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin
+from urllib.parse import unquote, urljoin, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
@@ -12,6 +15,130 @@ from pybtex.database.input import bibtex
 
 AUTHOR_FILE = Path(__file__).with_name("authors.json")
 SUBSTACK_CACHE_FILE = Path(__file__).with_name("substack_posts.json")
+SITE_URL = "https://kashyap7x.github.io"
+SITE_NAME = "Kashyap Chitta"
+DEFAULT_DESCRIPTION = (
+    "Kashyap Chitta is an AI researcher working on simulation-based training "
+    "and evaluation of Physical AI systems."
+)
+DEFAULT_SOCIAL_IMAGE = "assets/img/profile.jpg"
+
+JPEG_SOF_MARKERS = {
+    0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+    0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF,
+}
+
+def html_attr(value):
+    return escape(str(value), quote=True)
+
+def absolute_url(value):
+    if not value:
+        return f"{SITE_URL}/"
+    parsed = urlparse(value)
+    if parsed.scheme and parsed.netloc:
+        return value
+    return urljoin(f"{SITE_URL}/", value.lstrip("/"))
+
+def secure_target_blank(html):
+    return re.sub(
+        r'target="_blank"(?![^>]*\brel=)',
+        'target="_blank" rel="noopener noreferrer"',
+        html,
+    )
+
+def get_local_path(src):
+    parsed = urlparse(src)
+    if parsed.scheme or parsed.netloc:
+        return None
+
+    site_root = Path(__file__).resolve().parent
+    path = (site_root / unquote(parsed.path)).resolve()
+    try:
+        path.relative_to(site_root)
+    except ValueError:
+        return None
+
+    return path if path.exists() else None
+
+def read_png_dimensions(path):
+    with path.open("rb") as f:
+        header = f.read(24)
+    if header.startswith(b"\x89PNG\r\n\x1a\n") and header[12:16] == b"IHDR":
+        return struct.unpack(">II", header[16:24])
+    return None
+
+def read_jpeg_dimensions(path):
+    with path.open("rb") as f:
+        if f.read(2) != b"\xff\xd8":
+            return None
+
+        while True:
+            marker_start = f.read(1)
+            if not marker_start:
+                return None
+            if marker_start != b"\xff":
+                continue
+
+            marker_byte = f.read(1)
+            while marker_byte == b"\xff":
+                marker_byte = f.read(1)
+            if not marker_byte:
+                return None
+
+            marker = marker_byte[0]
+            if marker == 0xD9 or marker == 0xDA:
+                return None
+            if 0xD0 <= marker <= 0xD8:
+                continue
+
+            length_bytes = f.read(2)
+            if len(length_bytes) != 2:
+                return None
+            length = struct.unpack(">H", length_bytes)[0]
+            if length < 2:
+                return None
+
+            if marker in JPEG_SOF_MARKERS:
+                data = f.read(5)
+                if len(data) != 5:
+                    return None
+                height, width = struct.unpack(">HH", data[1:5])
+                return width, height
+
+            f.seek(length - 2, 1)
+
+@lru_cache(maxsize=None)
+def get_image_dimensions(src):
+    path = get_local_path(src)
+    if path is None:
+        return None
+
+    suffix = path.suffix.lower()
+    try:
+        if suffix == ".png":
+            return read_png_dimensions(path)
+        if suffix in {".jpg", ".jpeg"}:
+            return read_jpeg_dimensions(path)
+    except OSError:
+        return None
+    return None
+
+def image_tag(src, css_class, alt, lazy=True):
+    attrs = [
+        f'src="{html_attr(src)}"',
+        f'class="{html_attr(css_class)}"',
+        f'alt="{html_attr(alt)}"',
+    ]
+
+    dimensions = get_image_dimensions(src)
+    if dimensions is not None:
+        width, height = dimensions
+        attrs.extend([f'width="{width}"', f'height="{height}"'])
+
+    if lazy:
+        attrs.append('loading="lazy"')
+    attrs.append('decoding="async"')
+    return f"<img {' '.join(attrs)}>"
 
 def get_personal_data():
     name = ["Kashyap", "Chitta"]
@@ -89,7 +216,11 @@ def get_paper_entry(entry_key, entry, show_highlight=True):
     else:
         s = """<div class="entry"> <div class="row"><div class="col-sm-3">"""
 
-    s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
+    s += image_tag(
+        entry.fields['img'],
+        "img-fluid img-thumbnail",
+        f"{entry.fields['title']} thumbnail",
+    )
     s += """</div><div class="col-sm-9">"""
 
     if 'award' in entry.fields.keys():
@@ -126,7 +257,11 @@ def get_paper_entry(entry_key, entry, show_highlight=True):
 
 def get_talk_entry(entry_key, entry):
     s = """<div class="entry"> <div class="row"><div class="col-sm-3">"""
-    s += f"""<img src="{entry.fields['img']}" class="img-fluid img-thumbnail" alt="Project image">"""
+    s += image_tag(
+        entry.fields['img'],
+        "img-fluid img-thumbnail",
+        f"{entry.fields['title']} talk thumbnail",
+    )
     s += """</div><div class="col-sm-9">"""
     if 'video' in entry.fields.keys():
         s += f"""<a href="{entry.fields['video']}" target="_blank" class="entry-title">{entry.fields['title']}</a><br>"""
@@ -356,15 +491,16 @@ def get_substack_posts(substack, limit=2):
     return cached_posts[:limit]
 
 def get_blog_entry(post):
-    title = escape(post["title"])
+    raw_title = post["title"]
+    raw_image = post.get("image", "")
+    title = escape(raw_title)
     url = escape(post["url"], quote=True)
     subtitle = escape(post.get("subtitle", ""))
-    image = escape(post.get("image", ""), quote=True)
     date = escape(post.get("date", ""))
 
     s = """<div class="entry blog-entry"> <div class="row"><div class="col-sm-3">"""
-    if image:
-        s += f"""<img src="{image}" class="img-fluid img-thumbnail blog-post-image" alt="{title}">"""
+    if raw_image:
+        s += image_tag(raw_image, "img-fluid img-thumbnail blog-post-image", raw_title)
     else:
         s += """<div class="img-thumbnail blog-post-placeholder"><i class="fa-solid fa-feather fa-lg"></i></div>"""
     s += """</div><div class="col-sm-9">"""
@@ -380,7 +516,28 @@ def get_blog_posts_html(substack, limit=2):
     posts = get_substack_posts(substack, limit=limit)
     return "".join(get_blog_entry(post) for post in posts)
 
-def get_html_header(title, assets_prefix=""):
+def get_html_header(
+    title,
+    description=DEFAULT_DESCRIPTION,
+    canonical_path="",
+    social_image=DEFAULT_SOCIAL_IMAGE,
+    assets_prefix="",
+):
+    canonical_url = absolute_url(canonical_path)
+    image_url = absolute_url(social_image)
+    escaped_title = html_attr(title)
+    escaped_description = html_attr(description)
+    escaped_site_name = html_attr(SITE_NAME)
+    escaped_canonical_url = html_attr(canonical_url)
+    escaped_image_url = html_attr(image_url)
+    social_image_dimensions = get_image_dimensions(social_image)
+    social_image_size_tags = ""
+    if social_image_dimensions is not None:
+        width, height = social_image_dimensions
+        social_image_size_tags = f"""
+  <meta property="og:image:width" content="{width}">
+  <meta property="og:image:height" content="{height}">"""
+
     return f"""
     <!doctype html>
 <html lang="en">
@@ -402,7 +559,20 @@ def get_html_header(title, assets_prefix=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <title>{title}</title>
+  <title>{escaped_title}</title>
+  <meta name="description" content="{escaped_description}">
+  <meta name="author" content="{escaped_site_name}">
+  <link rel="canonical" href="{escaped_canonical_url}">
+  <meta property="og:site_name" content="{escaped_site_name}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{escaped_title}">
+  <meta property="og:description" content="{escaped_description}">
+  <meta property="og:url" content="{escaped_canonical_url}">
+  <meta property="og:image" content="{escaped_image_url}">{social_image_size_tags}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{escaped_title}">
+  <meta name="twitter:description" content="{escaped_description}">
+  <meta name="twitter:image" content="{escaped_image_url}">
   <link rel="icon" type="image/x-icon" href="{assets_prefix}assets/favicon.ico">
   <link rel="stylesheet" href="{assets_prefix}assets/site.css">
 </head>
@@ -465,8 +635,8 @@ def get_html_footer():
 </html>
 """
 
-def get_page_html(title, body, footer):
-    return get_html_header(title) + f"""
+def get_page_html(title, body, footer, description=DEFAULT_DESCRIPTION, canonical_path=""):
+    html = get_html_header(title, description=description, canonical_path=canonical_path) + f"""
 <body>
     <div class="container">
         {body}
@@ -475,6 +645,7 @@ def get_page_html(title, body, footer):
         </div>
     </div>
 """ + get_html_footer()
+    return secure_target_blank(html)
 
 def get_display_name_html(name, highlight_last=False):
     last_name = name[1].upper()
@@ -490,7 +661,7 @@ def get_name_row(name, linked=False):
     return f"""
         <div class="row page-title-row">
             <div class="col-sm-12 page-title-wrap">
-            <h3 class="display-4 page-title">{title}</h3>
+            <h1 class="display-4 page-title">{title}</h1>
             </div>
         </div>
 """
@@ -506,7 +677,7 @@ def get_section_row(title, content, margin_top="1em", view_all_href=None, view_a
     return f"""
         <div class="row {section_class}">
             <div class="col-sm-12">
-                <h4>{title}</h4>{view_all}
+                <h2 class="h4">{title}</h2>{view_all}
                 <hr>
                 {content}
             </div>
@@ -518,14 +689,14 @@ def get_index_intro_row(name, bio_text):
     return f"""
         <div class="row intro-row">
             <div class="col-sm-12 page-title-wrap">
-            <h3 class="display-4 page-title">{title}</h3>
+            <h1 class="display-4 page-title">{title}</h1>
             </div>
             <br>
             <div class="col-md-8">
                 {bio_text}
             </div>
             <div class="col-md-4">
-                <img src="assets/img/profile.jpg" class="img-thumbnail" alt="Profile picture">
+                {image_tag("assets/img/profile.jpg", "img-thumbnail", "Portrait of Kashyap Chitta", lazy=False)}
             </div>
         </div>
 """
@@ -546,21 +717,39 @@ def get_index_html():
             view_all_href=get_substack_url(substack),
             view_all_text="View all posts",
         )
-    return get_page_html(f"{name[0]} {name[1]} | AI Researcher", body, footer)
+    return get_page_html(
+        f"{name[0]} {name[1]} | AI Researcher",
+        body,
+        footer,
+        description=DEFAULT_DESCRIPTION,
+        canonical_path="",
+    )
 
 def get_publications_page_html():
     pub = get_publications_html(highlighted_only=False, show_highlight=True)
     name, _, footer, _ = get_personal_data()
     body = get_name_row(name, linked=True)
     body += get_section_row("Publications", pub)
-    return get_page_html(f"Publications | {name[0]} {name[1]}", body, footer)
+    return get_page_html(
+        f"Publications | {name[0]} {name[1]}",
+        body,
+        footer,
+        description="Complete publication list for Kashyap Chitta, including papers on autonomous driving, simulation, world models, and Physical AI.",
+        canonical_path="publications.html",
+    )
 
 def get_talks_page_html():
     talks = get_talks_html()
     name, _, footer, _ = get_personal_data()
     body = get_name_row(name, linked=True)
     body += get_section_row("Talks", talks)
-    return get_page_html(f"Talks | {name[0]} {name[1]}", body, footer)
+    return get_page_html(
+        f"Talks | {name[0]} {name[1]}",
+        body,
+        footer,
+        description="Selected invited talks, tutorials, and seminar presentations by Kashyap Chitta on autonomous driving, simulation, and robotics research.",
+        canonical_path="talks.html",
+    )
 
 def write_html(content, filename):
     with open(filename, 'w') as f:
