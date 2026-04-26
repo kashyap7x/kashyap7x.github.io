@@ -517,7 +517,8 @@ def get_html_header(
   <meta name="twitter:title" content="{escaped_title}">
   <meta name="twitter:description" content="{escaped_description}">
   <meta name="twitter:image" content="{escaped_image_url}">
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon_light.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon_dark.svg" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="assets/site.css">{structured_data_script}
 </head>
 """
