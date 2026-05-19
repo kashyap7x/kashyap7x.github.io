@@ -154,8 +154,6 @@ def get_paper_entry(entry_key, entry, show_highlight=True, self_author_name=None
                 s += ' / '
             s += f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>"""
             i += 1
-        else:
-            print(f'[{entry_key}] Warning: Field {k} missing!')
 
     cite = "<pre><code>@" + entry.type + "{" + f"{entry_key},\n"
     cite += "\tauthor = {" + f"{generate_person_html(entry.persons['author'], make_bold=False, add_links=False, connection=' and ')}" + "},\n"
@@ -188,8 +186,6 @@ def get_talk_entry(entry_key, entry):
                 s += ' / '
             s += f"""<a href="{entry.fields[k]}" target="_blank">{v}</a>"""
             i += 1
-        else:
-            print(f'[{entry_key}] Warning: Field {k} missing!')
     s += """ </div> </div> </div>"""
     return s
 
