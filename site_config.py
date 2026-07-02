@@ -53,7 +53,7 @@ def get_personal_data():
     """
     bio_text = f"""
                 <p>
-                    I am {personal_data['job_title']} at <a href="{personal_data['organization']['url']}" target="_blank">{personal_data['organization']['name']}</a>, based in {personal_data['location']}. We are building a fully-open source compute and data-efficient self-driving stack. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a> Besides technical staff, we also have openings for PhD students: my research focus is on {personal_data['research_focus']}.
+                    I am {personal_data['job_title']} at <a href="{personal_data['organization']['url']}" target="_blank">{personal_data['organization']['name']}</a>, based in {personal_data['location']}. My research focus is on {personal_data['research_focus']}. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a>
                 </p>
                 <div class="social-links">
                     <details class="bio-dropdown">
