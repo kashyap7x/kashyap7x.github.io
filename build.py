@@ -423,7 +423,7 @@ def get_blog_posts_html(substack, limit=2):
 
 def get_person_structured_data(personal_data):
     name = personal_data["name"]
-    organization = personal_data["organization"]
+    jobs = personal_data["jobs"]
     profiles = personal_data["profiles"]
     site_url = personal_data["site_url"].rstrip("/")
 
@@ -437,13 +437,16 @@ def get_person_structured_data(personal_data):
         "url": f"{site_url}/",
         "image": absolute_url(personal_data["profile_image"], site_url),
         "email": f"mailto:{personal_data['email']}",
-        "jobTitle": personal_data["job_title"],
+        "jobTitle": [job["title"] for job in jobs],
         "description": personal_data["description"],
-        "worksFor": {
-            "@type": "Organization",
-            "name": organization["name"],
-            "url": organization["url"],
-        },
+        "worksFor": [
+            {
+                "@type": "Organization",
+                "name": job["organization"]["name"],
+                "url": job["organization"]["url"],
+            }
+            for job in jobs
+        ],
         "sameAs": [
             profiles["scholar"],
             profiles["substack"],

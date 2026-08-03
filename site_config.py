@@ -3,7 +3,22 @@ def get_personal_data():
     full_name = " ".join(name)
     site_url = "https://kashyap7x.github.io"
     site_title_suffix = "AI Researcher"
-    job_title = "Co-Founder and CTO"
+    jobs = [
+        {
+            "title": "Principal Investigator",
+            "organization": {
+                "name": "ELLIS Institute Tübingen",
+                "url": "https://tue.ellis.eu",
+            },
+        },
+        {
+            "title": "Co-Founder and CTO",
+            "organization": {
+                "name": "KE:SAI",
+                "url": "https://kesai.eu",
+            },
+        },
+    ]
     location = "Tübingen, Germany"
     research_focus = "visual reasoning and causal world models"
     research_topics = "autonomous driving, simulation, world models, and Physical AI"
@@ -15,10 +30,6 @@ def get_personal_data():
     linkedin = "kchitta"
     github = "kashyap7x"
     youtube = "UC_rpEkxE-pUAV8v0wjdtg5w"
-    organization = {
-        "name": "kesai.eu",
-        "url": "https://kesai.eu",
-    }
     profiles = {
         "scholar": f"https://scholar.google.com/citations?user={scholar}&hl=en",
         "substack": f"https://{substack}.substack.com",
@@ -41,19 +52,23 @@ def get_personal_data():
         "profile_image_alt": f"Portrait of {full_name}",
         "cv_url": cv_url,
         "email": email,
-        "job_title": job_title,
-        "organization": organization,
+        "jobs": jobs,
         "profiles": profiles,
         "substack": substack,
     }
 
     bio_details = """
-                    <p>I earned my bachelor's degree in electronics from the <a href="https://www.rvce.edu.in/" target="_blank">RV College of Engineering</a>, India, before moving to the US in 2017 for a Master's degree in computer vision at <a href="https://www.ri.cmu.edu/" target="_blank">Carnegie Mellon University</a>, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/" target="_blank">Prof. Martial Hebert</a>. During this time, I was also an intern at the <a href = "https://research.nvidia.com/labs/av-applied-research/" target="_blank">NVIDIA Autonomous Vehicles Applied Research Group</a>, working with <a href = "https://alvarezlopezjosem.github.io/" target="_blank">Dr. Jose M. Alvarez</a>. From 2019-2025, I was a PhD student in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> at the University of Tübingen, Germany, supervised by <a href="http://cvlibs.net/" target="_blank">Prof. Andreas Geiger</a>. Prior to co-founding KE:SAI in 2026, I was a postdoctoral researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">Autonomous Vehicle Research Group</a> at NVIDIA.
+                    <p>I earned my bachelor's degree in electronics from the <a href="https://www.rvce.edu.in/" target="_blank">RV College of Engineering</a>, India, before moving to the US in 2017 for a Master's degree in computer vision at <a href="https://www.ri.cmu.edu/" target="_blank">Carnegie Mellon University</a>, where I was advised by <a href = "http://www.cs.cmu.edu/~hebert/" target="_blank">Prof. Martial Hebert</a>. During this time, I was also an intern at the <a href = "https://research.nvidia.com/labs/av-applied-research/" target="_blank">NVIDIA Autonomous Vehicles Applied Research Group</a>, working with <a href = "https://alvarezlopezjosem.github.io/" target="_blank">Dr. Jose M. Alvarez</a>. From 2019-2025, I was a PhD student in the <a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/home/" target="_blank">Autonomous Vision Group</a> at the University of Tübingen, Germany, supervised by <a href="http://cvlibs.net/" target="_blank">Prof. Andreas Geiger</a>. Prior to my current roles, I was a postdoctoral researcher at the <a href="https://research.nvidia.com/labs/avg/" target="_blank">Autonomous Vehicle Research Group</a> at NVIDIA.
                     I was selected for the <a href="https://iccv2023.thecvf.com/doctoral.consortium-353000-2-30.php" target="_blank">doctoral consortium</a> at ICCV 2023, named a 2023 <a href="https://sites.google.com/view/rsspioneers2023/participants" target="_blank">RSS Pioneer</a>, and recognized as an outstanding reviewer for <a href="https://cvpr2023.thecvf.com/Conferences/2023/OutstandingReviewers" target="_blank">CVPR</a>, <a href="https://twitter.com/kashyap7x/status/1712169445349560517" target="_blank">ICCV</a>, <a href="https://eccv.ecva.net/Conferences/2024/Reviewers" target="_blank">ECCV</a>, and <a href="https://neurips.cc/Conferences/2023/ProgramCommittee#top-reivewers" target="_blank">NeurIPS</a>. I have also won multiple autonomous driving challenge awards <a href="https://opendrivelab.com/challenge2023/#nuplan_planning" target="_blank">[nuPlan 2023]</a> <a href="https://leaderboard.carla.org/challenge/#previous-carla-ad-challenges" target="_blank">[CARLA 2020, 2021, 2022, 2023, 2024]</a> <a href="https://waymo.com/open/challenges/" target="_blank">[Waymo 2025]</a> <a href="https://realadsim.github.io/2025/#challenge" target="_blank">[HUGSIM 2025]</a> <a href="https://huggingface.co/spaces/KIT-MRT/KITScenes-LongTail-Challenge" target="_blank">[KITScenes 2026]</a>.</p>
     """
+    jobs_html = " and ".join(
+        f"{job['title']} at <a href=\"{job['organization']['url']}\" target=\"_blank\">{job['organization']['name']}</a>"
+        for job in personal_data["jobs"]
+    )
+
     bio_text = f"""
                 <p>
-                    I am {personal_data['job_title']} at <a href="{personal_data['organization']['url']}" target="_blank">{personal_data['organization']['name']}</a>, based in {personal_data['location']}. My research focus is on {personal_data['research_focus']}. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a>
+                    I am {jobs_html}, based in {personal_data['location']}. My research focus is on {personal_data['research_focus']}. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a>
                 </p>
                 <div class="social-links">
                     <details class="bio-dropdown">
