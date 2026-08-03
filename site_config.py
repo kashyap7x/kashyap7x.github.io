@@ -68,7 +68,7 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am {jobs_html}, based in {personal_data['location']}. My research focus is on {personal_data['research_focus']}. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a>
+                    I am a Principal Investigator at the <a href="https://tue.ellis.eu" target="_blank">ELLIS Institute Tübingen</a>, Germany, leading the Physical AI Lab. Our research focuses on multimodal reasoning and casual world models. I am also Co-Founder and CTO at <a href="https://kesai.eu" target="_blank">kesai.eu</a>, where we are building a fully-open source compute and data-efficient self-driving stack. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a>
                 </p>
                 <div class="social-links">
                     <details class="bio-dropdown">
