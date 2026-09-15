@@ -20,7 +20,7 @@ def get_personal_data():
         },
     ]
     location = "Tübingen, Germany"
-    research_focus = "visual reasoning and causal world models"
+    research_focus = "Physical AI"
     research_topics = "autonomous driving, simulation, world models, and Physical AI"
     profile_image = "assets/img/profile.jpg"
     cv_url = "assets/pdf/kchitta_cv.pdf"
@@ -68,7 +68,7 @@ def get_personal_data():
 
     bio_text = f"""
                 <p>
-                    I am a Principal Investigator at the <a href="https://tue.ellis.eu" target="_blank">ELLIS Institute Tübingen</a>, Germany, leading the Physical AI Lab. Our research focuses on multimodal reasoning and casual world models. I am also Co-Founder and CTO at <a href="https://kesai.eu" target="_blank">kesai.eu</a>, where we are building a fully-open source compute and data-efficient self-driving stack. <a href="https://kesai.eu/join" target="_blank" style="color: #E65100; text-decoration: underline;">We are hiring!</a>
+                    I am a Principal Investigator at the <a href="https://tue.ellis.eu" target="_blank">ELLIS Institute Tübingen</a>, Germany, leading the Physical AI Lab. I am also Co-Founder and CTO at <a href="https://kesai.eu" target="_blank">kesai.eu</a>, where we are building a fully-open source compute and data-efficient self-driving stack.
                 </p>
                 <div class="social-links">
                     <details class="bio-dropdown">
