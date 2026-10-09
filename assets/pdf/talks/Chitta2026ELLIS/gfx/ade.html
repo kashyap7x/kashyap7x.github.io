@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figure 1: ADE and NAVSIM comparison</title>
+<!-- Figure 1 markup, styles, and interaction from:
+https://kesai.eu/blog/2026-09-08-common-task-framework/
+Local copy with presentation sizing; original scoring and drawing logic retained. -->
+<style>
+:root { --font-sans: Arial, sans-serif; --secondary: #b0b0b0; --amber: #ffbe27; color: #eee; }
+* { box-sizing: border-box; }
+html { font-size: 16px; }
+body { margin: 0; line-height: 1.2; }
+.pseudo-widget { margin: 0; padding: 12px 20px; background: #111; border: 1px solid #ffffff1a; border-radius: 16px; font-family: var(--font-sans); }
+.pseudo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.pseudo-panel h3 { font-size: 1rem; margin: .5rem 0; }
+.pseudo-panel svg { width: 100%; display: block; max-height: 410px; height: 200px; }
+.pseudo-panel label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem; font-size: .85rem; margin-top: 4px; }
+.pseudo-panel output { font-variant-numeric: tabular-nums; font-weight: 600; }
+.pseudo-panel input { width: 100%; margin: .5rem 0 0; min-height: 32px; accent-color: #ffbe27; cursor: pointer; }
+.pseudo-panel:nth-child(2) input { accent-color: #8D91BF; }
+.pseudo-score { margin-top: 5px; padding: 6px 10px; border: 1px solid transparent; border-radius: 8px; font-size: .8rem; }
+.pseudo-score strong { display: block; font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+.pseudo-bar { height: 6px; background: #ffffff14; border-radius: 3px; margin-top: .5rem; overflow: hidden; }
+.pseudo-bar span { display: block; height: 100%; background: #ffbe27; }
+#swerve-bar, #swerve-pdm-bar { background: #8D91BF; }
+.pseudo-widget :focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+@media (max-width: 600px) { .pseudo-grid { grid-template-columns: 1fr; } .pseudo-panel + .pseudo-panel { border-top: 1px solid #ffffff1a; padding-top: 1rem; } }
+
+.blog-body .pseudo-compliance { margin: 4px 0 0; padding: 0; color: #b0dfbf; font-size: .85rem; line-height: 1.5; min-height: 1.5em; }
+.blog-body .pseudo-compliance.is-failure { color: #F3A880; }
+
+
+.pseudo-panel:first-child h3 { color: #ffbe27; }
+.pseudo-panel:nth-child(2) h3 { color: #8D91BF; }
+
+.pseudo-score-value { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.pseudo-score-status { color: var(--secondary); font-size: .75rem; white-space: nowrap; }
+.pseudo-score.is-better { border-color: #8bcba080; background: #8bcba014; }
+.pseudo-score.is-better .pseudo-score-status { color: #b0dfbf; font-weight: 600; }
+
+</style>
+</head>
+<body class="blog-body">
+<figure class="pseudo-widget" id="fig-pseudo">
+          <div class="pseudo-grid">
+            <div class="pseudo-panel">
+              <h3>Change speed</h3>
+              <svg id="speed-road" viewBox="0 0 320 380" role="img" aria-label="Top-down two-way highway with one lane per direction comparing a speed change with the recorded trajectory"></svg>
+              <label for="drive-speed">Speed <output id="speed-value" for="drive-speed">70 km/h</output></label>
+              <input id="drive-speed" type="range" min="70" max="130" step="1" value="70">
+              <p class="pseudo-compliance">✓ Compliant</p>
+              <div class="pseudo-score" id="speed-error-card">Average Displacement Error (ADE) ↓ <div class="pseudo-score-value"><strong id="speed-error">18.75 m</strong><span class="pseudo-score-status" id="speed-error-status" aria-live="polite"></span></div><div class="pseudo-bar"><span id="speed-bar"></span></div></div>
+              <div class="pseudo-score" id="speed-pdm-card">(Simplified) NAVSIM Score ↑ <div class="pseudo-score-value"><strong id="speed-pdm">0.70</strong><span class="pseudo-score-status" id="speed-pdm-status" aria-live="polite"></span></div><div class="pseudo-bar"><span id="speed-pdm-bar"></span></div></div>
+            </div>
+            <div class="pseudo-panel">
+              <h3>Swerve while maintaining speed</h3>
+              <svg id="swerve-road" viewBox="0 0 320 380" role="img" aria-label="Top-down two-way highway with one lane per direction comparing a lateral swerve with the recorded trajectory"></svg>
+              <label for="drive-swerve">Swerve <output id="swerve-value" for="drive-swerve">1.8 m right</output></label>
+              <input id="drive-swerve" type="range" min="-3.5" max="3.5" step="0.1" value="1.8">
+              <p class="pseudo-compliance is-failure" id="swerve-compliance" aria-live="polite">✕ Drivable area compliance</p>
+              <div class="pseudo-score" id="swerve-error-card">Average Displacement Error (ADE) ↓ <div class="pseudo-score-value"><strong id="swerve-error">0.90 m</strong><span class="pseudo-score-status" id="swerve-error-status" aria-live="polite"></span></div><div class="pseudo-bar"><span id="swerve-bar"></span></div></div>
+              <div class="pseudo-score" id="swerve-pdm-card">(Simplified) NAVSIM Score ↑ <div class="pseudo-score-value"><strong id="swerve-pdm">0.00</strong><span class="pseudo-score-status" id="swerve-pdm-status" aria-live="polite"></span></div><div class="pseudo-bar"><span id="swerve-pdm-bar"></span></div></div>
+            </div>
+          </div>
+        </figure>
+<script>
+(() => {
+  const speed = document.getElementById('drive-speed');
+  const swerve = document.getElementById('drive-swerve');
+  if (!speed || !swerve) return;
+  const times = Array.from({ length: 8 }, (_, i) => (i + 1) / 2);
+  const lateral = (a, t) => a * Math.sin(Math.PI * t / 4) ** 2;
+  const point = (x, y) => [160 + x * 24, 346 - y * 2.1];
+  const path = points => points.map((p, i) => `${i ? 'L' : 'M'}${p.join(',')}`).join(' ');
+
+  function draw(id, v, a, color) {
+    const svg = document.getElementById(id);
+    const points = Array.from({ length: 81 }, (_, i) => {
+      const t = i / 20;
+      return point(lateral(a, t), v / 3.6 * t);
+    });
+    svg.innerHTML = `<rect x="34" y="20" width="252" height="344" rx="8" fill="#233027"/>
+      <rect x="34" y="20" width="168" height="344" fill="#202326"/>
+      <rect x="34" y="20" width="84" height="344" fill="${a < -1.75 ? '#F3A880' : '#292d33'}"/>
+      ${a > 1.75 ? '<rect x="202" y="20" width="84" height="344" fill="#F3A880"/>' : ''}
+      <path d="M34 20V364 M202 20V364" stroke="#ddd" stroke-width="2"/>
+      <path d="M118 20V364" stroke="#ddd" stroke-width="2" stroke-dasharray="12 12"/>
+      <path d="M76 55V85 M66 75L76 85L86 75 M180 85V55 M170 65L180 55L190 65" fill="none" stroke="#aaa" stroke-width="3"/>
+      <path d="${path([point(0, 0), point(0, 100 / 3.6 * 4)])}" fill="none" stroke="#eee" stroke-width="2" stroke-dasharray="5 5"/>
+      <path d="${path(points)}" fill="none" stroke="${color}" stroke-width="3"/>
+      ${times.map(t => {
+        const r = point(0, 100 / 3.6 * t);
+        const p = point(lateral(a, t), v / 3.6 * t);
+        return `<path d="M${r}L${p}" stroke="${color}" stroke-opacity=".5"/><circle cx="${r[0]}" cy="${r[1]}" r="3" fill="#eee"/><circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color}"/>`;
+      }).join('')}
+      <rect x="152" y="336" width="16" height="26" rx="4" fill="${color}" stroke="#111"/>
+      <rect x="155" y="340" width="10" height="6" rx="1" fill="#202326"/>
+      `;
+  }
+
+  function highlight(metric, left, right, lowerIsBetter) {
+    const tied = Math.abs(left - right) < 1e-9;
+    const leftBetter = lowerIsBetter ? left < right : left > right;
+    for (const [name, better] of [['speed', leftBetter], ['swerve', !leftBetter]]) {
+      document.getElementById(`${name}-${metric}-card`).classList.toggle('is-better', !tied && better);
+      document.getElementById(`${name}-${metric}-status`).textContent = tied ? 'Tied' : better ? '✓ Better' : '';
+    }
+  }
+
+  function update() {
+    const v = Number(speed.value), a = Number(swerve.value);
+    const speedError = times.reduce((sum, t) => sum + Math.abs(v - 100) / 3.6 * t, 0) / times.length;
+    const swerveError = times.reduce((sum, t) => sum + Math.abs(lateral(a, t)), 0) / times.length;
+    document.getElementById('speed-value').textContent = `${v} km/h`;
+    const offset = a === 0 ? '0.0 m (straight)' : `${Math.abs(a).toFixed(1)} m ${a < 0 ? 'left' : 'right'}`;
+    document.getElementById('swerve-value').textContent = offset;
+    speed.setAttribute('aria-valuetext', `${v} kilometers per hour`);
+    swerve.setAttribute('aria-valuetext', offset);
+    for (const [name, error] of [['speed', speedError], ['swerve', swerveError]]) {
+      document.getElementById(`${name}-error`).textContent = `${error.toFixed(2)} m`;
+      document.getElementById(`${name}-bar`).style.width = `${error / 20 * 100}%`;
+    }
+    // Toy adaptation: progress relative to the recording, gated by both checks.
+    const speedPdm = Math.min(1, v / 100);
+    const swervePdm = Math.abs(a) <= 1.75 ? 1 : 0;
+    for (const [name, score] of [['speed', speedPdm], ['swerve', swervePdm]]) {
+      document.getElementById(`${name}-pdm`).textContent = score.toFixed(2);
+      document.getElementById(`${name}-pdm-bar`).style.width = `${score * 100}%`;
+    }
+    highlight('error', speedError, swerveError, true);
+    highlight('pdm', speedPdm, swervePdm, false);
+    const compliance = a > 1.75
+      ? '✕ Drivable area compliance'
+      : a < -1.75
+      ? '✕ Driving direction compliance'
+      : '✓ Compliant';
+    const status = document.getElementById('swerve-compliance');
+    status.textContent = compliance;
+    status.classList.toggle('is-failure', Math.abs(a) > 1.75);
+    draw('speed-road', v, 0, '#ffbe27');
+    draw('swerve-road', 100, a, '#8D91BF');
+  }
+  speed.addEventListener('input', update);
+  swerve.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>

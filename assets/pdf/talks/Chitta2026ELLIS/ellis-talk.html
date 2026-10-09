@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="ellis-talk_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ellis-talk_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ellis-talk_files/libs/quarto-html/popper.min.js"></script>
+<script src="ellis-talk_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ellis-talk_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ellis-talk_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="ellis-talk_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
+
+  <meta name="author" content="Kashyap Chitta">
+  <meta name="dcterms.date" content="2026-09-16">
+  <title>Making Progress Measurable</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ellis-talk_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ellis-talk_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="ellis-talk_files/libs/revealjs/dist/theme/quarto-66e42871b5af74a6fa35048d9817a0fe.css">
+  <link href="ellis-talk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ellis-talk_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ellis-talk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ellis-talk_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#000000" class="quarto-title-block center">
+  <h1 class="title">Making Progress Measurable</h1>
+  <p class="subtitle">Evaluation and Benchmarking of Driving Policies</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Kashyap Chitta 
+</div>
+        <p class="quarto-title-affiliation">
+            ELLIS Institute Tübingen and KE:SAI <br>
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-09-16</p>
+</section>
+<section>
+<section id="where-we-are-and-how-we-got-here" class="title-slide slide level1 section-divider center" data-background-color="#000000">
+<h1>Where we are and how we got here</h1>
+
+</section>
+<section id="autonomous-driving-in-the-1990s" class="slide level2 vamp-slide nostretch">
+<h2>Autonomous driving in the 1990s</h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<h3 id="ernst-dickmanns-and-team-universität-der-bundeswehr-münchen-siedersberger2003">Ernst Dickmanns and team, Universität der Bundeswehr München <span class="citation" data-cites="Siedersberger2003">(<a href="#/references" role="doc-biblioref" onclick="">Siedersberger 2003</a>)</span></h3>
+<div class="vamp-layout">
+<div class="vamp-video">
+<iframe data-external="1" src="https://www.youtube.com/embed/RgyK-hjhOjQ?mute=1" title="Ernst Dickmanns autonomous driving demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<div class="vamp-stats">
+<div class="card stat">
+<h3>
+1,758 km
+</h3>
+<p>Munich–Odense–Munich</p>
+</div>
+<div class="card stat">
+<h3>
+95%
+</h3>
+<p>of the distance autonomous</p>
+</div>
+<div class="card stat">
+<h3>
+1995
+</h3>
+<p>On public highways</p>
+</div>
+</div>
+</div>
+</section>
+<section id="autonomous-driving-in-the-2020s" class="slide level2 nostretch">
+<h2>Autonomous driving in the 2020s</h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<div class="driving-demos">
+<div class="card driving-demo">
+<h3>
+Tesla FSD 14.3
+</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/UbuZeQFfu8U?mute=1" title="Tesla FSD 14.3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<div class="card driving-demo">
+<h3>
+NVIDIA DRIVE AV
+</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/ZMpDiGoU4Wg?mute=1" title="NVIDIA — On the Road With DRIVE AV" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<div class="card driving-demo">
+<h3>
+Horizon HSD 2.0
+</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/k5aDGCiCLfU?mute=1" title="Horizon HSD 2.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<div class="card driving-demo">
+<h3>
+Xpeng VLA 2.0
+</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/8qsLreyJ1qQ?mute=1" title="Xpeng VLA 2.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<div class="card driving-demo">
+<h3>
+WeRide WRD 3.0
+</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/bXMyts8NMdk?mute=1" title="WeRide WRD 3.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+<div class="card driving-demo">
+<h3>
+Nio NWD 2.0
+</h3>
+<iframe data-external="1" src="https://www.youtube.com/embed/iBRiVgwJtGw?mute=1" title="Nio NWD 2.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+</div>
+</section>
+<section id="section" class="slide level2 opening-statement">
+<h2></h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<p>The automotive industry spent <strong>&gt;$100B</strong> to automate <strong>0.00006%</strong> of traffic.</p>
+</section>
+<section id="open-source-investment-accelerated-digital-ai" class="slide level2 intelligence-index-slide nostretch">
+<h2>Open source investment accelerated digital AI</h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<iframe class="intelligence-index-embed" data-external="1" src="https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index?models=deepseek-llm-67b-chat%2Cdeepseek-v2%2Cdeepseek-v2-5-sep-2024%2Cglm-4.5%2Cglm-4-6-reasoning%2Cglm-4-7%2Cglm-5%2Cglm-5-1%2Cglm-5-2%2Cgpt-4%2Cgpt-5-chatgpt%2Cgpt-5-6-sol-xhigh%2Cglm-5-3%2Cgpt-6-astra%2Cdeepseek-v3%2Cdeepseek-r1-0120%2Cdeepseek-v3-1-reasoning%2Cdeepseek-v3-2-reasoning-0925%2Cdeepseek-v4-pro-0424%2Cgpt-5-5%2Ckimi-k3%2Ckimi-k2-thinking%2Ckimi-k2-5%2Ckimi-k2-6%2Cgpt-4o-chatgpt%2Cgpt-4-1#artificial-analysis-intelligence-index-score-vs-release-date" title="Artificial Analysis Intelligence Index — selected models" loading="lazy" allowfullscreen="">
+</iframe>
+</section>
+<section id="the-open-source-wave-in-autonomous-driving-is-here" class="slide level2 nostretch">
+<h2>The open-source wave in autonomous driving is here</h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<div class="driving-demos open-source-panels">
+<div class="card">
+<h3>
+comma.ai
+</h3>
+<div class="github-repos"><a href="https://github.com/commaai/openpilot" target="_blank" rel="noopener" data-repo="commaai/openpilot"><header><div><div class="owner">commaai</div><div class="name">openpilot</div></div></header><div class="stats"><span>☆ <span data-stars="">63,644</span> stars</span><span>⑂ <span data-forks="">11,368</span> forks</span></div><div class="stamp">Created 24 Nov 2016</div></a></div>
+</div>
+<div class="card">
+<h3>
+Tier IV / Autoware
+</h3>
+<div class="github-repos"><a href="https://github.com/autowarefoundation/autoware" target="_blank" rel="noopener" data-repo="autowarefoundation/autoware"><header><div><div class="owner">autowarefoundation</div><div class="name">autoware</div></div></header><div class="stats"><span>☆ <span data-stars="">12,058</span> stars</span><span>⑂ <span data-forks="">3,713</span> forks</span></div><div class="stamp">Created 24 Aug 2015</div></a><a href="https://github.com/autowarefoundation/auto_e2e" target="_blank" rel="noopener" data-repo="autowarefoundation/auto_e2e"><header><div><div class="owner">autowarefoundation</div><div class="name">auto_e2e</div></div></header><div class="stats"><span>☆ <span data-stars="">167</span> stars</span><span>⑂ <span data-forks="">30</span> forks</span></div><div class="stamp">Created 25 May 2026</div></a></div>
+</div>
+<div class="card">
+<h3>
+OpenDriveLab
+</h3>
+<div class="github-repos"><a href="https://github.com/OpenDriveLab/UniAD" target="_blank" rel="noopener" data-repo="OpenDriveLab/UniAD"><header><div><div class="owner">OpenDriveLab</div><div class="name">UniAD</div></div></header><div class="stats"><span>☆ <span data-stars="">4,753</span> stars</span><span>⑂ <span data-forks="">550</span> forks</span></div><div class="stamp">Created 7 Dec 2022</div></a><a href="https://github.com/OpenDriveLab/WorldEngine" target="_blank" rel="noopener" data-repo="OpenDriveLab/WorldEngine"><header><div><div class="owner">OpenDriveLab</div><div class="name">WorldEngine</div></div></header><div class="stats"><span>☆ <span data-stars="">505</span> stars</span><span>⑂ <span data-forks="">33</span> forks</span></div><div class="stamp">Created 8 Apr 2026</div></a></div>
+</div>
+<div class="card">
+<h3>
+NVIDIA
+</h3>
+<div class="github-repos"><a href="https://github.com/NVlabs/alpamayo" target="_blank" rel="noopener" data-repo="NVlabs/alpamayo"><header><div><div class="owner">NVlabs</div><div class="name">alpamayo</div></div></header><div class="stats"><span>☆ <span data-stars="">2,020</span> stars</span><span>⑂ <span data-forks="">339</span> forks</span></div><div class="stamp">Created 19 Nov 2025</div></a><a href="https://github.com/NVlabs/OmniDrive" target="_blank" rel="noopener" data-repo="NVlabs/OmniDrive"><header><div><div class="owner">NVlabs</div><div class="name">OmniDrive</div></div></header><div class="stats"><span>☆ <span data-stars="">642</span> stars</span><span>⑂ <span data-forks="">53</span> forks</span></div><div class="stamp">Created 1 May 2024</div></a></div>
+</div>
+<div class="card">
+<h3>
+Valeo.ai
+</h3>
+<div class="github-repos"><a href="https://github.com/valeoai/DrivoR" target="_blank" rel="noopener" data-repo="valeoai/DrivoR"><header><div><div class="owner">valeoai</div><div class="name">DrivoR</div></div></header><div class="stats"><span>☆ <span data-stars="">271</span> stars</span><span>⑂ <span data-forks="">24</span> forks</span></div><div class="stamp">Created 5 Jan 2026</div></a><a href="https://github.com/valeoai/VideoActionModel" target="_blank" rel="noopener" data-repo="valeoai/VideoActionModel"><header><div><div class="owner">valeoai</div><div class="name">VideoActionModel</div></div></header><div class="stats"><span>☆ <span data-stars="">166</span> stars</span><span>⑂ <span data-forks="">9</span> forks</span></div><div class="stamp">Created 9 Feb 2024</div></a></div>
+</div>
+<div class="card">
+<h3>
+KE:SAI
+</h3>
+<div class="github-repos"><a href="https://github.com/kesai-labs/lead" target="_blank" rel="noopener" data-repo="kesai-labs/lead"><header><div><div class="owner">kesai-labs</div><div class="name">lead</div></div></header><div class="stats"><span>☆ <span data-stars="">225</span> stars</span><span>⑂ <span data-forks="">32</span> forks</span></div><div class="stamp">Created 14 Dec 2025</div></a><a href="https://github.com/kesai-labs/py123d_garage" target="_blank" rel="noopener" data-repo="kesai-labs/py123d_garage"><header><div><div class="owner">kesai-labs</div><div class="name">py123d_garage</div></div></header><div class="stats"><span>☆ <span data-stars="">11</span> stars</span><span>⑂ <span data-forks="">0</span> forks</span></div><div class="stamp">Created 2 Aug 2026</div></a></div>
+</div>
+</div>
+<script>
+document.querySelectorAll('.open-source-panels [data-repo]').forEach(async card=>{try{const response=await fetch('https://api.github.com/repos/'+card.dataset.repo);if(!response.ok)return;const repo=await response.json();if(!Number.isFinite(repo.stargazers_count)||!Number.isFinite(repo.forks_count))return;card.querySelector('[data-stars]').textContent=repo.stargazers_count.toLocaleString();card.querySelector('[data-forks]').textContent=repo.forks_count.toLocaleString();}catch{ /* Keep the saved counts when offline or rate limited. */ }});
+</script>
+</section>
+<section id="returns-on-open-source-investment" class="slide level2 nostretch">
+<h2>Returns on open-source investment</h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<h3 id="from-open-source-software-to-open-source-strategy-gurley2026opensourcestrategy"><a href="https://p3institute.substack.com/p/from-open-source-software-to-open#%C2%A7open-source-and-autonomous-vehicles">From open source software to open source strategy</a> <span class="citation" data-cites="Gurley2026OpenSourceStrategy">(<a href="#/references" role="doc-biblioref" onclick="">Gurley 2026</a>)</span></h3>
+<p><img data-src="gfx/coalition.png" class="coalition-image" alt="Bill Gurley's overview of open AV stakeholders, the risk of dependence on proprietary stacks, and a proposed global open-source consortium."></p>
+<div class="takeaway">
+<p>Activating this trillion-dollar coalition through open-source will benefit all members.</p>
+</div>
+</section>
+<section id="benchmarks-catalyze-progress" class="slide level2 nostretch">
+<h2>Benchmarks catalyze progress</h2>
+<div class="footer">
+Where we are and how we got here
+</div>
+<h3 id="linux-comparisons-led-to-funding-kegelmindcraft-veritest2003fileserver">Linux: comparisons led to funding <span class="citation" data-cites="KegelMindcraft VeriTest2003FileServer">(<a href="#/references" role="doc-biblioref" onclick="">Kegel 2003</a>; <a href="#/references" role="doc-biblioref" onclick="">VeriTest 2003</a>)</span></h3>
+<div class="steps two-panels">
+<div class="card">
+<h3>Mindcraft (1999)</h3>
+<p>Windows NT 4.0 / IIS vs.&nbsp;Red Hat 5.2 / Apache</p>
+<p><strong>2.5× Windows advantage</strong>.</p>
+</div>
+<div class="card">
+<h3>VeriTest (2003)</h3>
+<p>Windows Server 2003 vs.&nbsp;Red Hat 2.1</p>
+<p><strong>1.66× Windows advantage</strong>.</p>
+</div>
+</div>
+<ul>
+<li><strong>Red Hat reached $1B in annual revenue in 2012.</strong> <span class="citation" data-cites="RedHat2012Revenue">(<a href="#/references" role="doc-biblioref" onclick="">Red Hat 2012</a>)</span></li>
+<li>Nonprofit established, companies now also pay developers directly. <span class="citation" data-cites="LinuxFoundation2009">(<a href="#/references" role="doc-biblioref" onclick="">The Linux Foundation 2009</a>)</span></li>
+</ul>
+<div class="takeaway">
+<p>Open code attracts sustained investment when businesses depend on it.</p>
+</div>
+</section></section>
+<section>
+<section id="accelerating-open-research-with-the-common-task-framework" class="title-slide slide level1 section-divider center" data-background-color="#000000">
+<h1>Accelerating open research with the common task framework</h1>
+
+</section>
+<section id="the-story-of-speech-transcription" class="slide level2 nostretch">
+<h2>The story of speech transcription</h2>
+<div class="footer">
+Accelerating open research with the common task framework
+</div>
+<iframe data-external="1" src="gfx/kyutai-stt.html" title="Kyutai stt-1b-en_fr live speech transcription" allow="microphone" style="display: block; width: 100%; height: 540px; max-width: none; max-height: none; margin: 0; border: 0; border-radius: 8px;">
+</iframe>
+</section>
+<section id="s-the-demo-culture-in-speech-technology" class="slide level2">
+<h2>1970s: the demo culture in speech technology</h2>
+<div class="footer">
+Accelerating open research with the common task framework
+</div>
+<h3 id="every-group-chooses-its-own-test-and-every-approach-looks-promising">Every group chooses its own test, and every approach looks promising</h3>
+<ul>
+<li>Elaborate speech systems that consumed resources without yielding clear knowledge <span class="citation" data-cites="Pierce1969Whither">(<a href="#/references" role="doc-biblioref" onclick="">Pierce 1969</a>)</span>.</li>
+<li>Pushback from executives at Bell Labs and US government on potential value.</li>
+<li><strong>Zero</strong> US funding for speech or translation research from <strong>1975-1985</strong>.</li>
+</ul>
+</section>
+<section id="speech-adopts-a-common-task-framework" class="slide level2">
+<h2>1985–1991: speech adopts a common task framework</h2>
+<div class="footer">
+Accelerating open research with the common task framework
+</div>
+<h3 id="same-recordings-same-scoring-rules-comparable-results-pallett1985assessment-wayne1991snapshot">Same recordings, same scoring rules, comparable results <span class="citation" data-cites="Pallett1985Assessment Wayne1991Snapshot">(<a href="#/references" role="doc-biblioref" onclick="">Pallett 1985</a>; <a href="#/references" role="doc-biblioref" onclick="">Wayne 1991</a>)</span></h3>
+<ul>
+<li>1985: <strong>Pallett</strong> advocates the common task framework.</li>
+<li>1991: <strong>NIST</strong> compares systems under this framework on shared <strong>Resource Management (RM)</strong> and <strong>Air Travel Information System (ATIS)</strong> corpora.</li>
+</ul>
+<div class="steps">
+<div class="card">
+<h3>
+Share
+</h3>
+<p>Common dev split of speech recordings and transcripts</p>
+</div>
+<div class="card">
+<h3>
+Test
+</h3>
+<p>Held-out recordings, scored by pre-defined metric</p>
+</div>
+<div class="card">
+<h3>
+Compare
+</h3>
+<p>Anything goes, best method wins</p>
+</div>
+</div>
+</section>
+<section id="not-everyone-liked-it" class="slide level2 nostretch">
+<h2>Not everyone liked it</h2>
+<div class="footer">
+Accelerating open research with the common task framework
+</div>
+<h3 id="reactions-to-the-common-task-framework-liberman2015reproducible">Reactions to the common task framework <span class="citation" data-cites="Liberman2015Reproducible">(<a href="#/references" role="doc-biblioref" onclick="">Liberman 2015</a>)</span></h3>
+<p>Many were skeptical</p>
+<blockquote>
+<p>“You can’t turn water into gasoline, no matter what you measure.”</p>
+</blockquote>
+<p>Others were disgruntled</p>
+<blockquote>
+<p>“It’s like being in first grade again — you’re told exactly what to do, and then you’re tested over and over.”</p>
+</blockquote>
+</section>
+<section id="but-it-worked" class="slide level2 nostretch">
+<h2>But it worked!</h2>
+<div class="footer">
+Accelerating open research with the common task framework
+</div>
+<h3 id="shared-tests-made-progress-visible-nist2009speechhistory">Shared tests made progress visible <span class="citation" data-cites="NIST2009SpeechHistory">(<a href="#/references" role="doc-biblioref" onclick="">National Institute of Standards and Technology 2009</a>)</span></h3>
+<div style="text-align: center;">
+<p><img data-src="gfx/nist.png" alt="NIST speech-to-text benchmark history, May 2009. Word error rate on a logarithmic axis versus year, with separate series for read, air-travel, broadcast, conversational, and meeting speech. Many series show declining error, while harder tasks retain higher error rates." height="510"></p>
+</div>
+</section>
+<section id="the-common-task-framework-has-cemented-itself" class="slide level2 nostretch">
+<h2>The common task framework has cemented itself</h2>
+<div class="footer">
+Accelerating open research with the common task framework
+</div>
+<h3 id="in-speech-vision-liu2019objectdetectionsurvey-language-and-some-sciences">In speech, vision <span class="citation" data-cites="Liu2019ObjectDetectionSurvey">(<a href="#/references" role="doc-biblioref" onclick="">Liu et al. 2019</a>)</span>, language, and some sciences</h3>
+<ul>
+<li>1990s: no papers had benchmarks</li>
+<li>2010s: no papers without benchmarks</li>
+</ul>
+<div class="compact-figure" style="text-align: center;">
+<p><img data-src="gfx/detection.svg" alt="Figure 3 from Liu et al.: mean average precision of winning object detection systems on PASCAL VOC 2007–2012 and ILSVRC 2013–2017, showing substantial improvements with deep learning." height="380"></p>
+</div>
+</section></section>
+<section>
+<section id="the-battle-for-common-task-frameworks-in-driving" class="title-slide slide level1 section-divider center" data-background-color="#000000">
+<h1>The battle for common task frameworks in driving</h1>
+
+</section>
+<section id="section-1" class="slide level2 video-slide" data-background-color="#000000" data-background-iframe="https://www.youtube.com/embed/ChmF8IFagpo?start=4&amp;autoplay=1&amp;mute=1&amp;rel=0" data-background-interactive="true">
+<h2></h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+</section>
+<section id="carla-releases-and-challenges" class="slide level2 nostretch">
+<h2>CARLA releases and challenges</h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+<h3 id="the-most-impactful-simulator-for-embodied-ai">The most impactful simulator for embodied AI</h3>
+<div class="compact-figure" style="text-align: center;">
+<p><img data-src="gfx/carla.svg" alt="CARLA GitHub star history from 2017 to September 2026, rising to about 14,400 stars. Vertical version labels mark all 27 three-part releases on the blue curve, from 0.5.4 to 0.9.16, including 0.10.0. Flame-colored markers identify Challenge 2019–2024 at their host conferences’ start dates." width="1150"></p>
+</div>
+</section>
+<section id="evaluating-entire-driving-stacks-is-hard" class="slide level2 nostretch">
+<h2>Evaluating entire driving stacks is hard</h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+<h3 id="carla-did-not-define-standard-local-datasets-or-benchmarks-jaeger2024mistakes">CARLA did not define standard local datasets or benchmarks <span class="citation" data-cites="Jaeger2024Mistakes">(<a href="#/references" role="doc-biblioref" onclick="">Jaeger et al. 2024</a>)</span></h3>
+<ul>
+<li class="fragment">Matching permitted <strong>input spaces, conditioning, training towns, evaluation routes, safety-critical scenarios, and traffic density</strong> was non-trivial.</li>
+<li class="fragment">Training on validation towns or disabling scenarios changes the task.</li>
+<li class="fragment">Some papers introduce <strong>easier benchmarks under an existing benchmark’s name</strong>, making their methods appear stronger than the results justify.</li>
+<li class="fragment">Papers claimed state of the art while trailing methods published years earlier.</li>
+<li class="fragment">Errors propagated when authors copied tables from other papers.</li>
+</ul>
+<div class="takeaway fragment">
+<p>We need an independent evaluator to run standardized local evaluations too.</p>
+</div>
+</section>
+<section id="verifiable-reproducible" class="slide level2 nostretch">
+<h2>Verifiable != reproducible</h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+<h3 id="an-independent-server-verifies-the-result-but-cannot-verify-the-papers-explanation.">An independent server verifies the result, but cannot verify the paper’s explanation.</h3>
+<ul>
+<li>Three leading Leaderboard 1.0 methods reproduced substantially below their reported scores, despite public code and models matching the papers.</li>
+<li>Their released system differed from the submitted system.</li>
+</ul>
+<div class="takeaway">
+<p>We need to enforce or encourage reproducibility.</p>
+</div>
+</section>
+<section id="it-then-became-prohibitively-expensive" class="slide level2 nostretch">
+<h2>It then became prohibitively expensive</h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+<h3 id="closed-loop-outcomes-vary-with-both-simulation-and-model-training.">Closed-loop outcomes vary with both simulation and model training.</h3>
+<ul>
+<li>End-to-end methods can also have substantial <strong>training variance</strong>. Repeating simulation with one trained model does not measure that uncertainty.</li>
+</ul>
+<div class="steps">
+<div class="card stat">
+<h3>
+3
+</h3>
+<p>Independently trained models</p>
+</div>
+<div class="card stat">
+<h3>
+× 3
+</h3>
+<p>Evaluation repeats per model</p>
+</div>
+<div class="card stat">
+<h3>
+= 9
+</h3>
+<p>Runs averaged</p>
+</div>
+</div>
+<div class="takeaway">
+<p>We need evaluation cheap enough to measure both training and simulation variance.</p>
+</div>
+</section>
+<section id="the-breakdown-of-the-common-task-framework" class="slide level2 nostretch">
+<h2>The breakdown of the common task framework</h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+<h3 id="nuscenes-planning-and-the-return-of-mainstream-open-loop-evaluation">nuScenes planning and the return of mainstream open-loop evaluation</h3>
+<!-- Original slides 6 and 7: https://kashyap7x.github.io/assets/pdf/talks/Chitta2024CVPRb.pdf -->
+<div class="columns">
+<div class="column" style="width:49%;">
+<p><img data-src="gfx/cvpr24-6.png" style="width:100.0%" alt="Slide 6 from the CVPR 2024 NAVSIM talk: Is Ego Status All You Need for Open-Loop End-to-End Autonomous Driving? Trajectory heatmap and typical nuScenes scene."></p>
+</div><div class="column" style="width:49%;">
+<p><img data-src="gfx/cvpr24-7.png" style="width:100.0%" alt="Slide 7 from the CVPR 2024 NAVSIM talk: Ego-MLP."></p>
+</div></div>
+<div class="takeaway">
+<p>We need to define tasks that stop rewarding shortcut learning.</p>
+</div>
+</section>
+<section id="takeaways" class="slide level2 nostretch">
+<h2>Takeaways</h2>
+<div class="footer">
+The battle for common task frameworks in driving
+</div>
+<h3 id="what-a-common-task-framework-for-driving-needs">What a common task framework for driving needs</h3>
+<ul>
+<li><strong>Task design:</strong> stop rewarding shortcut learning.</li>
+<li><strong>Affordability:</strong> cheap enough to measure training and simulation variance.</li>
+<li><strong>Reproducibility:</strong> enforce or encourage reproducible results.</li>
+<li><strong>Independent evaluation:</strong> standardized evaluations on an independent server.</li>
+</ul>
+</section></section>
+<section>
+<section id="lightweight-simulation-with-navsim" class="title-slide slide level1 section-divider center" data-background-color="#000000">
+<h1>Lightweight simulation with NAVSIM</h1>
+
+</section>
+<section id="distance-from-a-human-is-an-unreliable-target" class="slide level2 nostretch">
+<h2>Distance from a human is an unreliable target</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<h3 id="evaluating-safety-comfort-and-progress-dauner2024neurips">Evaluating safety, comfort, and progress <span class="citation" data-cites="Dauner2024NEURIPS">(<a href="#/references" role="doc-biblioref" onclick="">Dauner et al. 2024</a>)</span></h3>
+<iframe data-external="1" src="gfx/ade.html" title="Figure 1: interactive comparison of ADE and NAVSIM scores" style="display: block; width: 100%; height: 540px; max-width: none; max-height: none; margin: 0; border: 0;">
+</iframe>
+</section>
+<section id="improving-the-test-distribution" class="slide level2 nostretch">
+<h2>Improving the test distribution</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<h3 id="filtering-results-in-diverse-scenes">Filtering results in diverse scenes</h3>
+<!-- Original slides 27 and 28: https://kashyap7x.github.io/assets/pdf/talks/Chitta2024CVPRb.pdf -->
+<div class="columns">
+<div class="column" style="width:49%;">
+<p><img data-src="gfx/cvpr24-27.png" style="width:100.0%" alt="Slide 27 from the CVPR 2024 NAVSIM talk: unfiltered recordings are mostly static or straight driving scenes."></p>
+</div><div class="column" style="width:49%;">
+<p><img data-src="gfx/cvpr24-28.png" style="width:100.0%" alt="Slide 28 from the CVPR 2024 NAVSIM talk: filtered data results in more diverse and challenging scenes."></p>
+</div></div>
+<div class="takeaway">
+<p>Shortcut learning from ego history ineffective.</p>
+</div>
+</section>
+<section id="evaluating-several-possible-futures-for-each-test-sample" class="slide level2 nostretch">
+<h2>Evaluating several possible futures for each test sample</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<h3 id="d-gaussian-splatting-to-measure-recovery-capability-cao2025corl.">3D Gaussian Splatting to measure recovery capability <span class="citation" data-cites="Cao2025CORL">(<a href="#/references" role="doc-biblioref" onclick="">Cao et al. 2025</a>)</span>.</h3>
+<!-- Figure 2 panels: https://arxiv.org/html/2506.04218v3#S3.F2 -->
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; justify-items: center;">
+<img src="gfx/pseudo-scene-1.png" alt="Figure 2, scene 1: real and synthetic front-camera views linked to vehicle poses on a curved road." style="width: 100%; height: auto; margin: 0;">
+<img src="gfx/pseudo-scene-2.png" alt="Figure 2, scene 2: real and synthetic front-camera views with their corresponding vehicle poses." style="width: 100%; height: auto; margin: 0;">
+<img src="gfx/pseudo-scene-3.png" alt="Figure 2, scene 3: alternative future viewpoints and their positions in the road layout." style="width: 100%; height: auto; margin: 0;">
+<img src="gfx/pseudo-scene-4.png" alt="Figure 2, scene 4: alternative future viewpoints and their positions in the road layout." style="width: 100%; height: auto; margin: 0;">
+</div>
+<div class="takeaway">
+<p>Pre-rendering and deterministic simulation improves affordability.</p>
+</div>
+</section>
+<section id="weighting-observations-by-proximity" class="slide level2 nostretch">
+<h2>Weighting observations by proximity</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<h3 id="avoiding-unsolvable-states-to-prevent-their-penalties">Avoiding unsolvable states to prevent their penalties</h3>
+<p><img data-src="gfx/pseudo.png" style="width:88.0%" alt="Pseudo-simulation uses pre-rendered observations around possible future vehicle states"></p>
+</section>
+<section id="pseudo-simulation-predicts-closed-loop-performance" class="slide level2 nostretch">
+<h2>Pseudo-simulation predicts closed-loop performance</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<h3 id="displacement-based-metrics-severely-underestimate-rule-based-planners">Displacement-based metrics severely underestimate rule-based planners</h3>
+<!-- Figure 3: https://arxiv.org/html/2506.04218v3#S4.F3 -->
+<p><img data-src="gfx/pseudo-correlation.svg" style="width:100.0%" alt="Figure 3: scatter plots compare ADE, nuPlan open-loop score, and pseudo-simulation EPDMS with closed-loop scores. EPDMS shows substantially stronger alignment across rule-based and learned planners."></p>
+</section>
+<section id="navsim-makes-progress-measurable" class="slide level2 nostretch">
+<h2>NAVSIM makes progress measurable</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<h3 id="the-next-step-is-returning-to-closed-loop-driving.">The next step is returning to closed-loop driving.</h3>
+<div class="benchmark-layout">
+<div class="benchmark-figure">
+<!-- Source: https://kashyap7x.github.io/assets/pdf/talks/Chitta2024CVPRb.pdf#page=36 -->
+<p><img data-src="gfx/cvpr24-36.png" style="width:100.0%" alt="Slide 36 of Kashyap Chitta's CVPR 2024 NAVSIM talk: challenge results with 463 submissions and 78 leaderboard entries, a PDM score histogram, and the leading teams."></p>
+</div>
+<div class="benchmark-panels">
+<div class="card">
+<h3>
+Enabled
+</h3>
+<p>Affordable, reproducible, independent evaluation for fast iteration.</p>
+</div>
+<div class="card">
+<h3>
+Missing
+</h3>
+<p>Rapid, iterative decisions under realistic vehicle memory and timing constraints.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="live-navsim-leaderboards" class="slide level2 nostretch">
+<h2>Live NAVSIM leaderboards</h2>
+<div class="footer">
+Lightweight simulation with NAVSIM
+</div>
+<div class="leaderboard-pair">
+<div class="leaderboard-panel">
+<h3>
+<a href="https://huggingface.co/spaces/AGC2024-P/e2e-driving-navtest">NAVSIM v1 · navtest</a>
+</h3>
+<div class="leaderboard-viewport">
+<iframe data-external="1" src="https://agc2024-p-e2e-driving-navtest.hf.space/" title="Live NAVSIM v1 navtest leaderboard" loading="lazy">
+</iframe>
+</div>
+</div>
+<div class="leaderboard-panel">
+<h3>
+<a href="https://huggingface.co/spaces/AGC2025/e2e-driving-navhard">NAVSIM v2 · navhard</a>
+</h3>
+<div class="leaderboard-viewport">
+<iframe data-external="1" src="https://agc2025-e2e-driving-navhard.hf.space/" title="Live NAVSIM v2 navhard leaderboard" loading="lazy">
+</iframe>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="closed-loop-simulation-at-scale-with-alpasim" class="title-slide slide level1 section-divider center" data-background-color="#000000">
+<h1>Closed-loop simulation at scale with AlpaSim</h1>
+
+</section>
+<section id="the-alpasim-challenge-team" class="slide level2 nostretch">
+<h2>The AlpaSim challenge team</h2>
+<div class="footer">
+Closed-loop simulation at scale with AlpaSim
+</div>
+<div class="team-grid">
+<figure>
+<a href="https://kashyap7x.github.io/"><img src="gfx/team/kashyap.jpg" alt="Kashyap Chitta"></a>
+<figcaption>
+Kashyap Chitta
+</figcaption>
+</figure>
+<figure>
+<a href="https://research.nvidia.com/labs/avg/author/michael-watson/"><img src="gfx/team/michael.png" alt="Michael Watson"></a>
+<figcaption>
+Michael Watson
+</figcaption>
+</figure>
+<figure>
+<a href="https://ln2697.github.io/"><img src="gfx/team/long.jpg" alt="Long Nguyen"></a>
+<figcaption>
+Long Nguyen
+</figcaption>
+</figure>
+<figure>
+<a href="https://github.com/WilliamLewww"><img class="team-portrait-top" src="gfx/team/william.png" alt="William Lew"></a>
+<figcaption>
+William Lew
+</figcaption>
+</figure>
+<figure>
+<a href="https://friedeggs.github.io/"><img src="gfx/team/frieda.png" alt="Frieda Rong"></a>
+<figcaption>
+Frieda Rong
+</figcaption>
+</figure>
+<figure>
+<a href="https://wcj-bert.github.io/"><img src="gfx/team/caojun.jpg" alt="Caojun Wang"></a>
+<figcaption>
+Caojun Wang
+</figcaption>
+</figure>
+<figure>
+<a href="https://opendrivelab.com/"><img src="gfx/team/haochen.jpg" alt="Haochen Tian"></a>
+<figcaption>
+Haochen Tian
+</figcaption>
+</figure>
+<figure>
+<a href="https://opendrivelab.com/"><img src="gfx/team/yihang.jpg" alt="Yihang Qiu"></a>
+<figcaption>
+Yihang Qiu
+</figcaption>
+</figure>
+<figure>
+<a href="https://research.nvidia.com/labs/avg/author/boris-ivanovic/"><img src="gfx/team/boris.jpg" alt="Boris Ivanovic"></a>
+<figcaption>
+Boris Ivanovic
+</figcaption>
+</figure>
+<figure>
+<a href="https://research.nvidia.com/labs/avg/author/maximilian-igl/"><img src="gfx/team/maximilian.jpg" alt="Maximilian Igl"></a>
+<figcaption>
+Maximilian Igl
+</figcaption>
+</figure>
+<figure>
+<a href="https://yiyiliao.github.io/"><img src="gfx/team/yiyi.jpg" alt="Yiyi Liao"></a>
+<figcaption>
+Yiyi Liao
+</figcaption>
+</figure>
+<figure>
+<a class="team-portrait-peter" href="https://research.nvidia.com/labs/avg/author/peter-karkus/"><img src="gfx/team/peter.png" alt="Peter Karkus"></a>
+<figcaption>
+Peter Karkus
+</figcaption>
+</figure>
+<figure>
+<a href="https://abursuc.github.io/"><img src="gfx/team/andrei.jpg" alt="Andrei Bursuc"></a>
+<figcaption>
+Andrei Bursuc
+</figcaption>
+</figure>
+<figure>
+<div class="team-more" aria-hidden="true">
+…
+</div>
+<figcaption>
+and many more
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="two-tracks-with-a-single-interface" class="slide level2">
+<h2>Two tracks with a single interface</h2>
+<div class="footer">
+Closed-loop simulation at scale with AlpaSim
+</div>
+<div class="video-pair">
+<div>
+<h3>
+Physical AI AV (1700 train hours)
+</h3>
+<video controls="" muted="" playsinline="" preload="none" aria-label="Baseline driving on Physical AI AV" src="https://huggingface.co/datasets/kesai-labs/videos/resolve/main/alpasim_pai.mp4">
+</video>
+</div>
+<div>
+<h3>
+nuPlan (120 train hours)
+</h3>
+<video controls="" muted="" playsinline="" preload="none" aria-label="Baseline driving on nuPlan" src="https://huggingface.co/datasets/kesai-labs/videos/resolve/main/alpasim_nuplan.mp4">
+</video>
+</div>
+</div>
+</section>
+<section id="one-devkit-for-any-training-dataset" class="slide level2 nostretch has-slide-qr">
+<h2>One devkit for any training dataset</h2>
+<div class="footer">
+Closed-loop simulation at scale with AlpaSim
+</div>
+<a class="slide-qr" href="https://github.com/kesai-labs/py123d_garage" aria-label="Open py123d_garage on GitHub"><img src="gfx/garage-qr.svg" alt="QR code linking to py123d_garage on GitHub"></a>
+<div class="leaderboard-pair">
+<div class="leaderboard-panel">
+<h3>
+<a href="https://github.com/kesai-labs/py123d">py123d</a>
+</h3>
+<div class="leaderboard-viewport">
+<iframe data-external="1" src="gfx/py123d.html" title="py123d GitHub README" loading="lazy">
+</iframe>
+</div>
+</div>
+<div class="leaderboard-panel">
+<h3>
+<a href="https://github.com/kesai-labs/py123d_garage">py123d_garage</a>
+</h3>
+<div class="leaderboard-viewport">
+<iframe data-external="1" src="gfx/garage.html" title="py123d_garage GitHub README" loading="lazy">
+</iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="a-common-task-framework-with-alpasim" class="slide level2 nostretch">
+<h2>A common task framework with AlpaSim</h2>
+<div class="footer">
+Closed-loop simulation at scale with AlpaSim
+</div>
+<h3 id="realistic-constraints-16-gib-gpu-memory-and-10-hz-target-planning-frequency">Realistic constraints: 16 GiB GPU memory and 10 Hz target planning frequency</h3>
+<div class="steps">
+<div class="card">
+<h3>
+Affordability
+</h3>
+<ul>
+<li>Pipeline parallelism</li>
+<li>Constant engineering gains</li>
+<li>Organizer compute for challenge</li>
+</ul>
+</div>
+<div class="card">
+<h3>
+Independent evaluation
+</h3>
+<ul>
+<li>Thousands of private held-out scenes across ten countries</li>
+<li>Smaller, standardized local splits</li>
+</ul>
+</div>
+<div class="card">
+<h3>
+Reproducibility
+</h3>
+<ul>
+<li>Tech reports checked against containers</li>
+<li>Periodic cleanup for public leaderboard</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="live-alpasim-leaderboard" class="slide level2 nostretch has-slide-qr">
+<h2>Live AlpaSim leaderboard</h2>
+<div class="footer">
+Closed-loop simulation at scale with AlpaSim
+</div>
+<a class="slide-qr" href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026" aria-label="Open the AlpaSim challenge landing page"><img src="gfx/alpasim-qr.svg" alt="QR code linking to the AlpaSim challenge landing page"></a>
+<div class="leaderboard-pair">
+<div class="leaderboard-panel">
+<h3>
+<a href="https://huggingface.co/spaces/nvidia/AlpasimE2EClosedLoopChallenge2026">Landing page</a>
+</h3>
+<div class="leaderboard-viewport">
+<iframe data-external="1" src="https://nvidia-alpasime2eclosedloopchallenge2026.hf.space/" title="Live AlpaSim E2E Closed-Loop Challenge 2026 leaderboard" loading="lazy">
+</iframe>
+</div>
+</div>
+<div class="leaderboard-panel">
+<h3>
+<a href="https://nvidia-alpasime2eclosedloopchallenge2026.hf.space/gradio/">Live leaderboard</a>
+</h3>
+<div class="leaderboard-viewport">
+<iframe data-external="1" src="https://nvidia-alpasime2eclosedloopchallenge2026.hf.space/gradio/" title="AlpaSim section 11 live leaderboard" loading="lazy">
+</iframe>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="open-research-in-benchmarking-driving-policies" class="title-slide slide level1 section-divider center" data-background-color="#000000">
+<h1>Open research in benchmarking driving policies</h1>
+
+</section>
+<section id="standardizing-deployment-to-the-real-world" class="slide level2 nostretch">
+<h2>Standardizing deployment to the real-world</h2>
+<div class="footer">
+Open research in benchmarking driving policies
+</div>
+<h3 id="from-simulation-research-vehicle-deployment">From simulation research vehicle deployment</h3>
+<div class="vehicle-collage">
+  <img class="vehicle-overview" src="gfx/vehicle-side.jpg" alt="Side view of the KE:SAI VW ID.7 research vehicle with its roof-mounted sensor rack.">
+  <img src="gfx/vehicle-sensors.jpg" alt="Close-up of cameras and LiDAR sensors on the roof rack.">
+  <img src="gfx/vehicle-computer.jpg" alt="Onboard computer and networking equipment installed in the trunk.">
+</div>
+</section>
+<section id="multi-fidelity-benchmarking" class="slide level2 nostretch">
+<h2>Multi-fidelity benchmarking</h2>
+<div class="footer">
+Open research in benchmarking driving policies
+</div>
+<div class="video-frame">
+<iframe data-external="1" src="https://www.youtube.com/embed/PBU-dPctKC0?mute=1" title="Multi-fidelity benchmarking video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</div>
+</section>
+<section id="multi-domain-benchmarking" class="slide level2 nostretch">
+<h2>Multi-domain benchmarking</h2>
+<div class="footer">
+Open research in benchmarking driving policies
+</div>
+<h3 id="more-diverse-benchmarks-can-have-less-stable-rankings-zhang2024benchmarks">More diverse benchmarks can have less stable rankings <span class="citation" data-cites="Zhang2024Benchmarks">(<a href="#/references" role="doc-biblioref" onclick="">Zhang and Hardt 2024</a>)</span></h3>
+<iframe data-external="1" src="gfx/benchbench.html" title="Cardinal BenchBench: diversity versus ranking sensitivity" style="display: block; width: 100%; height: 470px; max-width: none; max-height: none; margin: 0; border: 0;"></iframe>
+</section>
+<section id="learning-to-weight-tasks" class="slide level2 nostretch">
+<h2>Learning to weight tasks</h2>
+<div class="footer">
+Open research in benchmarking driving policies
+</div>
+<h3 id="item-response-theory-estimate-ability-difficulty-and-uncertainty-together-birnbaum1968">Item Response Theory: estimate ability, difficulty, and uncertainty together <span class="citation" data-cites="Birnbaum1968">(<a href="#/references" role="doc-biblioref" onclick="">Birnbaum 1968</a>)</span></h3>
+<iframe data-external="1" src="gfx/irt.html" title="Interactive item response theory for driving policies" style="display: block; width: 100%; height: 470px; max-width: none; max-height: none; margin: 0; border: 0;"></iframe>
+</section>
+<section id="context-aware-evaluation" class="slide level2 nostretch">
+<h2>Context-aware evaluation</h2>
+<div class="footer">
+Open research in benchmarking driving policies
+</div>
+<h3 id="frontier-models-can-decide-which-rules-matter-sun2026drivejudge">Frontier models can decide which rules matter <span class="citation" data-cites="Sun2026DriveJudge">(<a href="#/references" role="doc-biblioref" onclick="">Sun et al. 2026</a>)</span></h3>
+<div class="compact-figure" style="text-align: center;">
+<p><img data-src="gfx/judge.svg" alt="DriveJudge uses video, a bird's-eye view, and rule-based metrics to select relevant rules and evaluate a trajectory. When nudging around a parked bus, strict lane keeping is not relevant; the remaining metrics contribute to the aggregate score." height="470"></p>
+</div>
+</section>
+<section id="references" class="slide level2 references-slide smaller scrollable" data-footer="false">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Birnbaum1968" class="csl-entry" role="listitem">
+Birnbaum, A. (1968). Some latent trait models and their use in inferring an examinee’s ability. In F. M. Lord &amp; M. R. Novick (Eds.), <em>Statistical theories of mental test scores</em> (pp. 397–479). Addison-Wesley.
+</div>
+<div id="ref-Cao2025CORL" class="csl-entry" role="listitem">
+Cao, W., Hallgarten, M., Li, T., Dauner, D., Gu, X., Wang, C., et al. (2025). Pseudo-simulation for autonomous driving. In <em>Conference on robot learning (CoRL)</em>.
+</div>
+<div id="ref-Dauner2024NEURIPS" class="csl-entry" role="listitem">
+Dauner, D., Hallgarten, M., Li, T., Weng, X., Huang, Z., Yang, Z., et al. (2024). NAVSIM: Data-driven non-reactive autonomous vehicle simulation and benchmarking. In <em>Advances in neural information processing systems (NeurIPS)</em>.
+</div>
+<div id="ref-Gurley2026OpenSourceStrategy" class="csl-entry" role="listitem">
+Gurley, B. (2026, May 9). From open source software to open source strategy. <a href="https://p3institute.substack.com/p/from-open-source-software-to-open">https://p3institute.substack.com/p/from-open-source-software-to-open</a>
+</div>
+<div id="ref-Jaeger2024Mistakes" class="csl-entry" role="listitem">
+Jaeger, B., Chitta, K., Dauner, D., Renz, K., &amp; Geiger, A. (2024, December 16). Common mistakes in benchmarking autonomous driving. <a href="https://github.com/autonomousvision/carla_garage/blob/leaderboard_2/docs/common_mistakes_in_benchmarking_ad.md#carla-benchmarks">https://github.com/autonomousvision/carla_garage/blob/leaderboard_2/docs/common_mistakes_in_benchmarking_ad.md#carla-benchmarks</a>
+</div>
+<div id="ref-KegelMindcraft" class="csl-entry" role="listitem">
+Kegel, D. (2003). On <span>Mindcraft</span>’s april 1999 benchmark. <a href="https://www.kegel.com/mindcraft_redux.html">https://www.kegel.com/mindcraft_redux.html</a>
+</div>
+<div id="ref-Liberman2015Reproducible" class="csl-entry" role="listitem">
+Liberman, M. (2015). Reproducible computational experiments. CATS Reproducibility Workshop presentation. <a href="https://languagelog.ldc.upenn.edu/myl/LibermanCATS02262015.pdf">https://languagelog.ldc.upenn.edu/myl/LibermanCATS02262015.pdf</a>
+</div>
+<div id="ref-Liu2019ObjectDetectionSurvey" class="csl-entry" role="listitem">
+Liu, L., Ouyang, W., Wang, X., Fieguth, P., Chen, J., Liu, X., &amp; Pietikäinen, M. (2019). Deep learning for generic object detection: A survey. <em>arXiv preprint arXiv:1809.02165v4</em>. <a href="https://arxiv.org/html/1809.02165v4">https://arxiv.org/html/1809.02165v4</a>
+</div>
+<div id="ref-NIST2009SpeechHistory" class="csl-entry" role="listitem">
+National Institute of Standards and Technology. (2009). <span>NIST STT</span> benchmark test history—may 2009. <a href="https://www.nist.gov/sites/default/files/images/2016/12/22/history-1slide-may09-single.png">https://www.nist.gov/sites/default/files/images/2016/12/22/history-1slide-may09-single.png</a>
+</div>
+<div id="ref-Pallett1985Assessment" class="csl-entry" role="listitem">
+Pallett, D. S. (1985). Performance assessment of automatic speech recognizers. <em>Journal of Research of the National Bureau of Standards</em>, <em>90</em>(5), 371–387. <a href="https://nvlpubs.nist.gov/nistpubs/jres/090/jresv90n5p371_A1b.pdf">https://nvlpubs.nist.gov/nistpubs/jres/090/jresv90n5p371_A1b.pdf</a>
+</div>
+<div id="ref-Pierce1969Whither" class="csl-entry" role="listitem">
+Pierce, J. R. (1969). Whither speech recognition? <em>The Journal of the Acoustical Society of America</em>, <em>46</em>(4B), 1049–1051. <a href="https://doi.org/10.1121/1.1911801">https://doi.org/10.1121/1.1911801</a>
+</div>
+<div id="ref-RedHat2012Revenue" class="csl-entry" role="listitem">
+Red Hat. (2012). Red hat reports fourth quarter and fiscal year 2012 results. <a href="https://www.redhat.com/en/about/press-releases/red-hat-reports-fourth-quarter-and-fiscal-year-2012-results">https://www.redhat.com/en/about/press-releases/red-hat-reports-fourth-quarter-and-fiscal-year-2012-results</a>
+</div>
+<div id="ref-Siedersberger2003" class="csl-entry" role="listitem">
+Siedersberger, K.-H. (2003). <em>Komponenten zur automatischen fahrzeugführung in sehenden (semi-)autonomen fahrzeugen</em> (PhD thesis). Universität der Bundeswehr München. Retrieved from <a href="https://athene-forschung.unibw.de/doc/85329/85329.pdf">https://athene-forschung.unibw.de/doc/85329/85329.pdf</a>
+</div>
+<div id="ref-Sun2026DriveJudge" class="csl-entry" role="listitem">
+Sun, X., Xie, K., Schmalfuss, J., Paschalidou, D., Zhang, X., Fidler, S., et al. (2026). <span>DriveJudge</span>: Rethinking autonomous driving evaluation with vision-language models. <a href="https://arxiv.org/abs/2606.17362v1">https://arxiv.org/abs/2606.17362v1</a>
+</div>
+<div id="ref-LinuxFoundation2009" class="csl-entry" role="listitem">
+The Linux Foundation. (2009). Linux foundation expands individual membership program with new benefits and linux.com email address. <a href="https://www.linuxfoundation.org/press/press-release/linux-foundation-expands-individual-membership-program-with-new-benefits-and-linux-com-email-address">https://www.linuxfoundation.org/press/press-release/linux-foundation-expands-individual-membership-program-with-new-benefits-and-linux-com-email-address</a>
+</div>
+<div id="ref-VeriTest2003FileServer" class="csl-entry" role="listitem">
+VeriTest. (2003). <em>Microsoft windows server 2003 vs. Linux competitive file server performance comparison</em>. VeriTest. <a href="https://tech-insider.org/windows/research/acrobat/0304-a.pdf">https://tech-insider.org/windows/research/acrobat/0304-a.pdf</a>
+</div>
+<div id="ref-Wayne1991Snapshot" class="csl-entry" role="listitem">
+Wayne, C. L. (1991). A snapshot of two <span>DARPA</span> speech and natural language programs. In <em>Speech and natural language: Proceedings of a workshop held at pacific grove, california, february 19–22, 1991</em>. <a href="https://aclanthology.org/H91-1078/">https://aclanthology.org/H91-1078/</a>
+</div>
+<div id="ref-Zhang2024Benchmarks" class="csl-entry" role="listitem">
+Zhang, G., &amp; Hardt, M. (2024). Inherent trade-offs between diversity and stability in multi-task benchmarks. In <em>International conference on machine learning (ICML)</em>. <a href="https://arxiv.org/abs/2405.01719">https://arxiv.org/abs/2405.01719</a>
+</div>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="ellis-talk_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="ellis-talk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="ellis-talk_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ellis-talk_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 8.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

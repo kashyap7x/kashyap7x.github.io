@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardinal BenchBench: diversity and ranking sensitivity</title>
+<style>
+  body { margin: 0; background: white; font: 16px system-ui, sans-serif; }
+  main { height: 100vh; }
+</style>
+<main><canvas id="chart" role="img" aria-label="Cardinal BenchBench scatter plot: diversity (W) versus sensitivity (tau). Click legend entries to toggle benchmarks."></canvas></main>
+<script src="chart.js"></script>
+<script>
+// Left cardinal panel from https://socialfoundations.github.io/benchbench/leaderboard.html
+// Data snapshot from data/cardinal_tau.json; original labels, points, and axes preserved.
+const source = {"data": [{"label": "GLUE", "data": [{"x": 0.16, "y": 0.12, "url": "benchmark_detail.html?bench=GLUE"}], "pointRadius": 10}, {"label": "SuperGLUE", "data": [{"x": 0.13, "y": 0.11, "url": "benchmark_detail.html?bench=SuperGlue"}], "pointRadius": 10}, {"label": "OpenLLM", "data": [{"x": 0.82, "y": 0.46, "url": "benchmark_detail.html?bench=OpenLLM"}], "pointRadius": 10}, {"label": "MMLU", "data": [{"x": 0.53, "y": 0.34, "url": "benchmark_detail.html?bench=MMLU"}], "pointRadius": 10}, {"label": "BigBenchHard", "data": [{"x": 0.32, "y": 0.25, "url": "benchmark_detail.html?bench=BigBenchHard"}], "pointRadius": 10}, {"label": "MTEB", "data": [{"x": 0.08, "y": 0.18, "url": "benchmark_detail.html?bench=MTEB"}], "pointRadius": 10}, {"label": "VTAB", "data": [{"x": 0.19, "y": 0.07, "url": "benchmark_detail.html?bench=VTAB"}], "pointRadius": 10}, {"label": "OpenLLM-v2", "data": [{"x": "0.59", "y": "0.41", "url": "benchmark_detail.html?bench=OpenLLM-v2"}], "pointRadius": 10}, {"label": "ImageNet", "data": [{"x": 0.01, "y": 0.02, "url": "#"}], "pointRadius": 10}, {"label": "Random", "data": [{"x": 0.99, "y": 0.49, "url": "#"}], "pointRadius": 10}, {"label": "Constant", "data": [{"x": 0.0, "y": 0.0, "url": "#"}], "pointRadius": 10}]};
+Chart.defaults.font.size = 16;
+const chart = new Chart(document.getElementById('chart'), {
+  type: 'scatter',
+  data: { datasets: source.data },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false,
+    onClick: (event, elements) => {
+      if (!elements.length) return;
+      const point = elements[0];
+      const url = chart.data.datasets[point.datasetIndex].data[point.index].url;
+      if (url && url !== '#') window.open(new URL(url, 'https://socialfoundations.github.io/benchbench/').href, '_blank', 'noopener');
+    },
+    scales: {
+      x: { type: 'linear', position: 'bottom', title: { display: true, text: 'Diversity (W)' } },
+      y: { beginAtZero: true, title: { display: true, text: 'Sensitivity (tau)' } }
+    }
+  }
+});
+</script>
+</html>

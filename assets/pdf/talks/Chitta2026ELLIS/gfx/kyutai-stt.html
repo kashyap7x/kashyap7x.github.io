@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kyutai live speech transcription</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f5f5f5; color: #171717; font: 26px/1.5 system-ui, sans-serif; }
+  main { height: 100vh; padding: 32px; display: flex; flex-direction: column; gap: 20px; }
+  #transcript { flex: 1; overflow: auto; white-space: pre-wrap; }
+  footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  #status { font-size: 18px; color: #555; }
+  button { border: 0; border-radius: 6px; padding: 14px 24px; background: #1A237E; color: #fff; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: wait; }
+</style>
+<main>
+  <div id="transcript" aria-live="polite"></div>
+  <footer><span id="status" role="status">Kyutai · stt-1b-en_fr</span><button id="toggle">Start transcribing</button></footer>
+</main>
+<script src="msgpack.min.js"></script>
+<script>
+// Public endpoint and message protocol used by https://kyutai.org/stt/.
+const button = document.querySelector('#toggle');
+const transcript = document.querySelector('#transcript');
+const status = document.querySelector('#status');
+let stream, context, socket, source, processor;
+let active = false;
+function stop(message = 'Stopped') {
+  active = false;
+  if (socket) { socket.onclose = null; socket.close(); socket = null; }
+  if (processor) { processor.disconnect(); processor = null; }
+  if (source) { source.disconnect(); source = null; }
+  if (stream) { stream.getTracks().forEach(track => track.stop()); stream = null; }
+  if (context) { context.close(); context = null; }
+  status.textContent = message;
+  button.textContent = 'Start transcribing';
+  button.disabled = false;
+}
+button.onclick = async () => {
+  if (active) { stop(); return; }
+  button.disabled = true;
+  try {
+    if (!navigator.mediaDevices) throw new Error('Open the presentation on localhost or HTTPS to enable the microphone.');
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    context = new AudioContext({ sampleRate: 24000 });
+    await context.resume();
+    const worklet = new Blob([`class PCMInput extends AudioWorkletProcessor {
+      process(inputs) {
+        if (inputs[0]?.[0]) this.port.postMessage(inputs[0][0]);
+        return true;
+      }
+    }
+    registerProcessor('pcm-input', PCMInput);`], { type: 'text/javascript' });
+    const url = URL.createObjectURL(worklet);
+    try { await context.audioWorklet.addModule(url); } finally { URL.revokeObjectURL(url); }
+    processor = new AudioWorkletNode(context, 'pcm-input');
+    source = context.createMediaStreamSource(stream);
+    socket = new WebSocket('wss://unmute.sh/stt-server/api/asr-streaming?auth_id=public_token');
+    socket.binaryType = 'arraybuffer';
+    active = true;
+    status.textContent = 'Connecting…';
+    button.textContent = 'Stop';
+    button.disabled = false;
+    socket.onopen = () => {
+      transcript.textContent = '';
+      status.textContent = 'Listening…';
+      processor.port.onmessage = ({ data }) => {
+        if (socket?.readyState === WebSocket.OPEN) socket.send(MessagePack.encode({ type: 'Audio', pcm: Array.from(data) }));
+      };
+      source.connect(processor);
+      processor.connect(context.destination);
+    };
+    socket.onmessage = ({ data }) => {
+      try {
+        const message = MessagePack.decode(new Uint8Array(data));
+        if (message.type === 'Word') {
+          transcript.textContent += (transcript.textContent ? ' ' : '') + message.text;
+          transcript.scrollTop = transcript.scrollHeight;
+        } else if (message.type === 'Step') {
+          status.textContent = message.prs[3] > .5 ? 'End of speech detected' : 'Listening…';
+        } else if (message.type === 'Error') stop('Transcription service error. Please try again.');
+      } catch (error) { stop('Could not read the transcription response. Please try again.'); }
+    };
+    socket.onerror = () => stop('Could not connect to Kyutai. Check your connection and try again.');
+    socket.onclose = () => stop('Connection closed. Press Start to reconnect.');
+  } catch (error) { stop(error.message || 'Could not start the microphone.'); }
+};
+window.addEventListener('pagehide', () => stop());
+</script>
+</html>

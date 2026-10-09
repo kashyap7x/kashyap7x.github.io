@@ -1,0 +1,10 @@
+Created with the built-in image_gen tool from Chitta2026ELLIS.jpg, then resized
+to 960 × 540 and saved as JPEG using sips.
+
+Final prompt:
+Use case: identity-preserve
+Asset type: 16:9 photographic thumbnail for an academic website's talks page.
+Input image: edit target, the supplied photograph of Kashyap Chitta speaking at a wooden lectern.
+Primary request: Create a simple landscape thumbnail by cropping this existing photo tightly around the speaker's head, shoulders, upper torso, and the adjacent lectern and microphone. Use the existing image pixels; do not invent a wider scene. Trim away most of the slide bibliography above and the lower foreground equipment. Center the speaker's face near the upper-middle of the crop, keep his entire head visible with breathing room, and include enough of the lectern to read as a live academic talk.
+Style/medium: Original candid event photograph, natural lighting.
+Constraints: Preserve the actual person's identity, face, hair, glasses, expression, body, clothing, pose, microphone, lectern, architectural background, and lighting exactly. Only change framing by cropping to a 16:9 landscape aspect ratio. No face reconstruction or beautification, no retouching, no new elements, no added text, no captions, no watermark.

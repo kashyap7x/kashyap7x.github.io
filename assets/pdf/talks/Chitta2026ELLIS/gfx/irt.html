@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Easy and hard routes: evidence about policy ability</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: white; color: #111; font: 18px "Fira Sans", system-ui, sans-serif; }
+main { padding: 6px 2px; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+th, td { text-align: center; padding: 12px 8px; border-bottom: 1px solid #dddde8; }
+th { font-weight: 500; font-size: 18px; }
+th:first-child { width: 13%; text-align: left; }
+th:last-child { width: 27%; }
+small { display: block; color: #666; font-weight: 400; font-size: 13px; margin-top: 5px; }
+button { font: inherit; cursor: pointer; border: 1px solid #c3c4d6; border-radius: 5px; background: white; color: #555; }
+.outcome { width: 100%; padding: 10px 4px; font-size: 17px; }
+.outcome[data-state="1"] { background: #eeeefa; color: #1a237e; border-color: #535abf; }
+.outcome[data-state="0"] { background: #fff2e9; color: #a83b00; border-color: #e65100; }
+:focus-visible { outline: 3px solid #ffbe28; outline-offset: 2px; }
+.estimate { font-size: 26px; color: #1a237e; font-variant-numeric: tabular-nums; }
+.scale { position: relative; height: 14px; margin: 7px 14px 0; border-bottom: 2px solid #dddde8; }
+.zero { position: absolute; left: 50%; top: 2px; height: 14px; border-left: 1px dashed #888; }
+.shift { position: absolute; height: 4px; top: 10px; background: #535abf; }
+.dot { position: absolute; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: #1a237e; transform: translateX(-50%); }
+.controls { display: flex; align-items: center; gap: 12px; margin-top: 15px; }
+.controls button { padding: 6px 12px; font-size: 14px; }
+.controls span { font-size: 14px; color: #555; }
+@media (max-width: 700px) { body { font-size: 14px; } th { font-size: 14px; } .outcome { font-size: 13px; } th, td { padding: 9px 4px; } }
+</style>
+</head>
+<body>
+<main>
+<table aria-label="Driving policy outcomes, inferred ability and route difficulty">
+<thead><tr><th>Estimated difficulty</th><th>Lane following<small>Starting difficulty −2</small><div id="route-0"></div></th><th>Busy merge<small>Starting difficulty 0</small><div id="route-1"></div></th><th>Occluded turn<small>Starting difficulty +2</small><div id="route-2"></div></th><th>Estimated ability<small>All start at 0</small></th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+<div class="controls"><button id="reset" type="button">Reset example</button><button id="complete" type="button">Fail the untested routes</button><span>Click a cell: not tested → success → failure.</span></div>
+
+</main>
+<script>
+// Joint Bayesian 1PL model: P(success) = sigmoid(theta_i - b_j).
+// Independent unit-variance Gaussian priors anchor the otherwise unidentified scale:
+// policy abilities centered at 0, route difficulties centered at [-2, 0, 2].
+// Fit all six parameters jointly by Newton's method (strictly convex negative log
+// posterior). Display MAP estimates and Laplace marginal standard deviations.
+// Every interaction refits the current matrix from the priors; no evidence is counted twice.
+const prior = [0, 0, 0, -2, 0, 2];
+const names = ['Lane following', 'Busy merge', 'Occluded turn'];
+const labels = { '-1': '— Not tested', '1': '✓ Success', '0': '× Failure' };
+const initial = () => [[1, -1, -1], [-1, 1, -1], [-1, -1, 1]];
+let outcomes = initial();
+const el = id => document.getElementById(id);
+function derivatives(values, matrix) {
+  const gradient = values.map((value, i) => value - prior[i]);
+  const hessian = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => Number(i === j)));
+  matrix.forEach((row, i) => row.forEach((result, j) => {
+    if (result === -1) return;
+    const k = j + 3;
+    const p = 1 / (1 + Math.exp(-(values[i] - values[k])));
+    const residual = p - result, information = p * (1 - p);
+    gradient[i] += residual; gradient[k] -= residual;
+    hessian[i][i] += information; hessian[k][k] += information;
+    hessian[i][k] -= information; hessian[k][i] -= information;
+  }));
+  return { gradient, hessian };
+}
+function solve(matrix, rhs) {
+  const a = matrix.map((row, i) => [...row, rhs[i]]);
+  for (let k = 0; k < a.length; k++) {
+    const pivot = a[k][k];
+    for (let j = k; j <= a.length; j++) a[k][j] /= pivot;
+    for (let i = 0; i < a.length; i++) {
+      if (i === k) continue;
+      const factor = a[i][k];
+      for (let j = k; j <= a.length; j++) a[i][j] -= factor * a[k][j];
+    }
+  }
+  return a.map(row => row[a.length]);
+}
+function estimate(matrix) {
+  let values = [...prior];
+  for (let iteration = 0; iteration < 30; iteration++) {
+    const { gradient, hessian } = derivatives(values, matrix);
+    const step = solve(hessian, gradient);
+    values = values.map((value, i) => value - step[i]);
+    if (Math.max(...step.map(Math.abs)) < 1e-10) break;
+  }
+  const { hessian } = derivatives(values, matrix);
+  return values.map((mean, i) => ({ mean, sd: Math.sqrt(solve(hessian, values.map((_, j) => Number(i === j)))[i]) }));
+}
+const signed = value => (value >= .005 ? '+' : '') + (Math.abs(value) < .005 ? 0 : value).toFixed(2);
+function estimateDisplay({ mean, sd }) {
+  const position = 50 + mean / 3 * 50;
+  return `<span class="estimate">${signed(mean)}</span><small title="Approximate posterior standard deviation">± ${sd.toFixed(2)} uncertainty</small><div class="scale" aria-hidden="true"><span class="zero"></span><span class="shift" style="left:${Math.min(50, position)}%;width:${Math.abs(position - 50)}%"></span><span class="dot" style="left:${position}%"></span></div>`;
+}
+function update() {
+  const estimates = estimate(outcomes);
+  for (let j = 0; j < 3; j++) {
+    el(`route-${j}`).innerHTML = estimateDisplay(estimates[j + 3]);
+  }
+  el('rows').innerHTML = outcomes.map((row, i) => {
+    return `<tr><th scope="row">Policy ${'ABC'[i]}</th>${row.map((result, j) => `<td><button class="outcome" data-row="${i}" data-col="${j}" data-state="${result}" aria-label="Policy ${'ABC'[i]}, ${names[j]}: ${labels[result]}. Click to change outcome.">${labels[result]}</button></td>`).join('')}<td>${estimateDisplay(estimates[i])}</td></tr>`;
+  }).join('');
+}
+// Delegate events so each cell retains keyboard focus while its contents update.
+el('rows').addEventListener('click', event => {
+  const button = event.target.closest('button[data-row]');
+  if (!button) return;
+  const i = Number(button.dataset.row), j = Number(button.dataset.col);
+  outcomes[i][j] = outcomes[i][j] === -1 ? 1 : outcomes[i][j] === 1 ? 0 : -1;
+  update();
+  el('rows').querySelector(`[data-row="${i}"][data-col="${j}"]`).focus();
+});
+el('reset').addEventListener('click', () => { outcomes = initial(); update(); });
+el('complete').addEventListener('click', () => {
+  outcomes = outcomes.map(row => row.map(value => value === -1 ? 0 : value));
+  update();
+});
+update();
+</script>
+</body>
+</html>
